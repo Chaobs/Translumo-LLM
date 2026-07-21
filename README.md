@@ -4,9 +4,16 @@
 <p align="center">
   <img width="670" src="https://github.com/ramjke/Translumo/assets/29047281/8985049f-ea1c-428e-94be-042ece66cb54">
 </p>
-  <h2 align="center" style="border: 0">Advanced Real-Time Screen Translator</h2>
+  <h2 align="center" style="border: 0">Translumo LLM — Advanced Real-Time Screen Translator (LLM Edition)</h2>
 
 <p align="center"><strong>English</strong> | <a href="docs/README-RU.md"><strong>Русский</strong></a></p>
+
+> **LLM Edition** — This is a fork of [Translumo](https://github.com/ramjke/Translumo) by
+> [Chaobs](https://github.com/Chaobs). It adds **LLM AI translation** (DeepSeek, Qwen, Kimi, GLM, MiniMax,
+> ChatGPT, Claude, Gemini, Grok and custom endpoints) alongside the original OCR engines, plus
+> Simplified/Traditional Chinese and Japanese localization. See [NOTICE](NOTICE) for the full list of changes.
+> Project page: [github.com/Chaobs/Translumo-LLM](https://github.com/Chaobs/Translumo-LLM) ·
+> Report issues: [Chaobs/Translumo-LLM/issues](https://github.com/Chaobs/Translumo-LLM/issues)
 
 ## Sibling Project
 This project has a sibling called **[Lookupper](https://lookupper.com)** — a screen dictionary for language learning. It is similar to Translumo but built for a different purpose. Lookupper is built to help you *learn* a language, not just depend on a translator forever.

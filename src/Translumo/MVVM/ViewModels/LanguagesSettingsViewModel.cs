@@ -17,7 +17,9 @@ using Translumo.MVVM.Common;
 using Translumo.MVVM.Models;
 using Translumo.OCR.Configuration;
 using Translumo.OCR.WindowsOCR;
+using Translumo.Translation;
 using Translumo.Translation.Configuration;
+using Translumo.Translation.Llm;
 using Translumo.TTS;
 using Translumo.Utils;
 using Translumo.Utils.Extensions;
@@ -36,6 +38,28 @@ namespace Translumo.MVVM.ViewModels
         public TranslationConfiguration Model { get; set; }
 
         public TtsConfiguration TtsSettings { get; set; }
+
+        public LlmConfiguration LlmSettings { get; }
+
+        public bool IsLlmSelected
+        {
+            get => _isLlmSelected;
+            set => SetProperty(ref _isLlmSelected, value);
+        }
+
+        public string LlmTestStatus
+        {
+            get => _llmTestStatus;
+            set => SetProperty(ref _llmTestStatus, value);
+        }
+
+        public bool IsLlmTesting
+        {
+            get => _isLlmTesting;
+            set => SetProperty(ref _isLlmTesting, value);
+        }
+
+        public ICommand TestLlmConnectionCommand => new AsyncRelayCommand(TestLlmConnectionAsync);
 
         private ObservableCollection<VoiceInfo> _availableVoices;
         public ObservableCollection<VoiceInfo> AvailableVoices
@@ -126,9 +150,13 @@ namespace Translumo.MVVM.ViewModels
         private readonly LanguageService _languageService;
         private readonly ILogger _logger;
 
+        private bool _isLlmSelected;
+        private string _llmTestStatus;
+        private bool _isLlmTesting;
+
         public LanguagesSettingsViewModel(LanguageService languageService, TranslationConfiguration translationConfiguration,
             OcrGeneralConfiguration ocrConfiguration, TtsConfiguration ttsConfiguration, DialogService dialogService,
-            ILogger<LanguagesSettingsViewModel> logger)
+            LlmConfiguration llmConfiguration, ILogger<LanguagesSettingsViewModel> logger)
         {
             var languages = languageService.GetAll(true)
                 .Select(lang => (lang.TranslationOnly, new DisplayLanguage(lang, GetLanguageDisplayName(lang))))
@@ -147,6 +175,9 @@ namespace Translumo.MVVM.ViewModels
             this.Model = translationConfiguration;
             this.TtsSettings = ttsConfiguration;
             this.TtsSettings.TtsLanguage = this.Model.TranslateToLang;
+            this.LlmSettings = llmConfiguration;
+            this.Model.PropertyChanged += OnModelPropertyChanged;
+            this.IsLlmSelected = this.Model.Translator == Translators.Llm;
 
             this.AvailableVoices = new ObservableCollection<VoiceInfo>();
             
@@ -250,6 +281,39 @@ namespace Translumo.MVVM.ViewModels
             }
 
             ProxySettingsIsOpened = false;
+        }
+
+        private void OnModelPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(TranslationConfiguration.Translator))
+            {
+                IsLlmSelected = Model.Translator == Translators.Llm;
+            }
+        }
+
+        private async Task TestLlmConnectionAsync()
+        {
+            if (IsLlmTesting)
+            {
+                return;
+            }
+
+            IsLlmTesting = true;
+            LlmTestStatus = LocalizationManager.GetValue("Str.LlmSettings.Testing");
+            try
+            {
+                var translator = new LlmTranslator(Model, LlmSettings, _languageService, _logger);
+                await translator.TranslateTextAsync("Hello");
+                LlmTestStatus = LocalizationManager.GetValue("Str.LlmSettings.TestSuccess");
+            }
+            catch (Exception ex)
+            {
+                LlmTestStatus = string.Format(LocalizationManager.GetValue("Str.LlmSettings.TestFail"), ex.Message);
+            }
+            finally
+            {
+                IsLlmTesting = false;
+            }
         }
 
         private async Task ChangeSourceLanguage(Languages language)

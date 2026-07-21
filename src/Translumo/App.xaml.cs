@@ -28,6 +28,7 @@ using Translumo.Processing.Interfaces;
 using Translumo.Processing.TextProcessing;
 using Translumo.Services;
 using Translumo.Translation;
+using Translumo.Translation.Llm;
 using Translumo.Translation.Configuration;
 using Translumo.TTS;
 using Translumo.Update;
@@ -128,6 +129,7 @@ namespace Translumo
             services.AddSingleton<ChatWindowConfiguration>(chatWindowConfiguration);
             services.AddSingleton<HotKeysConfiguration>(HotKeysConfiguration.Default);
             services.AddSingleton<SystemConfiguration>(SystemConfiguration.Default);
+            services.AddSingleton<LlmConfiguration>(new LlmConfiguration());
             services.AddSingleton<TextProcessingConfiguration>(chatWindowConfiguration.TextProcessing);
 
             var chatMediatorInstance = new ChatUITextMediator();

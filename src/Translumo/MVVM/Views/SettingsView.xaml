@@ -3,6 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:common="clr-namespace:Translumo.MVVM.Common"
+    xmlns:controls="clr-namespace:Translumo.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -42,6 +43,7 @@
             <views:OcrSettingsView />
         </DataTemplate>
         <common:CaseConverter x:Key="CaseConverter" Case="Upper" />
+        <common:CultureDisplayNameConverter x:Key="CultureDisplayNameConverter" />
         <common:BoolBrushConverter
             x:Key="HasUpdatesConverter"
             FalseBrush="{StaticResource PrimaryHueLightBrush}"
@@ -99,7 +101,7 @@
                             SelectedValuePath="Name">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <Label Content="{Binding TwoLetterISOLanguageName, Converter={StaticResource CaseConverter}}" Style="{StaticResource LightLabel}" />
+                                    <Label Content="{Binding Converter={StaticResource CultureDisplayNameConverter}}" Style="{StaticResource LightLabel}" />
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                             <ListView.ItemsPanel>
@@ -120,27 +122,26 @@
                                 Style="{StaticResource SystemAdditionalIcon}" />
                         </Button>
                     </DockPanel>
-                    <Button
+                    <StackPanel
                         Grid.Row="3"
-                        Height="105"
-                        Padding="0"
-                        Background="White"
-                        BorderThickness="0,0,1,0"
-                        Click="OnLookupperLinkClick"
-                        Cursor="Hand">
-                        <StackPanel>
-                            <TextBlock
-                                Margin="12,8,0,0"
-                                FontSize="18"
-                                Text="{DynamicResource Str.Lookupper.ProjectNote}" />
-                            <Image
-                                Height="60"
-                                Margin="14,8,14,14"
-                                HorizontalAlignment="Left"
-                                RenderOptions.BitmapScalingMode="HighQuality"
-                                Source="../../Resources/Icons/lookupper.png" />
-                        </StackPanel>
-                    </Button>
+                        Margin="10,10,10,10"
+                        Orientation="Vertical">
+                        <controls:ExtendedButton
+                            Margin="0,0,0,8"
+                            HorizontalAlignment="Left"
+                            Caption="{DynamicResource Str.Links.TranslumoLlm}"
+                            Command="{common:OpenLinkCommand}"
+                            CommandParameter="https://github.com/Chaobs/Translumo-LLM"
+                            IconKind="Github"
+                            Width="228" />
+                        <controls:ExtendedButton
+                            HorizontalAlignment="Left"
+                            Caption="{DynamicResource Str.Links.Original}"
+                            Command="{common:OpenLinkCommand}"
+                            CommandParameter="https://github.com/ramjke/Translumo"
+                            IconKind="Github"
+                            Width="228" />
+                    </StackPanel>
                 </Grid>
 
                 <ContentControl

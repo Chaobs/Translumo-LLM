@@ -14,8 +14,8 @@
     <system:String x:Key="Str.Notification.CaptchaPass" xml:space="preserve">请在网站上完成验证码以使用该服务。&#13;另外，每个已注册的代理可能都需要完成一次验证码。</system:String>
 
     <!--  Titles  -->
-    <system:String x:Key="Str.Title.SettingWindow" xml:space="preserve">Translumo设置</system:String>
-    <system:String x:Key="Str.Title.BrowserWindow" xml:space="preserve">Translumo游览器</system:String>
+    <system:String x:Key="Str.Title.SettingWindow" xml:space="preserve">Translumo LLM 设置</system:String>
+    <system:String x:Key="Str.Title.BrowserWindow" xml:space="preserve">Translumo LLM 浏览器</system:String>
 
     <!--  Tray  -->
     <system:String x:Key="Str.Tray.ShowHideSettings">打开/关闭 设置</system:String>
@@ -32,6 +32,28 @@
     <system:String x:Key="Str.LangSettings.TranslationLang">目标语言（您想要看到的语言）</system:String>
     <system:String x:Key="Str.LangSettings.Translator">翻译源</system:String>
     <system:String x:Key="Str.LangSettings.TtsSystem">朗读源</system:String>
+
+    <!--  Translator names  -->
+    <system:String x:Key="Str.Translator.Deepl">DeepL</system:String>
+    <system:String x:Key="Str.Translator.Yandex">Yandex</system:String>
+    <system:String x:Key="Str.Translator.Google">Google</system:String>
+    <system:String x:Key="Str.Translator.Papago">Papago</system:String>
+    <system:String x:Key="Str.Translator.Llm">大模型 AI</system:String>
+
+    <!--  LLM AI translator settings  -->
+    <system:String x:Key="Str.LlmSettings.Header">大模型 AI 翻译</system:String>
+    <system:String x:Key="Str.LlmSettings.Note" xml:space="preserve">配置您的 LLM 服务商 API。默认提示词已针对电子游戏与影视剧翻译场景优化。&#13;留空终结点与模型名将使用服务商预设值。</system:String>
+    <system:String x:Key="Str.LlmSettings.Provider">服务商</system:String>
+    <system:String x:Key="Str.LlmSettings.ApiKey">API 密钥</system:String>
+    <system:String x:Key="Str.LlmSettings.Endpoint">API 终结点（可选）</system:String>
+    <system:String x:Key="Str.LlmSettings.Model">模型名称（可选）</system:String>
+    <system:String x:Key="Str.LlmSettings.SystemPrompt">翻译提示词</system:String>
+    <system:String x:Key="Str.LlmSettings.Temperature">温度</system:String>
+    <system:String x:Key="Str.LlmSettings.MaxTokens">最大令牌数</system:String>
+    <system:String x:Key="Str.LlmSettings.Test">测试连接</system:String>
+    <system:String x:Key="Str.LlmSettings.Testing">测试中…</system:String>
+    <system:String x:Key="Str.LlmSettings.TestSuccess">连接成功！</system:String>
+    <system:String x:Key="Str.LlmSettings.TestFail">连接失败：{0}</system:String>
 
     <!--  Hotkeys descriptions  -->
     <system:String x:Key="Str.Hotkeys.ChatVisibility">显示/隐藏 翻译墙</system:String>
@@ -85,10 +107,14 @@
     <system:String x:Key="Str.OcrSettings.EasyOcrDesc2">需要安装（Python、PyTorch）其他软件包。</system:String>
 
     <!--  About window  -->
-    <system:String x:Key="Str.About.MaintainedBy">共同维护者：Aleksei Vekhov</system:String>
-    <system:String x:Key="Str.About.DevelopedBy">开发者：Danil Iushkov</system:String>
+    <system:String x:Key="Str.About.Edition">Translumo-LLM 版本</system:String>
+    <system:String x:Key="Str.About.EditionAuthor">LLM 版本作者：Chaobs</system:String>
+    <system:String x:Key="Str.About.MaintainedBy">原版共同维护者：Aleksei Vekhov</system:String>
+    <system:String x:Key="Str.About.DevelopedBy">原版开发者：Danil Iushkov</system:String>
     <system:String x:Key="Str.About.ProjectPage">项目主页</system:String>
     <system:String x:Key="Str.About.ReportIssue">意见与反馈</system:String>
+    <system:String x:Key="Str.About.OriginalProjectPage">原版项目（Translumo）</system:String>
+    <system:String x:Key="Str.About.OriginalReportIssue">原版项目问题反馈</system:String>
 
     <!--  Navigation menu  -->
     <system:String x:Key="Str.Navigation.Languages">语言</system:String>
@@ -161,6 +187,10 @@
 
     <system:String x:Key="Str.Lookupper.ProjectNote">我的项目首页:</system:String>
     <system:String x:Key="Str.Lookupper.Url">https://lookupper.com</system:String>
+
+    <!--  Footer links  -->
+    <system:String x:Key="Str.Links.TranslumoLlm">Translumo-LLM（本项目）</system:String>
+    <system:String x:Key="Str.Links.Original">Translumo（原版）</system:String>
 
 
 </ResourceDictionary>

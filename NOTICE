@@ -1,0 +1,97 @@
+Translumo-LLM
+=============
+
+This product includes software developed by the Translumo project
+(https://github.com/ramjke/Translumo), licensed under the Apache License,
+Version 2.0 (the "License"). The original work is copyrighted as follows:
+
+    Copyright 2021-2024 Aleksei Vekhov, Danil Iushkov
+    Original project: https://github.com/ramjke/Translumo
+
+Translumo-LLM is a derivative work (a fork) of Translumo. It is distributed
+under the same Apache License, Version 2.0. You may obtain a copy of the
+License at:
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+License for the specific language governing permissions and limitations
+under the License.
+
+
+Translumo-LLM Edition
+=====================
+
+Edition author : Chaobs (https://github.com/Chaobs)
+Edition repo   : https://github.com/Chaobs/Translumo-LLM
+License        : Apache License, Version 2.0 (same as upstream)
+
+
+Summary of Changes (relative to upstream Translumo)
+================================================
+
+1. LLM AI translation backend (new feature)
+   - Added a new translator type "LLM" (Translators.Llm) selectable in
+     Languages -> Translator, alongside DeepL / Google / Yandex / Papago.
+   - New namespace Translumo.Translation.Llm containing:
+       * LlmProvider        : enum of supported providers
+                              (DeepSeek, Qwen, Kimi, GLM, MiniMax, ChatGPT,
+                               Claude, Gemini, Grok, Custom).
+       * LlmApiStyle       : enum of API authentication styles
+                              (OpenAi, Anthropic, Gemini).
+       * LlmProviderPresets: default Endpoint / Model / ApiStyle per provider.
+       * LlmConfiguration   : API Key, Endpoint, Model name, System prompt,
+                              Temperature (default 0.3), MaxTokens (default 4096).
+                              Persisted & AES-encrypted via ConfigurationStorage.
+       * LlmContainer      : HTTP container reusing the existing HttpReader.
+       * LlmTranslator     : translates text via chat-completions-style APIs,
+                              with prompts tuned for video-game and film/TV
+                              translation (terminology accuracy, context fit).
+   - TranslatorFactory now constructs an LlmTranslator for Translators.Llm.
+   - DI registration of LlmConfiguration in App.xaml.cs and
+     ServiceCollectionExtensions.AddConfigurationStorage.
+
+2. UI product name changed to "Translumo LLM"
+   - ApplicationName resource set to "Translumo LLM".
+   - Window titles: "Settings - Translumo LLM" / "Browser - Translumo LLM"
+     (localized).
+   - AssemblyInfo: AssemblyTitle / Company / Product = "Translumo LLM",
+     version raised to 1.1.0, copyright updated to
+     "Copyright (c) Chaobs (LLM Edition). Based on Translumo by
+      Aleksei Vekhov & Danil Iushkov."
+
+3. Project links updated
+   - The bottom-left link on the settings window now points to the two
+     GitHub repositories: this project (https://github.com/Chaobs/Translumo-LLM)
+     and the original (https://github.com/ramjke/Translumo).
+
+4. Localization extended
+   - Added full Simplified Chinese (zh-CN), Traditional Chinese (zh-TW) and
+     Japanese (ja-JP) translations covering all UI strings, the floating
+     translation-window hints, the About dialog and the new LLM settings.
+   - Languages can be switched in the settings window; the switcher lists
+     languages by their native names (English / Русский / 中文 / 繁體中文 /
+     日本語).
+   - LocalizationManager.AvailableLocalizations now includes en-US, ru-RU,
+     zh-CN, zh-TW, ja-JP.
+
+5. About dialog updated
+   - Shows "Translumo-LLM Edition" + version.
+   - Credits the LLM Edition author (Chaobs) while preserving the original
+     maintainer (Aleksei Vekhov) and original author (Danil Iushkov).
+   - "Project page" and "Report an issue" point to this project's repository;
+     the original project's links are preserved below.
+
+6. Documentation
+   - README.md updated for the LLM Edition and fork attribution.
+   - This NOTICE file added to satisfy Apache License 2.0 attribution
+     requirements for derivative works.
+
+
+Upstream Translumo NOTICE (preserved)
+====================================
+The original Translumo project is licensed under the Apache License, Version 2.0.
+Translumo-LLM is not endorsed by, nor affiliated with, the upstream Translumo
+project or its authors beyond the permissions granted by the Apache License.

@@ -10,13 +10,13 @@ using System.Windows;
                                               //(used if a resource is not found in the page,
                                               // app, or any theme specific resource dictionaries)
 )]
-[assembly: AssemblyFileVersion("1.0.2")]
-[assembly: AssemblyInformationalVersion("1.0.2")]
-[assembly: AssemblyVersion("1.0.2")]
+[assembly: AssemblyFileVersion("1.1.0")]
+[assembly: AssemblyInformationalVersion("1.1.0")]
+[assembly: AssemblyVersion("1.1.0")]
 
-[assembly: AssemblyCompany("Translumo")]
-[assembly: AssemblyProduct("Translumo")]
-[assembly: AssemblyTitle("Translumo")]
-[assembly: AssemblyCopyright("Aleksei Vekhov")]
+[assembly: AssemblyCompany("Translumo LLM")]
+[assembly: AssemblyProduct("Translumo LLM")]
+[assembly: AssemblyTitle("Translumo LLM")]
+[assembly: AssemblyCopyright("Copyright © Chaobs (LLM Edition). Based on Translumo by Aleksei Vekhov & Danil Iushkov.")]
 [assembly: TargetPlatform("Windows10.0.19041.0")]
 [assembly: SupportedOSPlatform("Windows10.0.19041.0")]

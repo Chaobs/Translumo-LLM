@@ -14,8 +14,8 @@
     <system:String x:Key="Str.Notification.CaptchaPass" xml:space="preserve">Please complete captcha on the website to use service.&#13;Also it may be required for each registered proxy.</system:String>
 
     <!--  Titles  -->
-    <system:String x:Key="Str.Title.SettingWindow" xml:space="preserve">Settings - Translumo</system:String>
-    <system:String x:Key="Str.Title.BrowserWindow" xml:space="preserve">Browser - Translumo</system:String>
+    <system:String x:Key="Str.Title.SettingWindow" xml:space="preserve">Settings - Translumo LLM</system:String>
+    <system:String x:Key="Str.Title.BrowserWindow" xml:space="preserve">Browser - Translumo LLM</system:String>
 
     <!--  Tray  -->
     <system:String x:Key="Str.Tray.ShowHideSettings">Show/Hide settings</system:String>
@@ -32,6 +32,28 @@
     <system:String x:Key="Str.LangSettings.TranslationLang">Translation language</system:String>
     <system:String x:Key="Str.LangSettings.Translator">Translator</system:String>
     <system:String x:Key="Str.LangSettings.TtsSystem">Text to speech system</system:String>
+
+    <!--  Translator names  -->
+    <system:String x:Key="Str.Translator.Deepl">DeepL</system:String>
+    <system:String x:Key="Str.Translator.Yandex">Yandex</system:String>
+    <system:String x:Key="Str.Translator.Google">Google</system:String>
+    <system:String x:Key="Str.Translator.Papago">Papago</system:String>
+    <system:String x:Key="Str.Translator.Llm">LLM AI</system:String>
+
+    <!--  LLM AI translator settings  -->
+    <system:String x:Key="Str.LlmSettings.Header">LLM AI Translator</system:String>
+    <system:String x:Key="Str.LlmSettings.Note" xml:space="preserve">Configure your LLM provider API. The default prompt is optimized for electronic games and films/TV series translation.&#13;Leave the endpoint and model empty to use the provider's preset values.</system:String>
+    <system:String x:Key="Str.LlmSettings.Provider">Provider</system:String>
+    <system:String x:Key="Str.LlmSettings.ApiKey">API Key</system:String>
+    <system:String x:Key="Str.LlmSettings.Endpoint">API Endpoint (optional)</system:String>
+    <system:String x:Key="Str.LlmSettings.Model">Model name (optional)</system:String>
+    <system:String x:Key="Str.LlmSettings.SystemPrompt">Translation prompt</system:String>
+    <system:String x:Key="Str.LlmSettings.Temperature">Temperature</system:String>
+    <system:String x:Key="Str.LlmSettings.MaxTokens">Max tokens</system:String>
+    <system:String x:Key="Str.LlmSettings.Test">Test connection</system:String>
+    <system:String x:Key="Str.LlmSettings.Testing">Testing...</system:String>
+    <system:String x:Key="Str.LlmSettings.TestSuccess">Connection successful!</system:String>
+    <system:String x:Key="Str.LlmSettings.TestFail">Connection failed: {0}</system:String>
 
     <!--  Hotkeys descriptions  -->
     <system:String x:Key="Str.Hotkeys.ChatVisibility">Show/hide translation window</system:String>
@@ -85,10 +107,14 @@
     <system:String x:Key="Str.OcrSettings.EasyOcrDesc2">Installation additional packages (Python, PyTorch) is required</system:String>
 
     <!--  About window  -->
-    <system:String x:Key="Str.About.MaintainedBy">Owner and Maintainer Aleksei Vekhov</system:String>
-    <system:String x:Key="Str.About.DevelopedBy">Author Danil Iushkov</system:String>
+    <system:String x:Key="Str.About.Edition">Translumo-LLM Edition</system:String>
+    <system:String x:Key="Str.About.EditionAuthor">LLM Edition by Chaobs</system:String>
+    <system:String x:Key="Str.About.MaintainedBy">Original owner and maintainer Aleksei Vekhov</system:String>
+    <system:String x:Key="Str.About.DevelopedBy">Original author Danil Iushkov</system:String>
     <system:String x:Key="Str.About.ProjectPage">Project page</system:String>
     <system:String x:Key="Str.About.ReportIssue">Report an issue</system:String>
+    <system:String x:Key="Str.About.OriginalProjectPage">Original project (Translumo)</system:String>
+    <system:String x:Key="Str.About.OriginalReportIssue">Original project issues</system:String>
 
     <!--  Navigation menu  -->
     <system:String x:Key="Str.Navigation.Languages">Languages</system:String>
@@ -161,6 +187,10 @@
 
     <system:String x:Key="Str.Lookupper.ProjectNote">Main project I’m working on:</system:String>
     <system:String x:Key="Str.Lookupper.Url">https://lookupper.com</system:String>
+
+    <!--  Footer links  -->
+    <system:String x:Key="Str.Links.TranslumoLlm">Translumo-LLM (this project)</system:String>
+    <system:String x:Key="Str.Links.Original">Translumo (original)</system:String>
 
 
 </ResourceDictionary>

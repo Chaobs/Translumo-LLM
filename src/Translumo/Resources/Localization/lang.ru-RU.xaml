@@ -14,8 +14,8 @@
     <system:String x:Key="Str.Notification.CaptchaPass" xml:space="preserve">Пожалуйста пройдите капчу для использования сервиса&#13;Это окно может появиться для каждого задействованного прокси.</system:String>
 
     <!--  Titles  -->
-    <system:String x:Key="Str.Title.SettingWindow" xml:space="preserve">Настройки - Translumo</system:String>
-    <system:String x:Key="Str.Title.BrowserWindow" xml:space="preserve">Браузер - Translumo</system:String>
+    <system:String x:Key="Str.Title.SettingWindow" xml:space="preserve">Настройки - Translumo LLM</system:String>
+    <system:String x:Key="Str.Title.BrowserWindow" xml:space="preserve">Браузер - Translumo LLM</system:String>
 
     <!--  Tray  -->
     <system:String x:Key="Str.Tray.ShowHideSettings">Показать/Скрыть настройки</system:String>
@@ -32,6 +32,28 @@
     <system:String x:Key="Str.LangSettings.TranslationLang">Язык перевода</system:String>
     <system:String x:Key="Str.LangSettings.Translator">Переводчик</system:String>
     <system:String x:Key="Str.LangSettings.TtsSystem">Синтез речи (TTS)</system:String>
+
+    <!--  Translator names  -->
+    <system:String x:Key="Str.Translator.Deepl">DeepL</system:String>
+    <system:String x:Key="Str.Translator.Yandex">Yandex</system:String>
+    <system:String x:Key="Str.Translator.Google">Google</system:String>
+    <system:String x:Key="Str.Translator.Papago">Papago</system:String>
+    <system:String x:Key="Str.Translator.Llm">LLM AI</system:String>
+
+    <!--  LLM AI translator settings  -->
+    <system:String x:Key="Str.LlmSettings.Header">Переводчик LLM AI</system:String>
+    <system:String x:Key="Str.LlmSettings.Note" xml:space="preserve">Настройте API вашего LLM-провайдера. Стандартный промпт оптимизирован для перевода видеоигр и фильмов/сериалов.&#13;Оставьте адрес и модель пустыми, чтобы использовать предустановленные значения провайдера.</system:String>
+    <system:String x:Key="Str.LlmSettings.Provider">Провайдер</system:String>
+    <system:String x:Key="Str.LlmSettings.ApiKey">API Key</system:String>
+    <system:String x:Key="Str.LlmSettings.Endpoint">API Endpoint (необязательно)</system:String>
+    <system:String x:Key="Str.LlmSettings.Model">Модель (необязательно)</system:String>
+    <system:String x:Key="Str.LlmSettings.SystemPrompt">Промпт перевода</system:String>
+    <system:String x:Key="Str.LlmSettings.Temperature">Температура</system:String>
+    <system:String x:Key="Str.LlmSettings.MaxTokens">Макс. токенов</system:String>
+    <system:String x:Key="Str.LlmSettings.Test">Проверить подключение</system:String>
+    <system:String x:Key="Str.LlmSettings.Testing">Проверка...</system:String>
+    <system:String x:Key="Str.LlmSettings.TestSuccess">Подключение успешно!</system:String>
+    <system:String x:Key="Str.LlmSettings.TestFail">Ошибка подключения: {0}</system:String>
 
     <!--  Hotkeys descriptions  -->
     <system:String x:Key="Str.Hotkeys.ChatVisibility">Показать/скрыть окно перевода</system:String>
@@ -85,10 +107,14 @@
     <system:String x:Key="Str.OcrSettings.EasyOcrDesc2">Необходима установка дополнительных модулей (Python, PyTorch)</system:String>
 
     <!--  About window  -->
-    <system:String x:Key="Str.About.MaintainedBy">Создатель Алексей Вехов</system:String>
-    <system:String x:Key="Str.About.DevelopedBy">Автор Данил Юшков</system:String>
+    <system:String x:Key="Str.About.Edition">Translumo-LLM Edition</system:String>
+    <system:String x:Key="Str.About.EditionAuthor">LLM Edition автор: Chaobs</system:String>
+    <system:String x:Key="Str.About.MaintainedBy">Изначальный создатель Алексей Вехов</system:String>
+    <system:String x:Key="Str.About.DevelopedBy">Изначальный автор Данил Юшков</system:String>
     <system:String x:Key="Str.About.ProjectPage">Страница проекта</system:String>
     <system:String x:Key="Str.About.ReportIssue">Сообщить о проблеме</system:String>
+    <system:String x:Key="Str.About.OriginalProjectPage">Исходный проект (Translumo)</system:String>
+    <system:String x:Key="Str.About.OriginalReportIssue">Исходный проект: проблемы</system:String>
 
     <!--  Navigation menu  -->
     <system:String x:Key="Str.Navigation.Languages">Языки</system:String>
@@ -161,5 +187,9 @@
 
     <system:String x:Key="Str.Lookupper.ProjectNote">Мой главный проект:</system:String>
     <system:String x:Key="Str.Lookupper.Url">https://lookupper.ru</system:String>
+
+    <!--  Footer links  -->
+    <system:String x:Key="Str.Links.TranslumoLlm">Translumo-LLM (этот проект)</system:String>
+    <system:String x:Key="Str.Links.Original">Translumo (оригинал)</system:String>
 
 </ResourceDictionary>

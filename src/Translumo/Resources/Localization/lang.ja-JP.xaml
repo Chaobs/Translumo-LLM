@@ -1,0 +1,193 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:system="clr-namespace:System;assembly=System.Runtime">
+
+    <!--  Generic  -->
+    <system:String x:Key="Str.Login">ユーザー名</system:String>
+    <system:String x:Key="Str.Password">パスワード</system:String>
+    <system:String x:Key="Str.ExitConfirmation" xml:space="preserve">アプリケーションを終了しますか？&#13;最小化ボタンを使用すると、アプリはバックグラウンドで動作します（トレイアイコンから利用可能）。</system:String>
+    <system:String x:Key="Str.ExitConfirmationCaption">終了の確認</system:String>
+    <system:String x:Key="Str.NewVersion">新しいバージョンが利用可能です！</system:String>
+
+    <!--  Notifications  -->
+    <system:String x:Key="Str.Notification.CaptchaPass" xml:space="preserve">サービスを利用するにはウェブサイトでCAPTCHAを完了してください。&#13;登録済みのプロキシごとに必要になる場合があります。</system:String>
+
+    <!--  Titles  -->
+    <system:String x:Key="Str.Title.SettingWindow" xml:space="preserve">設定 - Translumo LLM</system:String>
+    <system:String x:Key="Str.Title.BrowserWindow" xml:space="preserve">ブラウザー - Translumo LLM</system:String>
+
+    <!--  Tray  -->
+    <system:String x:Key="Str.Tray.ShowHideSettings">設定の表示/非表示</system:String>
+    <system:String x:Key="Str.Tray.ShowHideTranslation">翻訳ウィンドウの表示/非表示</system:String>
+    <system:String x:Key="Str.Tray.Exit">終了</system:String>
+
+    <!--  Chat  -->
+    <system:String x:Key="Str.Chat.SettingsOpened">翻訳を開始するには設定を閉じてください</system:String>
+    <system:String x:Key="Str.Chat.WindowLocked">翻訳ウィンドウはロックされました</system:String>
+    <system:String x:Key="Str.Chat.WindowUnlocked">翻訳ウィンドウのロックが解除されました</system:String>
+
+    <!--  Language settings  -->
+    <system:String x:Key="Str.LangSettings.SourceLang">翻訳元の言語</system:String>
+    <system:String x:Key="Str.LangSettings.TranslationLang">翻訳先の言語</system:String>
+    <system:String x:Key="Str.LangSettings.Translator">翻訳エンジン</system:String>
+    <system:String x:Key="Str.LangSettings.TtsSystem">音声読み上げエンジン</system:String>
+
+    <!--  Translator names  -->
+    <system:String x:Key="Str.Translator.Deepl">DeepL</system:String>
+    <system:String x:Key="Str.Translator.Yandex">Yandex</system:String>
+    <system:String x:Key="Str.Translator.Google">Google</system:String>
+    <system:String x:Key="Str.Translator.Papago">Papago</system:String>
+    <system:String x:Key="Str.Translator.Llm">LLM AI</system:String>
+
+    <!--  LLM AI translator settings  -->
+    <system:String x:Key="Str.LlmSettings.Header">LLM AI 翻訳</system:String>
+    <system:String x:Key="Str.LlmSettings.Note" xml:space="preserve">LLM プロバイダーの API を設定します。デフォルトのプロンプトは電子ゲームや映画・ドラマの翻訳向けに最適化されています。&#13;エンドポイントとモデル名を空にすると、プロバイダーの既定値を使用します。</system:String>
+    <system:String x:Key="Str.LlmSettings.Provider">プロバイダー</system:String>
+    <system:String x:Key="Str.LlmSettings.ApiKey">API キー</system:String>
+    <system:String x:Key="Str.LlmSettings.Endpoint">API エンドポイント（任意）</system:String>
+    <system:String x:Key="Str.LlmSettings.Model">モデル名（任意）</system:String>
+    <system:String x:Key="Str.LlmSettings.SystemPrompt">翻訳プロンプト</system:String>
+    <system:String x:Key="Str.LlmSettings.Temperature">温度</system:String>
+    <system:String x:Key="Str.LlmSettings.MaxTokens">最大トークン数</system:String>
+    <system:String x:Key="Str.LlmSettings.Test">接続テスト</system:String>
+    <system:String x:Key="Str.LlmSettings.Testing">テスト中…</system:String>
+    <system:String x:Key="Str.LlmSettings.TestSuccess">接続に成功しました！</system:String>
+    <system:String x:Key="Str.LlmSettings.TestFail">接続に失敗しました: {0}</system:String>
+
+    <!--  Hotkeys descriptions  -->
+    <system:String x:Key="Str.Hotkeys.ChatVisibility">翻訳ウィンドウの表示/非表示</system:String>
+    <system:String x:Key="Str.Hotkeys.SettingsVisibility">設定の開閉</system:String>
+    <system:String x:Key="Str.Hotkeys.SelectArea">翻訳領域を選択</system:String>
+    <system:String x:Key="Str.Hotkeys.OnOffTranslation">翻訳のオン/オフ</system:String>
+    <system:String x:Key="Str.Hotkeys.ShowSelectArea">選択した翻訳領域を表示</system:String>
+    <system:String x:Key="Str.Hotkeys.OnceTranslate">領域を選択して一度だけ翻訳</system:String>
+    <system:String x:Key="Str.Hotkeys.WindowChangeStyle">翻訳ウィンドウの位置ロック/解除</system:String>
+    <system:String x:Key="Str.Hotkeys.SettingsShowHelp">「{0}」を押して設定を開く</system:String>
+    <system:String x:Key="Str.Hotkeys.SelectAreaHelp">「{0}」を押して翻訳領域を選択</system:String>
+    <system:String x:Key="Str.Hotkeys.OnTranslationHelp">「{0}」を押して翻訳を開始</system:String>
+    <system:String x:Key="Str.Hotkeys.GeneralHelp">アプリの操作にはトレイの右クリックメニュー、または以下のショートカットキーを使用します：</system:String>
+
+    <!--  Appearance settings  -->
+    <system:String x:Key="Str.AppearanceSettings.WindowColor">ウィンドウの色</system:String>
+    <system:String x:Key="Str.AppearanceSettings.FontColor">文字色</system:String>
+    <system:String x:Key="Str.AppearanceSettings.FontSize">文字サイズ</system:String>
+    <system:String x:Key="Str.AppearanceSettings.Bold">太字</system:String>
+    <system:String x:Key="Str.AppearanceSettings.ExcludeFromCaptue">翻訳ウィンドウを除外</system:String>
+    <system:String x:Key="Str.AppearanceSettings.LineSpacing">行間</system:String>
+    <system:String x:Key="Str.AppearanceSettings.WindowOpacity">ウィンドウの不透明度</system:String>
+    <system:String x:Key="Str.AppearanceSettings.FontSizePanelCaption">フォントサイズ — 変更</system:String>
+    <system:String x:Key="Str.AppearanceSettings.FontColorPanelCaption">文字色 — 変更</system:String>
+    <system:String x:Key="Str.AppearanceSettings.KeepFormatting">元の書式を保持</system:String>
+    <system:String x:Key="Str.AppearanceSettings.Left">左揃え</system:String>
+    <system:String x:Key="Str.AppearanceSettings.Center">中央揃え</system:String>
+    <system:String x:Key="Str.AppearanceSettings.Right">右揃え</system:String>
+    <system:String x:Key="Str.AppearanceSettings.Justify">両端揃え</system:String>
+    <system:String x:Key="Str.AppearanceSettings.AutoClearTexts">自動クリア</system:String>
+    <system:String x:Key="Str.AppearanceSettings.AutoClearTexts2">非アクティブ後</system:String>
+    <system:String x:Key="Str.AppearanceSettings.Ms">ミリ秒</system:String>
+
+    <!--  Proxy settings  -->
+    <system:String x:Key="Str.ProxySettings.Proxy">プロキシ</system:String>
+    <system:String x:Key="Str.ProxySettings.IpAddress">IP アドレス</system:String>
+    <system:String x:Key="Str.ProxySettings.Port">ポート</system:String>
+    <system:String x:Key="Str.ProxySettings.Note" xml:space="preserve">大量の同時リクエストによる翻訳サービスのブロックを回避するために IPv4 プロキシを使用してください。&#13;アプリはリクエスト間でプロキシアドレスのプールを自動的に割り当てます。</system:String>
+    <system:String x:Key="Str.ProxySettings.Caption">プロキシリスト</system:String>
+
+    <!--  OCR settings  -->
+    <system:String x:Key="Str.OcrSettings.TesseractOcr">Tesseract OCR</system:String>
+    <system:String x:Key="Str.OcrSettings.WindowsOcr">Windows OCR</system:String>
+    <system:String x:Key="Str.OcrSettings.EasyOcr">EasyOCR</system:String>
+    <system:String x:Key="Str.OcrSettings.TesseractOcrDesc" xml:space="preserve">Tesseract 5.0（LSTM モード）。初期の最も人気のあるオープンソース OCR ソリューションの一つです。&#13;&#13;単純な背景でフォントが複雑でないテキストを安定して認識します。&#13;&#13;&lt;Bold&gt;パフォーマンスへの影響:&lt;/Bold&gt; 低</system:String>
+    <system:String x:Key="Str.OcrSettings.WindowsOcrDesc" xml:space="preserve">Microsoft 純正の OCR ソリューション。Tesseract よりも複雑な背景やフォントに対応できます。&#13;&#13;&lt;Bold&gt;パフォーマンスへの影響:&lt;/Bold&gt; 中</system:String>
+    <system:String x:Key="Str.OcrSettings.WindowsOcrDesc2">追加の言語パックのインストールが必要な場合があります。</system:String>
+    <system:String x:Key="Str.OcrSettings.EasyOcrDesc" xml:space="preserve">Jaided AI による最先端のオープンソース OCR ソリューション。&#13;&#13;複雑な背景や特殊なフォントでも高精度なテキスト認識を実現します。&#13;&#13;&lt;Bold&gt;パフォーマンスへの影響:&lt;/Bold&gt; 高</system:String>
+    <system:String x:Key="Str.OcrSettings.EasyOcrDesc2">追加パッケージ（Python、PyTorch）のインストールが必要です。</system:String>
+
+    <!--  About window  -->
+    <system:String x:Key="Str.About.Edition">Translumo-LLM エディション</system:String>
+    <system:String x:Key="Str.About.EditionAuthor">LLM 版作成者: Chaobs</system:String>
+    <system:String x:Key="Str.About.MaintainedBy">オリジナル共同メンテナー: Aleksei Vekhov</system:String>
+    <system:String x:Key="Str.About.DevelopedBy">オリジナル開発者: Danil Iushkov</system:String>
+    <system:String x:Key="Str.About.ProjectPage">プロジェクトページ</system:String>
+    <system:String x:Key="Str.About.ReportIssue">問題を報告</system:String>
+    <system:String x:Key="Str.About.OriginalProjectPage">オリジナルプロジェクト (Translumo)</system:String>
+    <system:String x:Key="Str.About.OriginalReportIssue">オリジナルプロジェクトの問題</system:String>
+
+    <!--  Navigation menu  -->
+    <system:String x:Key="Str.Navigation.Languages">言語</system:String>
+    <system:String x:Key="Str.Navigation.Appearance">翻訳ウィンドウ</system:String>
+    <system:String x:Key="Str.Navigation.Ocr">文字認識</system:String>
+    <system:String x:Key="Str.Navigation.HotKeys">ホットキー</system:String>
+
+    <!--  Languages  -->
+    <system:String x:Key="Str.Languages.English">英語</system:String>
+    <system:String x:Key="Str.Languages.Russian">ロシア語</system:String>
+    <system:String x:Key="Str.Languages.Japanese">日本語</system:String>
+    <system:String x:Key="Str.Languages.Korean">韓国語</system:String>
+    <system:String x:Key="Str.Languages.Chinese">中国語 (簡体字)</system:String>
+    <system:String x:Key="Str.Languages.Italian">イタリア語</system:String>
+    <system:String x:Key="Str.Languages.French">フランス語</system:String>
+    <system:String x:Key="Str.Languages.German">ドイツ語</system:String>
+    <system:String x:Key="Str.Languages.Spanish">スペイン語</system:String>
+    <system:String x:Key="Str.Languages.Portuguese">ポルトガル語</system:String>
+    <system:String x:Key="Str.Languages.Vietnamese">ベトナム語</system:String>
+    <system:String x:Key="Str.Languages.Turkish">トルコ語</system:String>
+    <system:String x:Key="Str.Languages.Thai">タイ語</system:String>
+    <system:String x:Key="Str.Languages.Arabic">アラビア語</system:String>
+    <system:String x:Key="Str.Languages.Greek">ギリシャ語</system:String>
+    <system:String x:Key="Str.Languages.PortugueseBrazil">ポルトガル語 (ブラジル)</system:String>
+    <system:String x:Key="Str.Languages.Polish">ポーランド語</system:String>
+    <system:String x:Key="Str.Languages.Belarusian">ベラルーシ語</system:String>
+    <system:String x:Key="Str.Languages.Persian">ペルシア語</system:String>
+    <system:String x:Key="Str.Languages.Indonesian">インドネシア語</system:String>
+    <system:String x:Key="Str.Languages.Bulgarian">ブルガリア語</system:String>
+    <system:String x:Key="Str.Languages.Czech">チェコ語</system:String>
+    <system:String x:Key="Str.Languages.Danish">デンマーク語</system:String>
+    <system:String x:Key="Str.Languages.Estonian">エストニア語</system:String>
+    <system:String x:Key="Str.Languages.Finnish">フィンランド語</system:String>
+    <system:String x:Key="Str.Languages.Hungarian">ハンガリー語</system:String>
+    <system:String x:Key="Str.Languages.Lithuanian">リトアニア語</system:String>
+    <system:String x:Key="Str.Languages.Latvian">ラトビア語</system:String>
+    <system:String x:Key="Str.Languages.Dutch">オランダ語</system:String>
+    <system:String x:Key="Str.Languages.Romanian">ルーマニア語</system:String>
+    <system:String x:Key="Str.Languages.Slovak">スロバキア語</system:String>
+    <system:String x:Key="Str.Languages.Slovenian">スロベニア語</system:String>
+    <system:String x:Key="Str.Languages.Swedish">スウェーデン語</system:String>
+    <system:String x:Key="Str.Languages.Ukrainian">ウクライナ語</system:String>
+
+    <!--  Dialog stages  -->
+    <system:String x:Key="Str.Stages.CheckPyModules">インストール済みモジュールを確認しています...</system:String>
+    <system:String x:Key="Str.Stages.PyModulesQuestion" xml:space="preserve">必要な Python モジュールがインストールされていません。今すぐインストールしますか？&#13;このオプションは NVIDIA GPU でのみ利用可能です！</system:String>
+    <system:String x:Key="Str.Stages.PyModulesQuestion2" xml:space="preserve">必要なモジュールは約 5GB のディスク容量を占有します。&#13;インストールには数分から 1 時間かかる場合があります。&#13;続行しますか？</system:String>
+    <system:String x:Key="Str.Stages.InstallationPyModule1">(1/3) モジュール「pytorch」をインストール中...</system:String>
+    <system:String x:Key="Str.Stages.InstallationPyModule2">(2/3) モジュール「easyocr」をインストール中...</system:String>
+    <system:String x:Key="Str.Stages.InstallationPyModule3">(3/3) モジュール「pillow」をインストール中...</system:String>
+    <system:String x:Key="Str.Stages.InstallationPyModuleTemplate">モジュール「{0}」をインストール中...</system:String>
+    <system:String x:Key="Str.Stages.PyModulesInstalled">必要なモジュールがインストールされました</system:String>
+    <system:String x:Key="Str.Stages.PyModulesCheckError">モジュール確認のため Python にアクセスできませんでした</system:String>
+    <system:String x:Key="Str.Stages.CheckLangPack">言語パックのインストール状況を確認しています...</system:String>
+    <system:String x:Key="Str.Stages.OCRLangPackQuestion" xml:space="preserve">Windows に言語「{0}」の文字認識 (OCR) がインストールされていません。&#13;今すぐインストールしますか？</system:String>
+    <system:String x:Key="Str.Stages.TTSLangPackQuestion" xml:space="preserve">Windows に言語「{0}」の音声読み上げ (TTS) がインストールされていません。&#13;今すぐインストールしますか？</system:String>
+    <system:String x:Key="Str.Stages.InstallationLangPack">言語パックをインストール中...</system:String>
+    <system:String x:Key="Str.Stages.LangPackInstalledRestart">言語パックがインストールされました。コンピュータを再起動してください。</system:String>
+    <system:String x:Key="Str.Stages.LangPackInstalledTtsRestart" xml:space="preserve">言語パックがインストールされました。&#13;TTS が動作しない場合は、アプリの再起動をお試しください。</system:String>
+    <system:String x:Key="Str.Stages.InstallationLangError">パックのインストールに失敗しました: 「{0}」</system:String>
+    <system:String x:Key="Str.Stages.CheckLangPackError" xml:space="preserve">Windows 機能オプションの確認中に予期せぬエラーが発生しました。&#13;管理者としてアプリを実行していることを確認してください。</system:String>
+    <system:String x:Key="Str.Stages.SwitchLanguage">言語を切り替え中...</system:String>
+    <system:String x:Key="Str.Stages.SwitchLanguageError">言語の切り替えに失敗しました: 「{0}」</system:String>
+    <system:String x:Key="Str.Stages.TtsNotSupportLanguageTemplate">{0}「{1}」は「{2}」の言語に対応していません。</system:String>
+
+    <!--  Buttons  -->
+    <system:String x:Key="Str.Button.SettingProxy">プロキシを設定</system:String>
+    <system:String x:Key="Str.Button.ShowText">テキスト例を表示</system:String>
+    <system:String x:Key="Str.Button.Apply">適用</system:String>
+
+    <system:String x:Key="Str.Lookupper.ProjectNote">私が取り組んでいるメインプロジェクト:</system:String>
+    <system:String x:Key="Str.Lookupper.Url">https://lookupper.com</system:String>
+
+    <!--  Footer links  -->
+    <system:String x:Key="Str.Links.TranslumoLlm">Translumo-LLM（本プロジェクト）</system:String>
+    <system:String x:Key="Str.Links.Original">Translumo（オリジナル）</system:String>
+
+</ResourceDictionary>
