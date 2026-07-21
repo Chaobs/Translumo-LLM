@@ -54,6 +54,8 @@
     <system:String x:Key="Str.LlmSettings.Testing">Проверка...</system:String>
     <system:String x:Key="Str.LlmSettings.TestSuccess">Подключение успешно!</system:String>
     <system:String x:Key="Str.LlmSettings.TestFail">Ошибка подключения: {0}</system:String>
+    <system:String x:Key="Str.LlmSettings.AddProfile">Добавить профиль</system:String>
+    <system:String x:Key="Str.LlmSettings.DeleteProfile">Удалить профиль</system:String>
 
     <!--  Hotkeys descriptions  -->
     <system:String x:Key="Str.Hotkeys.ChatVisibility">Показать/скрыть окно перевода</system:String>

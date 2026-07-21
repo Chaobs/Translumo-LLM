@@ -94,6 +94,9 @@ namespace Translumo
 
             var configurationStorage = _serviceProvider.GetService<ConfigurationStorage>();
             configurationStorage.SaveConfiguration();
+
+            var llmProfiles = _serviceProvider.GetService<LlmProfiles>();
+            llmProfiles?.Save();
         }
 
         protected override void OnStartup(StartupEventArgs e)
@@ -129,7 +132,7 @@ namespace Translumo
             services.AddSingleton<ChatWindowConfiguration>(chatWindowConfiguration);
             services.AddSingleton<HotKeysConfiguration>(HotKeysConfiguration.Default);
             services.AddSingleton<SystemConfiguration>(SystemConfiguration.Default);
-            services.AddSingleton<LlmConfiguration>(new LlmConfiguration());
+            services.AddSingleton<LlmProfiles>(new LlmProfiles());
             services.AddSingleton<TextProcessingConfiguration>(chatWindowConfiguration.TextProcessing);
 
             var chatMediatorInstance = new ChatUITextMediator();

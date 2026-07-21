@@ -54,6 +54,8 @@
     <system:String x:Key="Str.LlmSettings.Testing">Testing...</system:String>
     <system:String x:Key="Str.LlmSettings.TestSuccess">Connection successful!</system:String>
     <system:String x:Key="Str.LlmSettings.TestFail">Connection failed: {0}</system:String>
+    <system:String x:Key="Str.LlmSettings.AddProfile">Add profile</system:String>
+    <system:String x:Key="Str.LlmSettings.DeleteProfile">Delete profile</system:String>
 
     <!--  Hotkeys descriptions  -->
     <system:String x:Key="Str.Hotkeys.ChatVisibility">Show/hide translation window</system:String>

@@ -16,14 +16,14 @@ namespace Translumo.Translation
         private readonly LanguageService _languageService;
         private readonly IActionDispatcher _actionDispatcher;
         private readonly ILogger _logger;
-        private readonly LlmConfiguration _llmConfiguration;
+        private readonly LlmProfiles _llmProfiles;
 
         public TranslatorFactory(LanguageService languageService, IActionDispatcher actionDispatcher,
-            LlmConfiguration llmConfiguration, ILogger<TranslatorFactory> logger)
+            LlmProfiles llmProfiles, ILogger<TranslatorFactory> logger)
         {
             this._languageService = languageService;
             this._actionDispatcher = actionDispatcher;
-            this._llmConfiguration = llmConfiguration;
+            this._llmProfiles = llmProfiles;
             this._logger = logger;
         }
 
@@ -40,7 +40,12 @@ namespace Translumo.Translation
                 case Translators.Google:
                     return new GoogleTranslator(translatorConfiguration, _languageService, _logger);
                 case Translators.Llm:
-                    return new LlmTranslator(translatorConfiguration, _llmConfiguration, _languageService, _logger);
+                    var llmProfile = _llmProfiles.Active;
+                    if (llmProfile == null)
+                    {
+                        throw new InvalidOperationException("No LLM profile is configured.");
+                    }
+                    return new LlmTranslator(translatorConfiguration, llmProfile, _languageService, _logger);
                 default:
                     throw new NotSupportedException();
             }

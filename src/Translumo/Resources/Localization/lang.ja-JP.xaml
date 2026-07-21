@@ -54,6 +54,8 @@
     <system:String x:Key="Str.LlmSettings.Testing">テスト中…</system:String>
     <system:String x:Key="Str.LlmSettings.TestSuccess">接続に成功しました！</system:String>
     <system:String x:Key="Str.LlmSettings.TestFail">接続に失敗しました: {0}</system:String>
+    <system:String x:Key="Str.LlmSettings.AddProfile">プロファイル追加</system:String>
+    <system:String x:Key="Str.LlmSettings.DeleteProfile">プロファイル削除</system:String>
 
     <!--  Hotkeys descriptions  -->
     <system:String x:Key="Str.Hotkeys.ChatVisibility">翻訳ウィンドウの表示/非表示</system:String>
@@ -116,7 +118,7 @@
 
     <!--  Navigation menu  -->
     <system:String x:Key="Str.Navigation.Languages">言語</system:String>
-    <system:String x:Key="Str.Navigation.Appearance">翻訳ウィンドウ</system:String>
+    <system:String x:Key="Str.Navigation.Appearance">外観</system:String>
     <system:String x:Key="Str.Navigation.Ocr">文字認識</system:String>
     <system:String x:Key="Str.Navigation.HotKeys">ホットキー</system:String>
 

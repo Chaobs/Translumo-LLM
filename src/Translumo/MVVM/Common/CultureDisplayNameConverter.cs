@@ -5,8 +5,8 @@ using System.Windows.Data;
 namespace Translumo.MVVM.Common
 {
     /// <summary>
-    /// Converts a CultureInfo to its native language name for display in the
-    /// language switcher (e.g. 中文 / 繁體中文 / 日本語 / English / Русский).
+    /// Converts a CultureInfo to a short abbreviation for the language switcher
+    /// (EN / RU / 简中 / 繁中 / 日語) to keep the switcher compact.
     /// </summary>
     [ValueConversion(typeof(CultureInfo), typeof(string))]
     public class CultureDisplayNameConverter : IValueConverter
@@ -17,12 +17,12 @@ namespace Translumo.MVVM.Common
             {
                 switch (ci.Name)
                 {
-                    case "en-US": return "English";
-                    case "ru-RU": return "Русский";
-                    case "zh-CN": return "中文";
-                    case "zh-TW": return "繁體中文";
-                    case "ja-JP": return "日本語";
-                    default: return ci.NativeName;
+                    case "en-US": return "EN";
+                    case "ru-RU": return "RU";
+                    case "zh-CN": return "简中";
+                    case "zh-TW": return "繁中";
+                    case "ja-JP": return "日語";
+                    default: return ci.TwoLetterISOLanguageName.ToUpper(culture);
                 }
             }
 

@@ -39,7 +39,30 @@ namespace Translumo.MVVM.ViewModels
 
         public TtsConfiguration TtsSettings { get; set; }
 
-        public LlmConfiguration LlmSettings { get; }
+        public LlmConfiguration LlmSettings => _llmProfiles.Active;
+
+        public ObservableCollection<string> LlmProfileNames { get; } = new ObservableCollection<string>();
+
+        public string SelectedLlmProfileName
+        {
+            get => _llmProfiles.ActiveProfileName;
+            set
+            {
+                if (_llmProfiles.ActiveProfileName == value)
+                {
+                    return;
+                }
+
+                _llmProfiles.ActiveProfileName = value;
+                SubscribeActiveProfile();
+                OnPropertyChanged(nameof(LlmSettings));
+                _llmProfiles.Save();
+            }
+        }
+
+        public ICommand AddLlmProfileCommand => new RelayCommand(OnAddLlmProfile);
+
+        public ICommand DeleteLlmProfileCommand => new RelayCommand(OnDeleteLlmProfile);
 
         public bool IsLlmSelected
         {
@@ -153,10 +176,12 @@ namespace Translumo.MVVM.ViewModels
         private bool _isLlmSelected;
         private string _llmTestStatus;
         private bool _isLlmTesting;
+        private LlmProfiles _llmProfiles;
+        private LlmConfiguration _subscribedProfile;
 
         public LanguagesSettingsViewModel(LanguageService languageService, TranslationConfiguration translationConfiguration,
             OcrGeneralConfiguration ocrConfiguration, TtsConfiguration ttsConfiguration, DialogService dialogService,
-            LlmConfiguration llmConfiguration, ILogger<LanguagesSettingsViewModel> logger)
+            LlmProfiles llmProfiles, ILogger<LanguagesSettingsViewModel> logger)
         {
             var languages = languageService.GetAll(true)
                 .Select(lang => (lang.TranslationOnly, new DisplayLanguage(lang, GetLanguageDisplayName(lang))))
@@ -175,9 +200,11 @@ namespace Translumo.MVVM.ViewModels
             this.Model = translationConfiguration;
             this.TtsSettings = ttsConfiguration;
             this.TtsSettings.TtsLanguage = this.Model.TranslateToLang;
-            this.LlmSettings = llmConfiguration;
+            this._llmProfiles = llmProfiles;
             this.Model.PropertyChanged += OnModelPropertyChanged;
             this.IsLlmSelected = this.Model.Translator == Translators.Llm;
+            RefreshProfileNames();
+            SubscribeActiveProfile();
 
             this.AvailableVoices = new ObservableCollection<VoiceInfo>();
             
@@ -289,6 +316,71 @@ namespace Translumo.MVVM.ViewModels
             {
                 IsLlmSelected = Model.Translator == Translators.Llm;
             }
+        }
+
+        private void RefreshProfileNames()
+        {
+            LlmProfileNames.Clear();
+            foreach (var profile in _llmProfiles.Profiles)
+            {
+                LlmProfileNames.Add(profile.Name);
+            }
+        }
+
+        private void SubscribeActiveProfile()
+        {
+            if (_subscribedProfile != null)
+            {
+                _subscribedProfile.PropertyChanged -= OnActiveProfilePropertyChanged;
+            }
+
+            _subscribedProfile = _llmProfiles.Active;
+            if (_subscribedProfile != null)
+            {
+                _subscribedProfile.PropertyChanged += OnActiveProfilePropertyChanged;
+            }
+        }
+
+        private void OnActiveProfilePropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            _llmProfiles.Save();
+        }
+
+        private void OnAddLlmProfile()
+        {
+            int index = 1;
+            string name;
+            do
+            {
+                name = $"Profile {index++}";
+            } while (_llmProfiles.Profiles.Any(p => p.Name == name));
+
+            _llmProfiles.Profiles.Add(new LlmConfiguration { Name = name });
+            _llmProfiles.ActiveProfileName = name;
+            RefreshProfileNames();
+            SubscribeActiveProfile();
+            OnPropertyChanged(nameof(LlmSettings));
+            _llmProfiles.Save();
+        }
+
+        private void OnDeleteLlmProfile()
+        {
+            if (_llmProfiles.Profiles.Count <= 1)
+            {
+                return;
+            }
+
+            var active = _llmProfiles.Active;
+            if (active != null)
+            {
+                _llmProfiles.Profiles.Remove(active);
+            }
+
+            _llmProfiles.ActiveProfileName = _llmProfiles.Profiles.FirstOrDefault()?.Name;
+            RefreshProfileNames();
+            SubscribeActiveProfile();
+            OnPropertyChanged(nameof(LlmSettings));
+            _llmProfiles.Save();
         }
 
         private async Task TestLlmConnectionAsync()
@@ -442,6 +534,11 @@ namespace Translumo.MVVM.ViewModels
 
         public void Dispose()
         {
+            if (_subscribedProfile != null)
+            {
+                _subscribedProfile.PropertyChanged -= OnActiveProfilePropertyChanged;
+            }
+
             LocalizationManager.ReleaseChangedValuesCallbacks(this);
         }
     }

@@ -19,13 +19,13 @@
 
     <!--  Tray  -->
     <system:String x:Key="Str.Tray.ShowHideSettings">顯示/隱藏 設定</system:String>
-    <system:String x:Key="Str.Tray.ShowHideTranslation">顯示/隱藏 翻譯牆</system:String>
+    <system:String x:Key="Str.Tray.ShowHideTranslation">顯示/隱藏 翻譯視窗</system:String>
     <system:String x:Key="Str.Tray.Exit">退出</system:String>
 
     <!--  Chat  -->
     <system:String x:Key="Str.Chat.SettingsOpened">關閉設定視窗才能開始翻譯</system:String>
-    <system:String x:Key="Str.Chat.WindowLocked">翻譯牆已鎖定（不可調整位置、大小）</system:String>
-    <system:String x:Key="Str.Chat.WindowUnlocked">翻譯牆已解鎖</system:String>
+    <system:String x:Key="Str.Chat.WindowLocked">翻譯視窗已鎖定（不可調整位置、大小）</system:String>
+    <system:String x:Key="Str.Chat.WindowUnlocked">翻譯視窗已解鎖</system:String>
 
     <!--  Language settings  -->
     <system:String x:Key="Str.LangSettings.SourceLang">來源語言（您想要翻譯的語言）</system:String>
@@ -54,28 +54,30 @@
     <system:String x:Key="Str.LlmSettings.Testing">測試中…</system:String>
     <system:String x:Key="Str.LlmSettings.TestSuccess">連線成功！</system:String>
     <system:String x:Key="Str.LlmSettings.TestFail">連線失敗：{0}</system:String>
+    <system:String x:Key="Str.LlmSettings.AddProfile">新增設定</system:String>
+    <system:String x:Key="Str.LlmSettings.DeleteProfile">刪除設定</system:String>
 
     <!--  Hotkeys descriptions  -->
-    <system:String x:Key="Str.Hotkeys.ChatVisibility">顯示/隱藏 翻譯牆</system:String>
+    <system:String x:Key="Str.Hotkeys.ChatVisibility">顯示/隱藏 翻譯視窗</system:String>
     <system:String x:Key="Str.Hotkeys.SettingsVisibility">開啟/關閉 設定</system:String>
     <system:String x:Key="Str.Hotkeys.SelectArea">選擇翻譯區域</system:String>
     <system:String x:Key="Str.Hotkeys.OnOffTranslation">開啟/關閉 翻譯</system:String>
     <system:String x:Key="Str.Hotkeys.ShowSelectArea">顯示已選擇的翻譯區域</system:String>
     <system:String x:Key="Str.Hotkeys.OnceTranslate">選擇翻譯區域（一次性）</system:String>
-    <system:String x:Key="Str.Hotkeys.WindowChangeStyle">鎖定/解除鎖定 翻譯牆位置</system:String>
+    <system:String x:Key="Str.Hotkeys.WindowChangeStyle">鎖定/解除鎖定 翻譯視窗位置</system:String>
     <system:String x:Key="Str.Hotkeys.SettingsShowHelp">請按 '{0}' 開啟設定頁面</system:String>
     <system:String x:Key="Str.Hotkeys.SelectAreaHelp">請按 '{0}' 選擇翻譯區域</system:String>
     <system:String x:Key="Str.Hotkeys.OnTranslationHelp">請按 '{0}' 開始翻譯</system:String>
     <system:String x:Key="Str.Hotkeys.GeneralHelp">要控制本應用程式，請使用托盤中的右鍵選單，或以下快捷鍵：</system:String>
 
     <!--  Appearance settings  -->
-    <system:String x:Key="Str.AppearanceSettings.WindowColor">翻譯牆背景色</system:String>
+    <system:String x:Key="Str.AppearanceSettings.WindowColor">翻譯視窗背景色</system:String>
     <system:String x:Key="Str.AppearanceSettings.FontColor">文字顏色</system:String>
     <system:String x:Key="Str.AppearanceSettings.FontSize">文字大小</system:String>
     <system:String x:Key="Str.AppearanceSettings.Bold">粗體</system:String>
-    <system:String x:Key="Str.AppearanceSettings.ExcludeFromCaptue">排除翻譯牆</system:String>
+    <system:String x:Key="Str.AppearanceSettings.ExcludeFromCaptue">不納入截圖</system:String>
     <system:String x:Key="Str.AppearanceSettings.LineSpacing">行間距</system:String>
-    <system:String x:Key="Str.AppearanceSettings.WindowOpacity">翻譯牆背景透明度</system:String>
+    <system:String x:Key="Str.AppearanceSettings.WindowOpacity">翻譯視窗背景透明度</system:String>
     <system:String x:Key="Str.AppearanceSettings.FontSizePanelCaption">字體大小 — 改變</system:String>
     <system:String x:Key="Str.AppearanceSettings.FontColorPanelCaption">字體顏色 — 改變</system:String>
     <system:String x:Key="Str.AppearanceSettings.KeepFormatting">保留翻譯文字原始格式</system:String>
@@ -116,7 +118,7 @@
 
     <!--  Navigation menu  -->
     <system:String x:Key="Str.Navigation.Languages">語言</system:String>
-    <system:String x:Key="Str.Navigation.Appearance">翻譯牆</system:String>
+    <system:String x:Key="Str.Navigation.Appearance">外觀</system:String>
     <system:String x:Key="Str.Navigation.Ocr">文字辨識器</system:String>
     <system:String x:Key="Str.Navigation.HotKeys">快捷鍵</system:String>
 

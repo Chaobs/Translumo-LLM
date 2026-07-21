@@ -19,19 +19,19 @@
 
     <!--  Tray  -->
     <system:String x:Key="Str.Tray.ShowHideSettings">打开/关闭 设置</system:String>
-    <system:String x:Key="Str.Tray.ShowHideTranslation">显示/隐藏 翻译墙</system:String>
+    <system:String x:Key="Str.Tray.ShowHideTranslation">显示/隐藏 翻译窗口</system:String>
     <system:String x:Key="Str.Tray.Exit">退出</system:String>
 
     <!--  Chat  -->
     <system:String x:Key="Str.Chat.SettingsOpened">关闭设置窗口才能开始翻译</system:String>
-    <system:String x:Key="Str.Chat.WindowLocked">翻译墙已锁定（不可调整位置、大小）</system:String>
-    <system:String x:Key="Str.Chat.WindowUnlocked">翻译墙已解锁</system:String>
+    <system:String x:Key="Str.Chat.WindowLocked">翻译窗口已锁定（不可调整位置、大小）</system:String>
+    <system:String x:Key="Str.Chat.WindowUnlocked">翻译窗口已解锁</system:String>
 
     <!--  Language settings  -->
     <system:String x:Key="Str.LangSettings.SourceLang">源语言（您想要翻译的语言）</system:String>
     <system:String x:Key="Str.LangSettings.TranslationLang">目标语言（您想要看到的语言）</system:String>
-    <system:String x:Key="Str.LangSettings.Translator">翻译源</system:String>
-    <system:String x:Key="Str.LangSettings.TtsSystem">朗读源</system:String>
+    <system:String x:Key="Str.LangSettings.Translator">翻译引擎</system:String>
+    <system:String x:Key="Str.LangSettings.TtsSystem">朗读引擎</system:String>
 
     <!--  Translator names  -->
     <system:String x:Key="Str.Translator.Deepl">DeepL</system:String>
@@ -54,28 +54,30 @@
     <system:String x:Key="Str.LlmSettings.Testing">测试中…</system:String>
     <system:String x:Key="Str.LlmSettings.TestSuccess">连接成功！</system:String>
     <system:String x:Key="Str.LlmSettings.TestFail">连接失败：{0}</system:String>
+    <system:String x:Key="Str.LlmSettings.AddProfile">新增配置</system:String>
+    <system:String x:Key="Str.LlmSettings.DeleteProfile">删除配置</system:String>
 
     <!--  Hotkeys descriptions  -->
-    <system:String x:Key="Str.Hotkeys.ChatVisibility">显示/隐藏 翻译墙</system:String>
+    <system:String x:Key="Str.Hotkeys.ChatVisibility">显示/隐藏 翻译窗口</system:String>
     <system:String x:Key="Str.Hotkeys.SettingsVisibility">打开/关闭 设置</system:String>
     <system:String x:Key="Str.Hotkeys.SelectArea">选择翻译区域</system:String>
     <system:String x:Key="Str.Hotkeys.OnOffTranslation">开启/关闭 翻译</system:String>
     <system:String x:Key="Str.Hotkeys.ShowSelectArea">显示已选择的翻译区域</system:String>
     <system:String x:Key="Str.Hotkeys.OnceTranslate">选择翻译区域（一次性）</system:String>
-    <system:String x:Key="Str.Hotkeys.WindowChangeStyle">锁定/解除锁定 翻译墙位置</system:String>
+    <system:String x:Key="Str.Hotkeys.WindowChangeStyle">锁定/解除锁定 翻译窗口位置</system:String>
     <system:String x:Key="Str.Hotkeys.SettingsShowHelp">请按 '{0}' 打开设置页面</system:String>
     <system:String x:Key="Str.Hotkeys.SelectAreaHelp">请按 '{0}' 选择翻译区域</system:String>
     <system:String x:Key="Str.Hotkeys.OnTranslationHelp">请按 '{0}' 开始翻译</system:String>
     <system:String x:Key="Str.Hotkeys.GeneralHelp">要控制本应用，请使用托盘中的右键菜单，或以下快捷键：</system:String>
 
     <!--  Appearance settings  -->
-    <system:String x:Key="Str.AppearanceSettings.WindowColor">翻译墙背景色</system:String>
+    <system:String x:Key="Str.AppearanceSettings.WindowColor">翻译窗口背景色</system:String>
     <system:String x:Key="Str.AppearanceSettings.FontColor">文字颜色</system:String>
     <system:String x:Key="Str.AppearanceSettings.FontSize">文字大小</system:String>
     <system:String x:Key="Str.AppearanceSettings.Bold">加粗</system:String>
-    <system:String x:Key="Str.AppearanceSettings.ExcludeFromCaptue">排除翻译墙</system:String>
+    <system:String x:Key="Str.AppearanceSettings.ExcludeFromCaptue">不纳入截图</system:String>
     <system:String x:Key="Str.AppearanceSettings.LineSpacing">行间距</system:String>
-    <system:String x:Key="Str.AppearanceSettings.WindowOpacity">翻译墙背景透明度</system:String>
+    <system:String x:Key="Str.AppearanceSettings.WindowOpacity">翻译窗口背景透明度</system:String>
     <system:String x:Key="Str.AppearanceSettings.FontSizePanelCaption">字体大小 — 改变</system:String>
     <system:String x:Key="Str.AppearanceSettings.FontColorPanelCaption">字体颜色 — 改变</system:String>
     <system:String x:Key="Str.AppearanceSettings.KeepFormatting">保留翻译文本原始格式</system:String>
@@ -118,7 +120,7 @@
 
     <!--  Navigation menu  -->
     <system:String x:Key="Str.Navigation.Languages">语言</system:String>
-    <system:String x:Key="Str.Navigation.Appearance">翻译墙</system:String>
+    <system:String x:Key="Str.Navigation.Appearance">外观</system:String>
     <system:String x:Key="Str.Navigation.Ocr">文字识别器</system:String>
     <system:String x:Key="Str.Navigation.HotKeys">快捷键</system:String>
 

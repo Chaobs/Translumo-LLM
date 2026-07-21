@@ -1,4 +1,5 @@
-﻿using Translumo.Utils;
+﻿using System.Text.Json.Serialization;
+using Translumo.Utils;
 
 namespace Translumo.Translation.Llm
 {
@@ -24,6 +25,13 @@ Rules:
 4. Format: Keep line breaks and numbering. Output ONLY the translated text with no commentary, no quotes and no ""Translation:"" prefix.
 
 If the text is already in {TargetLanguage} or is nonsensical, return it unchanged.";
+
+        /// <summary>Display name of this LLM profile (e.g. "DeepSeek", "My GPT-4").</summary>
+        public string Name
+        {
+            get => _name;
+            set => SetProperty(ref _name, value);
+        }
 
         public LlmProvider Provider
         {
@@ -69,26 +77,32 @@ If the text is already in {TargetLanguage} or is nonsensical, return it unchange
             set => SetProperty(ref _maxTokens, value);
         }
 
+        [JsonIgnore]
         public bool Enabled => Provider != LlmProvider.Custom ||
                                (!string.IsNullOrWhiteSpace(Endpoint) && !string.IsNullOrWhiteSpace(ModelName));
 
         /// <summary>Endpoint to use, preferring the user override over the preset default.</summary>
+        [JsonIgnore]
         public string ResolvedEndpoint =>
             string.IsNullOrWhiteSpace(Endpoint) ? LlmProviderPresets.Presets[Provider].DefaultEndpoint : Endpoint;
 
         /// <summary>Model to use, preferring the user override over the preset default.</summary>
+        [JsonIgnore]
         public string ResolvedModel =>
             string.IsNullOrWhiteSpace(ModelName) ? LlmProviderPresets.Presets[Provider].DefaultModel : ModelName;
 
+        [JsonIgnore]
         public LlmApiStyle ApiStyle => LlmProviderPresets.Presets[Provider].ApiStyle;
 
         public LlmConfiguration()
         {
+            Name = "Default";
             SystemPrompt = DEFAULT_SYSTEM_PROMPT;
             Temperature = 0.3;
             MaxTokens = 4096;
         }
 
+        private string _name = "Default";
         private LlmProvider _provider = LlmProvider.DeepSeek;
         private string _apiKey;
         private string _endpoint;

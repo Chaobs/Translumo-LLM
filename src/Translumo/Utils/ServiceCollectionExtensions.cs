@@ -5,7 +5,6 @@ using Translumo.HotKeys;
 using Translumo.Infrastructure.Encryption;
 using Translumo.OCR.Configuration;
 using Translumo.Translation.Configuration;
-using Translumo.Translation.Llm;
 using Translumo.TTS;
 
 namespace Translumo.Utils
@@ -23,7 +22,6 @@ namespace Translumo.Utils
                 confStorage.RegisterConfiguration<TtsConfiguration>();
                 confStorage.RegisterConfiguration<SystemConfiguration>();
                 confStorage.RegisterConfiguration<HotKeysConfiguration>();
-                confStorage.RegisterConfiguration<LlmConfiguration>();
 
                 return confStorage;
             });
