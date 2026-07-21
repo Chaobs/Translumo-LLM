@@ -15,4 +15,8 @@
             </Style>
         </Style.Resources>
     </Style>
+
+    <Style x:Key="TextBoxBase" BasedOn="{StaticResource MaterialDesignTextBox}" TargetType="TextBox">
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+    </Style>
 </ResourceDictionary>

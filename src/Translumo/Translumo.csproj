@@ -6,6 +6,7 @@
 	
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
+		<AssemblyName>Translumo-LLM</AssemblyName>
 		<TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
 		<UseWPF>true</UseWPF>
 		<ApplicationManifest>app.manifest</ApplicationManifest>
@@ -144,6 +145,16 @@
 
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent" Condition=" '$(SkipBinariesExtract)' == '' ">
     <Exec Command="&quot;$(SolutionDir)binaries_extract.bat&quot; &quot;$(TargetDir)&quot;" />
+  </Target>
+
+  <!-- Keep PDB debug symbols out of the publish root: relocate them into a 'symbols' subfolder -->
+  <Target Name="MovePdbSymbols" AfterTargets="Publish">
+    <ItemGroup>
+      <_PdbFiles Include="$(PublishDir)*.pdb" />
+    </ItemGroup>
+    <Message Condition="'@(_PdbFiles)' != ''" Text="Relocating @(_PdbFiles->Count()) PDB file(s) into $(PublishDir)symbols\" Importance="high" />
+    <MakeDir Condition="'@(_PdbFiles)' != ''" Directories="$(PublishDir)symbols" />
+    <Move Condition="'@(_PdbFiles)' != ''" SourceFiles="@(_PdbFiles)" DestinationFolder="$(PublishDir)symbols" />
   </Target>
 
 </Project>
