@@ -111,19 +111,42 @@ namespace Translumo.Translation.Llm
                     return;
                 }
 
-                var loaded = JsonSerializer.Deserialize<LlmProfiles>(json, JsonOptions);
+                // Deserialize into a plain DTO (NOT this type) to avoid re-entering the
+                // parameterless constructor, which calls Load() — that previously caused
+                // infinite recursion and a StackOverflow on every startup after the first save.
+                var loaded = JsonSerializer.Deserialize<LlmProfilesData>(json, JsonOptions);
                 if (loaded == null)
                 {
                     return;
                 }
 
-                Profiles = loaded.Profiles;
+                _profiles.Clear();
+                if (loaded.Profiles != null)
+                {
+                    foreach (var profile in loaded.Profiles)
+                    {
+                        _profiles.Add(profile);
+                    }
+                }
+
                 ActiveProfileName = loaded.ActiveProfileName;
             }
             catch
             {
                 // Corrupt file: fall back to defaults.
             }
+        }
+
+        /// <summary>
+        /// Serialization-only DTO. Kept separate from <see cref="LlmProfiles"/> so that
+        /// <see cref="JsonSerializer"/> does not invoke this class's constructor (which calls
+        /// <see cref="Load"/>) during deserialization.
+        /// </summary>
+        private sealed class LlmProfilesData
+        {
+            public List<LlmConfiguration> Profiles { get; set; } = new List<LlmConfiguration>();
+
+            public string ActiveProfileName { get; set; }
         }
 
         private static string GetDirectory()

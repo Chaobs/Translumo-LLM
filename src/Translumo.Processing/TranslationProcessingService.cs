@@ -17,6 +17,7 @@ using Translumo.Processing.TextProcessing;
 using Translumo.Translation;
 using Translumo.Translation.Configuration;
 using Translumo.Translation.Exceptions;
+using Translumo.Translation.Llm;
 using Translumo.TTS;
 using Translumo.TTS.Engines;
 
@@ -36,6 +37,7 @@ namespace Translumo.Processing
         private readonly TextDetectionProvider _textProvider;
         private readonly TextResultCacheService _textResultCacheService;
         private readonly ILogger _logger;
+        private readonly LlmProfiles _llmProfiles;
         private static readonly object _obj = new object();
 
         private ITTSEngine _ttsEngine;
@@ -56,9 +58,11 @@ namespace Translumo.Processing
         public TranslationProcessingService(ICapturerFactory capturerFactory, IChatTextMediator chatTextMediator, OcrEnginesFactory ocrEnginesFactory,
             TranslatorFactory translationFactory, TtsFactory ttsFactory, TtsConfiguration ttsConfiguration,
             TextDetectionProvider textProvider, TranslationConfiguration translationConfiguration, OcrGeneralConfiguration ocrConfiguration, 
-            TextResultCacheService textResultCacheService, TextProcessingConfiguration textConfiguration, ILogger<TranslationProcessingService> logger)
+            TextResultCacheService textResultCacheService, TextProcessingConfiguration textConfiguration, LlmProfiles llmProfiles,
+            ILogger<TranslationProcessingService> logger)
         {
             _logger = logger;
+            _llmProfiles = llmProfiles;
             _chatTextMediator = chatTextMediator;
             _capturerFactory = capturerFactory;
             _translationConfiguration = translationConfiguration;
@@ -78,6 +82,7 @@ namespace Translumo.Processing
             _translationConfiguration.PropertyChanged += TranslationConfigurationOnPropertyChanged;
             _ocrGeneralConfiguration.PropertyChanged += OcrGeneralConfigurationOnPropertyChanged;
             _ttsConfiguration.PropertyChanged += TtsConfigurationOnPropertyChanged;
+            _llmProfiles.PropertyChanged += LlmProfilesOnPropertyChanged;
         }
 
         public void StartProcessing()
@@ -402,6 +407,16 @@ namespace Translumo.Processing
             _translator = _translatorFactory.CreateTranslator(_translationConfiguration);
         }
 
+        private void LlmProfilesOnPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            // Rebuild the translator when the active LLM profile changes so the switch
+            // takes effect immediately without restarting the capture loop.
+            if (e.PropertyName == nameof(_llmProfiles.ActiveProfileName))
+            {
+                _translator = _translatorFactory.CreateTranslator(_translationConfiguration);
+            }
+        }
+
         private void TtsConfigurationOnPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(_ttsConfiguration.TtsLanguage)
@@ -426,6 +441,7 @@ namespace Translumo.Processing
 
         public void Dispose()
         {
+            _llmProfiles.PropertyChanged -= LlmProfilesOnPropertyChanged;
             _ttsEngine.Dispose();
             _textProvider.Dispose();
             _capturer?.Dispose();

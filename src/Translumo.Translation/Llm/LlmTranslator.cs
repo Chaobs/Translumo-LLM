@@ -113,6 +113,7 @@ namespace Translumo.Translation.Llm
 
         private static string BuildAnthropicRequest(LlmConfiguration cfg, string systemPrompt, string userText)
         {
+            // Anthropic requires `content` to be an array of content blocks, not a raw string.
             var request = new
             {
                 model = cfg.ResolvedModel,
@@ -120,7 +121,14 @@ namespace Translumo.Translation.Llm
                 system = systemPrompt,
                 messages = new object[]
                 {
-                    new { role = "user", content = userText }
+                    new
+                    {
+                        role = "user",
+                        content = new object[]
+                        {
+                            new { type = "text", text = userText }
+                        }
+                    }
                 }
             };
 
