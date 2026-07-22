@@ -23,7 +23,7 @@
             Name="TiIcon"
             DataContext="{Binding RelativeSource={RelativeSource AncestorType=controls:TrayControl}}"
             DoubleClickCommand="{Binding SettingsOpeningCommand}"
-            IconSource="/Resources/Icons/favicon.ico"
+            IconSource="/Resources/Icons/favicon_new.ico"
             ToolTipText="{StaticResource ApplicationName}">
             <tb:TaskbarIcon.ContextMenu>
                 <ContextMenu Style="{StaticResource ContextMenuDefaultStyle}">

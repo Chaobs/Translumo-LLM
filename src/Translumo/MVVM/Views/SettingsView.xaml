@@ -74,7 +74,7 @@
                         Margin="10,0,0,0"
                         HorizontalAlignment="Left"
                         RenderOptions.BitmapScalingMode="HighQuality"
-                        Source="../../Resources/Icons/logo_full.png" />
+                        Source="../../Resources/Icons/logo_full_new.png" />
                     <DockPanel Grid.Row="1">
                         <materialDesign:ColorZone Mode="PrimaryDark">
                             <mde:SideNavigation

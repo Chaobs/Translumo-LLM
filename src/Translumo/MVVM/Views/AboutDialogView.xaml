@@ -32,7 +32,7 @@
             VerticalAlignment="Top"
             DockPanel.Dock="Top"
             RenderOptions.BitmapScalingMode="HighQuality"
-            Source="../../Resources/Icons/logo.png" />
+            Source="../../Resources/Icons/logo_new.png" />
         <TextBlock HorizontalAlignment="Center" DockPanel.Dock="Top">
             <Run Style="{StaticResource PrimaryHeaderRun}" Text="{DynamicResource Str.About.Edition}" />
             <Run Style="{StaticResource SecondaryHeaderRun}" Text="{Binding ApplicationVersion}" />

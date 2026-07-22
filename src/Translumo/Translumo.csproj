@@ -14,7 +14,7 @@
 		<SatelliteResourceLanguages>en-US;en</SatelliteResourceLanguages>
 		<IncludeAllContentForSelfExtract>true</IncludeAllContentForSelfExtract>
 		<PublishSingleFile>true</PublishSingleFile>
-		<ApplicationIcon>Resources\Icons\favicon.ico</ApplicationIcon>
+		<ApplicationIcon>Resources\Icons\favicon_new.ico</ApplicationIcon>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 	</PropertyGroup>
 
@@ -32,18 +32,14 @@
   </ItemGroup>
 
 	<ItemGroup>
-    <None Remove="Resources\Icons\favicon.ico" />
+    <None Remove="Resources\Icons\favicon_new.ico" />
     <None Remove="Resources\Icons\HammersmithOne-Regular.ttf" />
-    <None Remove="Resources\Icons\icons8-help-40.png" />
     <None Remove="Resources\Icons\icons8-high-priority-40.png" />
     <None Remove="Resources\Icons\icons8-information-40.png" />
-    <None Remove="Resources\Icons\logo.ico" />
-    <None Remove="Resources\Icons\logo.png" />
-    <None Remove="Resources\Icons\logo.svg" />
-    <None Remove="Resources\Icons\logonew.png" />
-    <None Remove="Resources\Icons\logo_full.png" />
-    <None Remove="Resources\Icons\newLogo.png" />
-	<None Remove="Resources\Icons\lookupper.png" />
+    <None Remove="Resources\Icons\logo_new.png" />
+    <None Remove="Resources\Icons\logo_new.svg" />
+    <None Remove="Resources\Icons\logo_full_new.png" />
+    <None Remove="Resources\Icons\banner_new.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -51,22 +47,22 @@
   </ItemGroup>
 
   <ItemGroup>
-    <DesignDataWithDesignTimeCreatableTypes Include="Resources\Icons\favicon.ico">
+    <DesignDataWithDesignTimeCreatableTypes Include="Resources\Icons\favicon_new.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </DesignDataWithDesignTimeCreatableTypes>
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Resources\Icons\favicon.ico">
+    <Resource Include="Resources\Icons\favicon_new.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Icons\HammersmithOne-Regular.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Resources\Icons\logo.png">
+    <Resource Include="Resources\Icons\logo_new.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Resources\Icons\logo.svg">
+    <Resource Include="Resources\Icons\logo_new.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
@@ -104,12 +100,12 @@
     <Resource Include="Resources\Icons\icons8-information-40.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Resources\Icons\logo_full.png">
+    <Resource Include="Resources\Icons\logo_full_new.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-	<Resource Include="Resources\Icons\lookupper.png">
-		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	</Resource>
+    <Resource Include="Resources\Icons\banner_new.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
