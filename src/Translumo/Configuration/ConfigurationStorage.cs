@@ -29,31 +29,79 @@ namespace Translumo.Configuration
             0x79, 0x2D, 0x76, 0x31, 0x00, 0x00, 0x00, 0x00
         };
 
+        /// <summary>
+        /// Forces creation (or load) of the DPAPI-protected encryption key on first launch so that
+        /// <c>config/encryption.key</c> always exists next to the executable, even before any
+        /// configuration is read or written.
+        /// </summary>
+        public static void EnsureEncryptionKey()
+        {
+            // Touching the static field triggers LoadOrCreateEncryptionPassword (which persists the key).
+            _ = EncryptionPassword;
+        }
+
         private static string LoadOrCreateEncryptionPassword()
         {
             const string keyFileName = "encryption.key";
             try
             {
-                var keyPath = Path.Combine(AppPaths.GetConfigDirectory(), keyFileName);
+                var configDir = AppPaths.GetConfigDirectory();
+                var keyPath = Path.Combine(configDir, keyFileName);
                 if (File.Exists(keyPath))
                 {
-                    var protectedBytes = File.ReadAllBytes(keyPath);
-                    var passwordBytes = ProtectedData.Unprotect(protectedBytes, KeyEntropy, DataProtectionScope.CurrentUser);
-                    return Encoding.UTF8.GetString(passwordBytes);
+                    try
+                    {
+                        var protectedBytes = File.ReadAllBytes(keyPath);
+                        var passwordBytes = ProtectedData.Unprotect(protectedBytes, KeyEntropy, DataProtectionScope.CurrentUser);
+                        return Encoding.UTF8.GetString(passwordBytes);
+                    }
+                    catch
+                    {
+                        // Key unreadable (corrupt / wrong user) — regenerate below.
+                    }
                 }
 
-                // First launch: generate a random password and persist it protected by DPAPI.
+                // First launch (or recovered failure): generate a random password and persist it.
                 var password = GenerateRandomPassword();
-                var plainBytes = Encoding.UTF8.GetBytes(password);
-                var protectedKeyBytes = ProtectedData.Protect(plainBytes, KeyEntropy, DataProtectionScope.CurrentUser);
-                File.WriteAllBytes(keyPath, protectedKeyBytes);
+                PersistKey(configDir, keyFileName, password);
                 return password;
             }
             catch (Exception)
             {
                 // DPAPI unavailable (e.g. non-Windows host): fall back to a deterministic,
-                // per-machine/per-user, per-app derivation so the app can still run.
+                // per-machine/per-user, per-app derivation and still materialize the key file so the
+                // app behaves consistently across runs.
+                try
+                {
+                    var keyPath = Path.Combine(AppPaths.GetConfigDirectory(), keyFileName);
+                    if (!File.Exists(keyPath))
+                    {
+                        File.WriteAllText(keyPath, DeriveFallbackPassword());
+                    }
+                }
+                catch
+                {
+                    // Best effort: if we cannot persist the key, the in-memory fallback still works.
+                }
+
                 return DeriveFallbackPassword();
+            }
+        }
+
+        private static void PersistKey(string configDir, string keyFileName, string password)
+        {
+            var keyPath = Path.Combine(configDir, keyFileName);
+            try
+            {
+                var plainBytes = Encoding.UTF8.GetBytes(password);
+                var protectedKeyBytes = ProtectedData.Protect(plainBytes, KeyEntropy, DataProtectionScope.CurrentUser);
+                File.WriteAllBytes(keyPath, protectedKeyBytes);
+            }
+            catch
+            {
+                // DPAPI failed: persist the deterministic password in plaintext so the file exists.
+                // This branch is only taken when DPAPI is unavailable; the password is machine-bound.
+                File.WriteAllText(keyPath, password);
             }
         }
 

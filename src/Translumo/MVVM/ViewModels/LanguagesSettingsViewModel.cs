@@ -137,6 +137,16 @@ namespace Translumo.MVVM.ViewModels
             }
         }
 
+        public bool LlmSettingsIsOpened
+        {
+            get => _llmSettingsIsOpened;
+            set
+            {
+                SetProperty(ref _llmSettingsIsOpened, value);
+                PanelStateIsChanged?.Invoke(this, value);
+            }
+        }
+
         public Languages TranslateFromLang
         {
             get => Model.TranslateFromLang;
@@ -168,9 +178,12 @@ namespace Translumo.MVVM.ViewModels
         public ICommand ProxyItemDeletedCommand => new RelayCommand<ProxyCardItem>(OnProxyItemDeletedCommand);
         public ICommand ProxyItemAddCommand => new RelayCommand(OnProxyItemAddCommand);
         public ICommand ProxySettingsSubmitCommand => new RelayCommand<bool>(OnProxySettingsSubmit);
+        public ICommand ManageApiClickedCommand => new RelayCommand(OnManageApiClicked);
+        public ICommand CloseLlmPanelCommand => new RelayCommand(OnCloseLlmPanel);
 
         private ObservableCollection<ProxyCardItem> _proxyCollection;
         private bool _proxySettingsIsOpened;
+        private bool _llmSettingsIsOpened;
 
         private readonly DialogService _dialogService;
         private readonly OcrGeneralConfiguration _ocrConfiguration;
@@ -289,8 +302,20 @@ namespace Translumo.MVVM.ViewModels
 
         private void OnProxySettingsClicked()
         {
+            LlmSettingsIsOpened = false;
             InitializeProxyCollection();
             ProxySettingsIsOpened = true;
+        }
+
+        private void OnManageApiClicked()
+        {
+            ProxySettingsIsOpened = false;
+            LlmSettingsIsOpened = true;
+        }
+
+        private void OnCloseLlmPanel()
+        {
+            LlmSettingsIsOpened = false;
         }
 
         private void OnProxyItemDeletedCommand(ProxyCardItem itemToDelete)
@@ -567,6 +592,7 @@ namespace Translumo.MVVM.ViewModels
         public void ClosePanel()
         {
             ProxySettingsIsOpened = false;
+            LlmSettingsIsOpened = false;
         }
 
         public void Dispose()

@@ -107,6 +107,7 @@ namespace Translumo
 
             var configurationStorage = _serviceProvider.GetService<ConfigurationStorage>();
             configurationStorage.LoadConfiguration();
+            ConfigurationStorage.EnsureEncryptionKey();
 
             var chatViewModel = _serviceProvider.GetService<ChatWindowViewModel>();
             var dialogService = _serviceProvider.GetService<DialogService>();

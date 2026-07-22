@@ -10,6 +10,7 @@
     xmlns:llm="clr-namespace:Translumo.Translation.Llm;assembly=Translumo.Translation"
     xmlns:tts="clr-namespace:Translumo.TTS;assembly=Translumo.TTS"
     xmlns:common="clr-namespace:Translumo.MVVM.Common"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
@@ -47,10 +48,7 @@
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </UserControl.Resources>
 
-    <ScrollViewer
-        HorizontalScrollBarVisibility="Disabled"
-        VerticalScrollBarVisibility="Auto">
-        <Grid>
+    <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="475" />
                 <ColumnDefinition Width="*" />
@@ -181,121 +179,166 @@
                         Style="{StaticResource TextBlockBase}"
                         Text="{DynamicResource Str.LlmSettings.Note}"
                         TextWrapping="WrapWithOverflow" />
-                    <StackPanel
-                        Margin="0,0,0,10"
-                        Orientation="Horizontal">
-                        <ComboBox
-                            Width="200"
-                            HorizontalAlignment="Left"
-                            FontSize="13"
-                            ItemsSource="{Binding LlmProfileNames}"
-                            SelectedItem="{Binding SelectedLlmProfileName}"
-                            Style="{DynamicResource MaterialDesignComboBox}" />
-                        <Button
-                            Margin="8,0,0,0"
-                            Command="{Binding AddLlmProfileCommand}"
-                            Content="{DynamicResource Str.LlmSettings.AddProfile}"
-                            Style="{StaticResource PrimaryButton}" />
-                        <Button
-                            Margin="8,0,0,0"
-                            Command="{Binding DeleteLlmProfileCommand}"
-                            Content="{DynamicResource Str.LlmSettings.DeleteProfile}"
-                            Style="{StaticResource PrimaryButton}" />
-                    </StackPanel>
-                    <StackPanel Margin="0,0,0,8">
-                        <Label
-                            Margin="0,0,0,2"
-                            Content="{DynamicResource Str.LlmSettings.Provider}"
-                            Style="{StaticResource ControlCaptionLabel}" />
-                        <ComboBox
-                            Width="200"
-                            HorizontalAlignment="Left"
-                            FontSize="14"
-                            ItemsSource="{Binding Source={StaticResource llmProviders}}"
-                            SelectedItem="{Binding Path=LlmSettings.Provider}"
-                            Style="{DynamicResource MaterialDesignComboBox}">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Converter={StaticResource LlmProviderNameConverter}}" />
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                    </StackPanel>
-                    <StackPanel Margin="0,0,0,8">
-                        <Label
-                            Margin="0,0,0,2"
-                            Content="{DynamicResource Str.LlmSettings.ApiKey}"
-                            Style="{StaticResource ControlCaptionLabel}" />
-                        <TextBox
-                            Width="430"
-                            HorizontalAlignment="Left"
-                            FontSize="13"
-                            Style="{StaticResource TextBoxBase}"
-                            Text="{Binding Path=LlmSettings.ApiKey, UpdateSourceTrigger=PropertyChanged}" />
-                    </StackPanel>
-                    <StackPanel Margin="0,0,0,8">
-                        <Label
-                            Margin="0,0,0,2"
-                            Content="{DynamicResource Str.LlmSettings.Endpoint}"
-                            Style="{StaticResource ControlCaptionLabel}" />
-                        <TextBox
-                            Width="430"
-                            HorizontalAlignment="Left"
-                            FontSize="13"
-                            Style="{StaticResource TextBoxBase}"
-                            Text="{Binding Path=LlmSettings.Endpoint, UpdateSourceTrigger=PropertyChanged}" />
-                    </StackPanel>
-                    <StackPanel Margin="0,0,0,8">
-                        <Label
-                            Margin="0,0,0,2"
-                            Content="{DynamicResource Str.LlmSettings.Model}"
-                            Style="{StaticResource ControlCaptionLabel}" />
-                        <ComboBox
-                            Width="430"
-                            HorizontalAlignment="Left"
-                            FontSize="13"
-                            IsEditable="True"
-                            StaysOpenOnEdit="True"
-                            ItemsSource="{Binding AvailableModels}"
-                            Text="{Binding Path=LlmSettings.ModelName, UpdateSourceTrigger=PropertyChanged}"
-                            Style="{DynamicResource MaterialDesignComboBox}" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <Button
-                            Margin="0,4,0,0"
-                            HorizontalAlignment="Left"
-                            Command="{Binding TestLlmConnectionCommand}"
-                            Content="{DynamicResource Str.LlmSettings.Test}"
-                            Style="{StaticResource PrimaryButton}" />
-                        <TextBlock
-                            Margin="10,0,0,0"
-                            VerticalAlignment="Center"
-                            FontSize="12"
-                            Foreground="Green"
-                            Style="{StaticResource TextBlockBase}"
-                            Text="{Binding LlmTestStatus}"
-                            TextWrapping="Wrap" />
-                    </StackPanel>
+                    <Button
+                        Margin="0,5,0,0"
+                        HorizontalAlignment="Left"
+                        Command="{Binding ManageApiClickedCommand}"
+                        Content="{DynamicResource Str.Button.ManageApi}"
+                        Style="{StaticResource PrimaryButton}" />
                 </StackPanel>
             </GroupBox>
             </StackPanel>
-        <DockPanel
-            Grid.Row="0"
-            Grid.Column="1"
-            Margin="9,0,0,0"
-            Visibility="{Binding ProxySettingsIsOpened, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <controls:ProxyEditList
-                x:Name="ProxyListControl"
-                Padding="9,0,0,0"
-                HorizontalAlignment="Stretch"
-                AddCommand="{Binding ProxyItemAddCommand}"
-                BorderBrush="{StaticResource PrimaryHueMidBrush}"
-                BorderThickness="1,0,0,0"
-                DeleteCommand="{Binding ProxyItemDeletedCommand}"
-                SourceList="{Binding Path=ProxyCollection, Mode=TwoWay}"
-                SubmitCommand="{Binding ProxySettingsSubmitCommand}"
-                UseLayoutRounding="False" />
-        </DockPanel>
-    </Grid>
-    </ScrollViewer>
+            <DockPanel
+                Grid.Row="0"
+                Grid.Column="1"
+                Margin="9,0,0,0"
+                Visibility="{Binding ProxySettingsIsOpened, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <controls:ProxyEditList
+                    x:Name="ProxyListControl"
+                    Padding="9,0,0,0"
+                    HorizontalAlignment="Stretch"
+                    AddCommand="{Binding ProxyItemAddCommand}"
+                    BorderBrush="{StaticResource PrimaryHueMidBrush}"
+                    BorderThickness="1,0,0,0"
+                    DeleteCommand="{Binding ProxyItemDeletedCommand}"
+                    SourceList="{Binding Path=ProxyCollection, Mode=TwoWay}"
+                    SubmitCommand="{Binding ProxySettingsSubmitCommand}"
+                    UseLayoutRounding="False" />
+            </DockPanel>
+
+            <DockPanel
+                Grid.Row="0"
+                Grid.Column="1"
+                Margin="9,0,0,0"
+                Visibility="{Binding LlmSettingsIsOpened, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <StackPanel
+                        Grid.Row="0"
+                        Margin="0,-6,0,20"
+                        Orientation="Horizontal">
+                        <Button
+                            Command="{Binding CloseLlmPanelCommand}"
+                            Content="{materialDesign:PackIcon KeyboardBackspace}"
+                            Style="{StaticResource FlatLeftButton}" />
+                        <Label
+                            Content="{DynamicResource Str.LlmSettings.PanelCaption}"
+                            Style="{StaticResource PanelCaptionLabel}" />
+                    </StackPanel>
+                    <ScrollViewer
+                        Grid.Row="1"
+                        Margin="0,0,4,0"
+                        Style="{DynamicResource MaterialDesignScrollViewer}"
+                        HorizontalScrollBarVisibility="Disabled"
+                        VerticalScrollBarVisibility="Auto">
+                        <StackPanel>
+                            <StackPanel
+                                Margin="0,0,0,10"
+                                Orientation="Horizontal">
+                                <ComboBox
+                                    Width="200"
+                                    HorizontalAlignment="Left"
+                                    FontSize="13"
+                                    ItemsSource="{Binding LlmProfileNames}"
+                                    SelectedItem="{Binding SelectedLlmProfileName}"
+                                    Style="{DynamicResource MaterialDesignComboBox}" />
+                                <Button
+                                    Margin="8,0,0,0"
+                                    Command="{Binding AddLlmProfileCommand}"
+                                    Content="{DynamicResource Str.LlmSettings.AddProfile}"
+                                    Style="{StaticResource PrimaryButton}" />
+                                <Button
+                                    Margin="8,0,0,0"
+                                    Command="{Binding DeleteLlmProfileCommand}"
+                                    Content="{DynamicResource Str.LlmSettings.DeleteProfile}"
+                                    Style="{StaticResource PrimaryButton}" />
+                            </StackPanel>
+                            <StackPanel Margin="0,0,0,8">
+                                <Label
+                                    Margin="0,0,0,2"
+                                    Content="{DynamicResource Str.LlmSettings.Provider}"
+                                    Style="{StaticResource ControlCaptionLabel}" />
+                                <ComboBox
+                                    Width="200"
+                                    HorizontalAlignment="Left"
+                                    FontSize="14"
+                                    ItemsSource="{Binding Source={StaticResource llmProviders}}"
+                                    SelectedItem="{Binding Path=LlmSettings.Provider}"
+                                    Style="{DynamicResource MaterialDesignComboBox}">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Converter={StaticResource LlmProviderNameConverter}}" />
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                            </StackPanel>
+                            <StackPanel Margin="0,0,0,8">
+                                <Label
+                                    Margin="0,0,0,2"
+                                    Content="{DynamicResource Str.LlmSettings.ApiKey}"
+                                    Style="{StaticResource ControlCaptionLabel}" />
+                                <TextBox
+                                    Width="430"
+                                    HorizontalAlignment="Left"
+                                    FontSize="13"
+                                    Style="{StaticResource TextBoxBase}"
+                                    Text="{Binding Path=LlmSettings.ApiKey, UpdateSourceTrigger=PropertyChanged}" />
+                            </StackPanel>
+                            <StackPanel Margin="0,0,0,8">
+                                <Label
+                                    Margin="0,0,0,2"
+                                    Content="{DynamicResource Str.LlmSettings.Endpoint}"
+                                    Style="{StaticResource ControlCaptionLabel}" />
+                                <TextBox
+                                    Width="430"
+                                    HorizontalAlignment="Left"
+                                    FontSize="13"
+                                    Style="{StaticResource TextBoxBase}"
+                                    Text="{Binding Path=LlmSettings.Endpoint, UpdateSourceTrigger=PropertyChanged}" />
+                            </StackPanel>
+                            <StackPanel Margin="0,0,0,8">
+                                <Label
+                                    Margin="0,0,0,2"
+                                    Content="{DynamicResource Str.LlmSettings.Model}"
+                                    Style="{StaticResource ControlCaptionLabel}" />
+                                <ComboBox
+                                    Width="430"
+                                    HorizontalAlignment="Left"
+                                    FontSize="13"
+                                    IsEditable="True"
+                                    StaysOpenOnEdit="True"
+                                    ItemsSource="{Binding AvailableModels}"
+                                    Text="{Binding Path=LlmSettings.ModelName, UpdateSourceTrigger=PropertyChanged}"
+                                    Style="{DynamicResource MaterialDesignComboBox}" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Button
+                                    Margin="0,4,0,0"
+                                    HorizontalAlignment="Left"
+                                    Command="{Binding TestLlmConnectionCommand}"
+                                    Content="{DynamicResource Str.LlmSettings.Test}"
+                                    Style="{StaticResource PrimaryButton}" />
+                                <TextBlock
+                                    Margin="10,0,0,0"
+                                    VerticalAlignment="Center"
+                                    FontSize="12"
+                                    Foreground="Green"
+                                    Style="{StaticResource TextBlockBase}"
+                                    Text="{Binding LlmTestStatus}"
+                                    TextWrapping="Wrap" />
+                            </StackPanel>
+                        </StackPanel>
+                    </ScrollViewer>
+                    <Button
+                        Grid.Row="2"
+                        Content="{DynamicResource Str.Button.Done}"
+                        Style="{StaticResource OutlinedBottomButton}"
+                        Command="{Binding CloseLlmPanelCommand}" />
+                </Grid>
+            </DockPanel>
+        </Grid>
 </UserControl>

@@ -52,7 +52,7 @@
     <system:String x:Key="Str.Translator.Yandex">Yandex</system:String>
     <system:String x:Key="Str.Translator.Google">Google</system:String>
     <system:String x:Key="Str.Translator.Papago">Papago</system:String>
-    <system:String x:Key="Str.Translator.Llm">大模型 AI</system:String>
+    <system:String x:Key="Str.Translator.Llm">LLM AI</system:String>
 
     <!--  LLM AI translator settings  -->
     <system:String x:Key="Str.LlmSettings.Header">大模型 AI 翻译</system:String>
@@ -202,6 +202,9 @@
     <system:String x:Key="Str.Button.SettingProxy">配置代理</system:String>
     <system:String x:Key="Str.Button.ShowText">示例文本</system:String>
     <system:String x:Key="Str.Button.Apply">接受</system:String>
+    <system:String x:Key="Str.Button.ManageApi">管理 API</system:String>
+    <system:String x:Key="Str.LlmSettings.PanelCaption">LLM API — 管理</system:String>
+    <system:String x:Key="Str.Button.Done">完成</system:String>
 
     <system:String x:Key="Str.Lookupper.ProjectNote">我的项目首页:</system:String>
     <system:String x:Key="Str.Lookupper.Url">https://lookupper.com</system:String>

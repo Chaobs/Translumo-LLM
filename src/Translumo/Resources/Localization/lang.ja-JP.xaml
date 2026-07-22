@@ -200,6 +200,9 @@
     <system:String x:Key="Str.Button.SettingProxy">プロキシを設定</system:String>
     <system:String x:Key="Str.Button.ShowText">テキスト例を表示</system:String>
     <system:String x:Key="Str.Button.Apply">適用</system:String>
+    <system:String x:Key="Str.Button.ManageApi">API の管理</system:String>
+    <system:String x:Key="Str.LlmSettings.PanelCaption">LLM API — 管理</system:String>
+    <system:String x:Key="Str.Button.Done">完了</system:String>
 
     <system:String x:Key="Str.Lookupper.ProjectNote">私が取り組んでいるメインプロジェクト:</system:String>
     <system:String x:Key="Str.Lookupper.Url">https://lookupper.com</system:String>

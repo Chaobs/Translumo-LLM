@@ -58,7 +58,7 @@
     <system:String x:Key="Str.LlmSettings.Header">LLM AI Translator</system:String>
     <system:String x:Key="Str.LlmSettings.Note" xml:space="preserve">Configure your LLM provider API. The default prompt is optimized for electronic games and films/TV series translation.&#13;Leave the endpoint and model empty to use the provider's preset values.</system:String>
     <system:String x:Key="Str.LlmSettings.Provider">Provider</system:String>
-    <system:String x:Key="Str.LlmSettings.Provider_Custom">Custom Model</system:String>
+    <system:String x:Key="Str.LlmSettings.Provider_Custom">Custom</system:String>
     <system:String x:Key="Str.LlmSettings.ApiKey">API Key</system:String>
     <system:String x:Key="Str.LlmSettings.Endpoint">API BASE URL</system:String>
     <system:String x:Key="Str.LlmSettings.Model">Model name (optional)</system:String>
@@ -202,6 +202,9 @@
     <system:String x:Key="Str.Button.SettingProxy">Configure proxy</system:String>
     <system:String x:Key="Str.Button.ShowText">Show text example</system:String>
     <system:String x:Key="Str.Button.Apply">Apply</system:String>
+    <system:String x:Key="Str.Button.ManageApi">Manage API</system:String>
+    <system:String x:Key="Str.LlmSettings.PanelCaption">LLM API — manage</system:String>
+    <system:String x:Key="Str.Button.Done">Done</system:String>
 
     <system:String x:Key="Str.Lookupper.ProjectNote">Main project I’m working on:</system:String>
     <system:String x:Key="Str.Lookupper.Url">https://lookupper.com</system:String>

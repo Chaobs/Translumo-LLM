@@ -202,6 +202,9 @@
     <system:String x:Key="Str.Button.SettingProxy">Настроить прокси</system:String>
     <system:String x:Key="Str.Button.ShowText">Показать пример текста</system:String>
     <system:String x:Key="Str.Button.Apply">Применить</system:String>
+    <system:String x:Key="Str.Button.ManageApi">Управление API</system:String>
+    <system:String x:Key="Str.LlmSettings.PanelCaption">LLM API — управление</system:String>
+    <system:String x:Key="Str.Button.Done">Готово</system:String>
 
     <system:String x:Key="Str.Lookupper.ProjectNote">Мой главный проект:</system:String>
     <system:String x:Key="Str.Lookupper.Url">https://lookupper.ru</system:String>
