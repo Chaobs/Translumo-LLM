@@ -44,6 +44,8 @@ namespace Translumo.MVVM.ViewModels
 
         public ObservableCollection<string> LlmProfileNames { get; } = new ObservableCollection<string>();
 
+        public ObservableCollection<string> AvailableModels { get; } = new ObservableCollection<string>();
+
         public string SelectedLlmProfileName
         {
             get => _llmProfiles.ActiveProfileName;
@@ -56,6 +58,7 @@ namespace Translumo.MVVM.ViewModels
 
                 _llmProfiles.ActiveProfileName = value;
                 SubscribeActiveProfile();
+                RefreshAvailableModels();
                 OnPropertyChanged(nameof(LlmSettings));
                 _llmProfiles.Save();
             }
@@ -206,6 +209,7 @@ namespace Translumo.MVVM.ViewModels
             this.IsLlmSelected = this.Model.Translator == Translators.Llm;
             RefreshProfileNames();
             SubscribeActiveProfile();
+            RefreshAvailableModels();
 
             this.AvailableVoices = new ObservableCollection<VoiceInfo>();
             
@@ -344,7 +348,28 @@ namespace Translumo.MVVM.ViewModels
 
         private void OnActiveProfilePropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
+            if (e.PropertyName == nameof(LlmConfiguration.Provider))
+            {
+                RefreshAvailableModels();
+                OnPropertyChanged(nameof(LlmSettings));
+            }
+
             _llmProfiles.Save();
+        }
+
+        private void RefreshAvailableModels()
+        {
+            var provider = LlmSettings?.Provider ?? LlmProvider.DeepSeek;
+            AvailableModels.Clear();
+            if (LlmModelCatalog.Models.TryGetValue(provider, out var models))
+            {
+                foreach (var model in models)
+                {
+                    AvailableModels.Add(model);
+                }
+            }
+
+            OnPropertyChanged(nameof(AvailableModels));
         }
 
         private void OnAddLlmProfile()
@@ -360,6 +385,7 @@ namespace Translumo.MVVM.ViewModels
             _llmProfiles.ActiveProfileName = name;
             RefreshProfileNames();
             SubscribeActiveProfile();
+            RefreshAvailableModels();
             OnPropertyChanged(nameof(LlmSettings));
             _llmProfiles.Save();
         }
@@ -389,6 +415,7 @@ namespace Translumo.MVVM.ViewModels
             _llmProfiles.ActiveProfileName = _llmProfiles.Profiles.FirstOrDefault()?.Name;
             RefreshProfileNames();
             SubscribeActiveProfile();
+            RefreshAvailableModels();
             OnPropertyChanged(nameof(LlmSettings));
             _llmProfiles.Save();
         }

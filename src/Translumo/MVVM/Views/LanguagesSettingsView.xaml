@@ -250,12 +250,15 @@
                             Margin="0,0,0,2"
                             Content="{DynamicResource Str.LlmSettings.Model}"
                             Style="{StaticResource ControlCaptionLabel}" />
-                        <TextBox
+                        <ComboBox
                             Width="430"
                             HorizontalAlignment="Left"
                             FontSize="13"
-                            Style="{StaticResource TextBoxBase}"
-                            Text="{Binding Path=LlmSettings.ModelName, UpdateSourceTrigger=PropertyChanged}" />
+                            IsEditable="True"
+                            StaysOpenOnEdit="True"
+                            ItemsSource="{Binding AvailableModels}"
+                            Text="{Binding Path=LlmSettings.ModelName, UpdateSourceTrigger=PropertyChanged}"
+                            Style="{DynamicResource MaterialDesignComboBox}" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Button

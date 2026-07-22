@@ -28,13 +28,13 @@ namespace Translumo.Translation.Llm
             new Dictionary<LlmProvider, LlmProviderPreset>
             {
                 [LlmProvider.DeepSeek] = new LlmProviderPreset(
-                    "https://api.deepseek.com/chat/completions", "deepseek-chat", LlmApiStyle.OpenAi),
+                    "https://api.deepseek.com/chat/completions", "deepseek-v4-flash", LlmApiStyle.OpenAi),
 
                 [LlmProvider.Qwen] = new LlmProviderPreset(
                     "https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions", "qwen-plus", LlmApiStyle.OpenAi),
 
                 [LlmProvider.Kimi] = new LlmProviderPreset(
-                    "https://api.moonshot.cn/v1/chat/completions", "moonshot-v1-8k", LlmApiStyle.OpenAi),
+                    "https://api.moonshot.cn/v1/chat/completions", "kimi-k3", LlmApiStyle.OpenAi),
 
                 [LlmProvider.GLM] = new LlmProviderPreset(
                     "https://open.bigmodel.cn/api/paas/v4/chat/completions", "glm-4-plus", LlmApiStyle.OpenAi),
@@ -52,7 +52,7 @@ namespace Translumo.Translation.Llm
                     "https://generativelanguage.googleapis.com/v1beta/models/{0}:generateContent", "gemini-2.5-flash", LlmApiStyle.Gemini),
 
                 [LlmProvider.Grok] = new LlmProviderPreset(
-                    "https://api.x.ai/v1/chat/completions", "grok-2-latest", LlmApiStyle.OpenAi),
+                    "https://api.x.ai/v1/chat/completions", "grok-3-mini", LlmApiStyle.OpenAi),
 
                 [LlmProvider.Custom] = new LlmProviderPreset(
                     string.Empty, string.Empty, LlmApiStyle.OpenAi)
