@@ -257,57 +257,6 @@
                             Style="{StaticResource TextBoxBase}"
                             Text="{Binding Path=LlmSettings.ModelName, UpdateSourceTrigger=PropertyChanged}" />
                     </StackPanel>
-                    <StackPanel Margin="0,0,0,8">
-                        <Label
-                            Margin="0,0,0,2"
-                            Content="{DynamicResource Str.LlmSettings.SystemPrompt}"
-                            Style="{StaticResource ControlCaptionLabel}" />
-                        <TextBox
-                            Width="430"
-                            Height="120"
-                            HorizontalAlignment="Left"
-                            VerticalScrollBarVisibility="Auto"
-                            AcceptsReturn="True"
-                            FontSize="12"
-                            Style="{StaticResource TextBoxBase}"
-                            Text="{Binding Path=LlmSettings.SystemPrompt, UpdateSourceTrigger=PropertyChanged}"
-                            TextWrapping="Wrap" />
-                    </StackPanel>
-                    <StackPanel Margin="0,0,0,8" Orientation="Horizontal">
-                        <StackPanel Width="215">
-                            <Label
-                                Margin="0,0,0,2"
-                                Content="{DynamicResource Str.LlmSettings.Temperature}"
-                                Style="{StaticResource ControlCaptionLabel}" />
-                            <StackPanel Orientation="Horizontal">
-                                <Slider
-                                    Width="150"
-                                    Maximum="1"
-                                    Minimum="0"
-                                    SmallChange="0.05"
-                                    TickFrequency="0.05"
-                                    Value="{Binding Path=LlmSettings.Temperature}" />
-                                <TextBlock
-                                    Margin="6,0,0,0"
-                                    VerticalAlignment="Center"
-                                    FontSize="12"
-                                    Style="{StaticResource TextBlockBase}"
-                                    Text="{Binding Path=LlmSettings.Temperature, StringFormat=F2}" />
-                            </StackPanel>
-                        </StackPanel>
-                        <StackPanel Width="215">
-                            <Label
-                                Margin="0,0,0,2"
-                                Content="{DynamicResource Str.LlmSettings.MaxTokens}"
-                                Style="{StaticResource ControlCaptionLabel}" />
-                            <TextBox
-                                Width="120"
-                                HorizontalAlignment="Left"
-                                FontSize="13"
-                                Style="{StaticResource TextBoxBase}"
-                                Text="{Binding Path=LlmSettings.MaxTokens, UpdateSourceTrigger=PropertyChanged}" />
-                        </StackPanel>
-                    </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Button
                             Margin="0,4,0,0"

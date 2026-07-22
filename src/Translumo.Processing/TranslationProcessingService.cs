@@ -260,7 +260,7 @@ namespace Translumo.Processing
                 {
                     if (lastIterationType == IterationType.None)
                     {
-                        _chatTextMediator.SendText($"Failed to capture screen ({ex.Message})", false);
+                        _chatTextMediator.SendText(LocalizeCaptureError(ex), false);
                         lastIterationType = IterationType.Short;
                     }
 
@@ -284,12 +284,12 @@ namespace Translumo.Processing
                 }
                 catch (AggregateException ex) when (ex.InnerException is TextDetectionException innerEx)
                 {
-                    _chatTextMediator.SendText($"Text detection is failed ({innerEx.SourceOCREngineType.Name})", false);
+                    _chatTextMediator.SendText(string.Format(_localizationProvider.GetValue("Str.Messages.TextDetectionFailed") ?? "Text detection is failed ({0})", innerEx.SourceOCREngineType.Name), false);
                     _logger.LogError(ex, $"Unexpected error during text detection ({innerEx.SourceOCREngineType})");
                 }
                 catch (Exception ex)
                 {
-                    _chatTextMediator.SendText($"{_translator.GetType().Name} failed: {ex.Message}. Try to change translator, use a proxy or switch VPN location.", false);
+                    _chatTextMediator.SendText(string.Format(_localizationProvider.GetValue("Str.Messages.TranslatorFailed") ?? "{0} failed: {1}. Try to change translator, use a proxy or switch VPN location.", _translator.GetType().Name, ex.Message), false);
                     _logger.LogError(ex, $"Processing iteration failed due to unknown error");
                 }
             }
@@ -329,17 +329,17 @@ namespace Translumo.Processing
             }
             catch (CaptureException ex)
             {
-                _chatTextMediator.SendText($"Failed to capture screen ({ex.Message})", false);
+                _chatTextMediator.SendText(LocalizeCaptureError(ex), false);
                 _logger.LogError(ex, $"Screen capture failed (code: {ex.ErrorCode})");
             }
             catch (AggregateException ex) when (ex.InnerException is TextDetectionException innerEx)
             {
-                _chatTextMediator.SendText($"Text detection is failed ({innerEx.SourceOCREngineType.Name})", false);
+                _chatTextMediator.SendText(string.Format(_localizationProvider.GetValue("Str.Messages.TextDetectionFailed") ?? "Text detection is failed ({0})", innerEx.SourceOCREngineType.Name), false);
                 _logger.LogError(ex, $"Unexpected error during text detection ({innerEx.SourceOCREngineType})");
             }
             catch (Exception ex)
             {
-                _chatTextMediator.SendText($"{_translator.GetType().Name} failed: {ex.Message}. Try to change translator, use a proxy or switch VPN location.", false);
+                _chatTextMediator.SendText(string.Format(_localizationProvider.GetValue("Str.Messages.TranslatorFailed") ?? "{0} failed: {1}. Try to change translator, use a proxy or switch VPN location.", _translator.GetType().Name, ex.Message), false);
                 _logger.LogError(ex, $"Processing iteration failed due to unknown error");
             }
         }
@@ -457,6 +457,23 @@ namespace Translumo.Processing
             _textProvider.Dispose();
             _capturer?.Dispose();
             _onceTimeCapturer?.Dispose();
+        }
+
+        /// <summary>
+        /// Builds the user-visible capture failure message from localized resources so it follows
+        /// the UI language (not the translation target language). Maps the well-known
+        /// "Capture area is not selected" exception to its localized equivalent.
+        /// </summary>
+        private string LocalizeCaptureError(CaptureException ex)
+        {
+            var prefix = _localizationProvider.GetValue("Str.Messages.CaptureFailed") ?? "Failed to capture screen";
+            var detail = ex.Message;
+            if (string.Equals(ex.Message, "Capture area is not selected", StringComparison.OrdinalIgnoreCase))
+            {
+                detail = _localizationProvider.GetValue("Str.Messages.CaptureAreaNotSelected") ?? detail;
+            }
+
+            return $"{prefix} ({detail})";
         }
 
         private enum IterationType : byte

@@ -9,6 +9,7 @@ using System.Globalization;
 using System.Linq;
 using System.Speech.Synthesis;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using Translumo.Dialog;
 using Translumo.Dialog.Stages;
@@ -62,7 +63,7 @@ namespace Translumo.MVVM.ViewModels
 
         public ICommand AddLlmProfileCommand => new RelayCommand(OnAddLlmProfile);
 
-        public ICommand DeleteLlmProfileCommand => new RelayCommand(OnDeleteLlmProfile);
+        public ICommand DeleteLlmProfileCommand => new AsyncRelayCommand(OnDeleteLlmProfileAsync);
 
         public bool IsLlmSelected
         {
@@ -363,9 +364,18 @@ namespace Translumo.MVVM.ViewModels
             _llmProfiles.Save();
         }
 
-        private void OnDeleteLlmProfile()
+        private async Task OnDeleteLlmProfileAsync()
         {
             if (_llmProfiles.Profiles.Count <= 1)
+            {
+                return;
+            }
+
+            var confirm = await _dialogService.ShowDialogAsync(
+                SimpleDialogViewModel.Create(
+                    LocalizationManager.GetValue("Str.LlmSettings.DeleteConfirm"),
+                    SimpleDialogTypes.Question));
+            if (confirm != MessageBoxResult.OK)
             {
                 return;
             }

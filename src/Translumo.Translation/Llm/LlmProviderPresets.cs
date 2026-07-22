@@ -40,7 +40,7 @@ namespace Translumo.Translation.Llm
                     "https://open.bigmodel.cn/api/paas/v4/chat/completions", "glm-4-plus", LlmApiStyle.OpenAi),
 
                 [LlmProvider.MiniMax] = new LlmProviderPreset(
-                    "https://api.minimax.chat/v1/text/chatcompletion_v2", "abab6.5s-chat", LlmApiStyle.OpenAi),
+                    "https://api.minimax.io/v1/chat/completions", "MiniMax-M2.7", LlmApiStyle.OpenAi),
 
                 [LlmProvider.ChatGPT] = new LlmProviderPreset(
                     "https://api.openai.com/v1/chat/completions", "gpt-4o-mini", LlmApiStyle.OpenAi),
@@ -49,7 +49,7 @@ namespace Translumo.Translation.Llm
                     "https://api.anthropic.com/v1/messages", "claude-3-5-sonnet-latest", LlmApiStyle.Anthropic),
 
                 [LlmProvider.Gemini] = new LlmProviderPreset(
-                    "https://generativelanguage.googleapis.com/v1beta/models/{0}:generateContent", "gemini-1.5-flash", LlmApiStyle.Gemini),
+                    "https://generativelanguage.googleapis.com/v1beta/models/{0}:generateContent", "gemini-2.5-flash", LlmApiStyle.Gemini),
 
                 [LlmProvider.Grok] = new LlmProviderPreset(
                     "https://api.x.ai/v1/chat/completions", "grok-2-latest", LlmApiStyle.OpenAi),

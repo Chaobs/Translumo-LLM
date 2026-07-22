@@ -42,6 +42,10 @@
     <system:String x:Key="Str.Messages.TranslationStarted">翻訳を開始しました</system:String>
     <system:String x:Key="Str.Messages.TranslationFinished">翻訳が終了しました</system:String>
     <system:String x:Key="Str.Messages.CapturerInitFailed">キャプチャ機能の初期化に失敗しました。ログを確認してください</system:String>
+    <system:String x:Key="Str.Messages.CaptureFailed">画面のキャプチャに失敗しました</system:String>
+    <system:String x:Key="Str.Messages.CaptureAreaNotSelected">キャプチャ領域が選択されていません</system:String>
+    <system:String x:Key="Str.Messages.TextDetectionFailed">テキスト検出に失敗しました（{0}）</system:String>
+    <system:String x:Key="Str.Messages.TranslatorFailed">{0} に失敗しました：{1}。翻訳エンジンを変更するか、プロキシの利用やVPNの接続先を切り替えてください。</system:String>
 
     <!--  Translator names  -->
     <system:String x:Key="Str.Translator.Deepl">DeepL</system:String>
@@ -67,6 +71,7 @@
     <system:String x:Key="Str.LlmSettings.TestFail">接続に失敗しました: {0}</system:String>
     <system:String x:Key="Str.LlmSettings.AddProfile">プロファイル追加</system:String>
     <system:String x:Key="Str.LlmSettings.DeleteProfile">プロファイル削除</system:String>
+    <system:String x:Key="Str.LlmSettings.DeleteConfirm">このプロファイルを削除してもよろしいですか？この操作は取り消せません。</system:String>
 
     <!--  Hotkeys descriptions  -->
     <system:String x:Key="Str.Hotkeys.ChatVisibility">翻訳ウィンドウの表示/非表示</system:String>
@@ -86,7 +91,7 @@
     <system:String x:Key="Str.AppearanceSettings.FontColor">文字色</system:String>
     <system:String x:Key="Str.AppearanceSettings.FontSize">文字サイズ</system:String>
     <system:String x:Key="Str.AppearanceSettings.Bold">太字</system:String>
-    <system:String x:Key="Str.AppearanceSettings.ExcludeFromCaptue">翻訳ウィンドウを除外</system:String>
+    <system:String x:Key="Str.AppearanceSettings.ExcludeFromCaptue">スクリーンショット/録画に表示されない</system:String>
     <system:String x:Key="Str.AppearanceSettings.LineSpacing">行間</system:String>
     <system:String x:Key="Str.AppearanceSettings.WindowOpacity">ウィンドウの不透明度</system:String>
     <system:String x:Key="Str.AppearanceSettings.FontSizePanelCaption">フォントサイズ — 変更</system:String>

@@ -42,6 +42,10 @@
     <system:String x:Key="Str.Messages.TranslationStarted">翻译已启动</system:String>
     <system:String x:Key="Str.Messages.TranslationFinished">翻译已结束</system:String>
     <system:String x:Key="Str.Messages.CapturerInitFailed">无法初始化屏幕捕获器，请查看日志了解详情</system:String>
+    <system:String x:Key="Str.Messages.CaptureFailed">截图失败</system:String>
+    <system:String x:Key="Str.Messages.CaptureAreaNotSelected">未选择捕获区域</system:String>
+    <system:String x:Key="Str.Messages.TextDetectionFailed">文本检测失败（{0}）</system:String>
+    <system:String x:Key="Str.Messages.TranslatorFailed">{0} 失败：{1}。请尝试更换翻译器、使用代理或切换 VPN 节点。</system:String>
 
     <!--  Translator names  -->
     <system:String x:Key="Str.Translator.Deepl">DeepL</system:String>
@@ -67,6 +71,7 @@
     <system:String x:Key="Str.LlmSettings.TestFail">连接失败：{0}</system:String>
     <system:String x:Key="Str.LlmSettings.AddProfile">新增配置</system:String>
     <system:String x:Key="Str.LlmSettings.DeleteProfile">删除配置</system:String>
+    <system:String x:Key="Str.LlmSettings.DeleteConfirm">确定要删除此配置吗？此操作不可撤销。</system:String>
 
     <!--  Hotkeys descriptions  -->
     <system:String x:Key="Str.Hotkeys.ChatVisibility">显示/隐藏 翻译窗口</system:String>
@@ -86,7 +91,7 @@
     <system:String x:Key="Str.AppearanceSettings.FontColor">文字颜色</system:String>
     <system:String x:Key="Str.AppearanceSettings.FontSize">文字大小</system:String>
     <system:String x:Key="Str.AppearanceSettings.Bold">加粗</system:String>
-    <system:String x:Key="Str.AppearanceSettings.ExcludeFromCaptue">不纳入截图</system:String>
+    <system:String x:Key="Str.AppearanceSettings.ExcludeFromCaptue">截图/录屏中不可见</system:String>
     <system:String x:Key="Str.AppearanceSettings.LineSpacing">行间距</system:String>
     <system:String x:Key="Str.AppearanceSettings.WindowOpacity">翻译窗口背景透明度</system:String>
     <system:String x:Key="Str.AppearanceSettings.FontSizePanelCaption">字体大小 — 改变</system:String>

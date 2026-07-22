@@ -42,6 +42,10 @@
     <system:String x:Key="Str.Messages.TranslationStarted">Translation started</system:String>
     <system:String x:Key="Str.Messages.TranslationFinished">Translation finished</system:String>
     <system:String x:Key="Str.Messages.CapturerInitFailed">Failed to initialize capturer. Please check logs for details</system:String>
+    <system:String x:Key="Str.Messages.CaptureFailed">Failed to capture screen</system:String>
+    <system:String x:Key="Str.Messages.CaptureAreaNotSelected">Capture area is not selected</system:String>
+    <system:String x:Key="Str.Messages.TextDetectionFailed">Text detection is failed ({0})</system:String>
+    <system:String x:Key="Str.Messages.TranslatorFailed">{0} failed: {1}. Try to change translator, use a proxy or switch VPN location.</system:String>
 
     <!--  Translator names  -->
     <system:String x:Key="Str.Translator.Deepl">DeepL</system:String>
@@ -67,6 +71,7 @@
     <system:String x:Key="Str.LlmSettings.TestFail">Connection failed: {0}</system:String>
     <system:String x:Key="Str.LlmSettings.AddProfile">Add profile</system:String>
     <system:String x:Key="Str.LlmSettings.DeleteProfile">Delete profile</system:String>
+    <system:String x:Key="Str.LlmSettings.DeleteConfirm">Are you sure you want to delete this profile? This action cannot be undone.</system:String>
 
     <!--  Hotkeys descriptions  -->
     <system:String x:Key="Str.Hotkeys.ChatVisibility">Show/hide translation window</system:String>

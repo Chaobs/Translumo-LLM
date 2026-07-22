@@ -42,6 +42,10 @@
     <system:String x:Key="Str.Messages.TranslationStarted">Перевод начат</system:String>
     <system:String x:Key="Str.Messages.TranslationFinished">Перевод завершён</system:String>
     <system:String x:Key="Str.Messages.CapturerInitFailed">Не удалось инициализировать захват экрана. Подробности в журнале</system:String>
+    <system:String x:Key="Str.Messages.CaptureFailed">Не удалось захватить экран</system:String>
+    <system:String x:Key="Str.Messages.CaptureAreaNotSelected">Область захвата не выбрана</system:String>
+    <system:String x:Key="Str.Messages.TextDetectionFailed">Не удалось распознать текст ({0})</system:String>
+    <system:String x:Key="Str.Messages.TranslatorFailed">{0} не удалось: {1}. Попробуйте сменить переводчик, использовать прокси или другой узел VPN.</system:String>
 
     <!--  Translator names  -->
     <system:String x:Key="Str.Translator.Deepl">DeepL</system:String>
@@ -67,6 +71,7 @@
     <system:String x:Key="Str.LlmSettings.TestFail">Ошибка подключения: {0}</system:String>
     <system:String x:Key="Str.LlmSettings.AddProfile">Добавить профиль</system:String>
     <system:String x:Key="Str.LlmSettings.DeleteProfile">Удалить профиль</system:String>
+    <system:String x:Key="Str.LlmSettings.DeleteConfirm">Вы уверены, что хотите удалить этот профиль? Действие необратимо.</system:String>
 
     <!--  Hotkeys descriptions  -->
     <system:String x:Key="Str.Hotkeys.ChatVisibility">Показать/скрыть окно перевода</system:String>
