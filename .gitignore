@@ -410,6 +410,10 @@ FodyWeavers.xsd
 # application settings and cached data. NEVER commit.
 config/
 
+# DPAPI-protected encryption key generated on first launch (config/encryption.key).
+# Covered by the config/ rule above, listed explicitly so it can never be committed.
+config/encryption.key
+
 # Local user overrides / secrets produced by published single-file builds
 llm_profiles.json
 *.user.config
