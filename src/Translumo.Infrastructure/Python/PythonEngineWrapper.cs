@@ -9,7 +9,6 @@ public class PythonEngineWrapper : IDisposable
 {
     private bool _disposedValue;
     private int _countUsage;
-    private IntPtr _threadState;
 
     public PythonEngineWrapper()
     {
@@ -21,7 +20,7 @@ public class PythonEngineWrapper : IDisposable
 
     public void Execute(Action action)
     {
-        Execute<object?>(() => { action(); return null; });
+        Execute<object>(() => { action(); return null; });
     }
 
     public T Execute<T>(Func<T> func)
@@ -67,8 +66,7 @@ public class PythonEngineWrapper : IDisposable
 
             if (PythonEngine.IsInitialized)
             {
-                // Causes PythonEngine.Shutdown() hanging (https://github.com/pythonnet/pythonnet/issues/1701)
-                // PythonEngine.EndAllowThreads(_threadState);
+                // PythonEngine.EndAllowThreads(...) is intentionally skipped: it causes Shutdown() to hang (pythonnet/pythonnet#1701)
                 PythonEngine.Shutdown();
             }
 

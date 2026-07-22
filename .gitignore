@@ -404,3 +404,17 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# ===== Translumo-LLM: runtime user config & secrets (defensive) =====
+# Runtime configuration directory — stores user LLM profiles (with API keys),
+# application settings and cached data. NEVER commit.
+config/
+
+# Local user overrides / secrets produced by published single-file builds
+llm_profiles.json
+*.user.config
+*.local.json
+
+# Local build / publish output artifacts
+publish/
+artifacts/

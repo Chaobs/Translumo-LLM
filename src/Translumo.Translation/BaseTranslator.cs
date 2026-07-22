@@ -52,7 +52,7 @@ namespace Translumo.Translation
 
                     return result;
                 }
-                catch (TranslationException ex)
+                catch (TranslationException)
                 {
                     container.MarkContainerIsUsed(false);
                     if (container.IsBlocked && !container.IsPrimary)
@@ -73,7 +73,7 @@ namespace Translumo.Translation
 
                     container = backupContainer;
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     container.MarkContainerIsUsed(false);
                     throw;

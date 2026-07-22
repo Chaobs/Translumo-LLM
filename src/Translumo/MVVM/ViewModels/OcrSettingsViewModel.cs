@@ -38,7 +38,7 @@ namespace Translumo.MVVM.ViewModels
             {
                 if (value)
                 {
-                    EnableEasyOcrAsync();
+                    _ = EnableEasyOcrAsync();
                 }
                 else
                 {

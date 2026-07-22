@@ -35,7 +35,7 @@ namespace Translumo.MVVM.Views
             this.Activate();
         }
 
-        private void ViewModelOnPropertyChanged(object? sender, PropertyChangedEventArgs e)
+        private void ViewModelOnPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(SettingsViewModel.AdditionPanelOpened))
             {

@@ -34,6 +34,7 @@ namespace Translumo.Services
             }
         }
 
+#pragma warning disable CS1998 // method is intentionally synchronous but exposes a Task-based signature for callers
         private static async Task<BrowserView> CreateBrowserView(Guid sessionId, string sourceAddress, string targetUrl, WebProxy proxy = null, string notificationDescription = null)
         {
             var browserView = new BrowserView(sessionId)
@@ -48,6 +49,7 @@ namespace Translumo.Services
 
             return browserView;
         }
+#pragma warning restore CS1998
 
         private static void BrowserViewOnClosed(object sender, EventArgs e)
         {

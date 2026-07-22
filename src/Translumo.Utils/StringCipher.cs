@@ -4,6 +4,8 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
+#pragma warning disable SYSLIB0022, SYSLIB0041 // Legacy Rijndael/Rfc2898 crypto kept for backward-compat with stored ciphertext
+
 namespace Translumo.Utils
 {
     public static class StringCipher

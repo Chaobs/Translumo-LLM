@@ -29,6 +29,11 @@ namespace Translumo.HotKeys
             return this.Key == anotherHotKey.Key && this.KeyModifier == anotherHotKey.KeyModifier;
         }
 
+        public override int GetHashCode()
+        {
+            return (Key, KeyModifier).GetHashCode();
+        }
+
         public override string ToString()
         {
             var keyStr = Key == Key.Oem3 ? "~" : Key.ToString();

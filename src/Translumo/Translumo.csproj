@@ -39,7 +39,7 @@
     <None Remove="Resources\Icons\logo_new.png" />
     <None Remove="Resources\Icons\logo_new.svg" />
     <None Remove="Resources\Icons\logo_full_new.png" />
-    <None Remove="Resources\Icons\banner_new.png" />
+    <None Remove="..\..\docs\banner_new.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -103,7 +103,7 @@
     <Resource Include="Resources\Icons\logo_full_new.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Resources\Icons\banner_new.png">
+    <Resource Include="..\..\docs\banner_new.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

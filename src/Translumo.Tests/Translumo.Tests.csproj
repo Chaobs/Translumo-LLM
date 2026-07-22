@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
+    <IsPackable>false</IsPackable>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <UseWPF>true</UseWPF>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <!-- NETSDK1206: benign SDK notice about version-specific RIDs in a transitive package (Microsoft.Management.Infrastructure) -->
+    <NoWarn>$(NoWarn);NETSDK1206</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
+    <PackageReference Include="xunit" Version="2.9.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Translumo.Utils\Translumo.Utils.csproj" />
+    <ProjectReference Include="..\Translumo.Infrastructure\Translumo.Infrastructure.csproj" />
+    <ProjectReference Include="..\Translumo.Translation\Translumo.Translation.csproj" />
+    <ProjectReference Include="..\Translumo\Translumo.csproj" />
+  </ItemGroup>
+
+</Project>

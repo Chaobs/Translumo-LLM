@@ -26,6 +26,11 @@ namespace Translumo.HotKeys
             return this.Key.Equals(anotherKeyInfo.Key);
         }
 
+        public override int GetHashCode()
+        {
+            return Key.GetHashCode();
+        }
+
         public override string ToString()
         {
             return Key.ToString();

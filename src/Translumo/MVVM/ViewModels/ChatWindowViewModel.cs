@@ -151,7 +151,7 @@ namespace Translumo.MVVM.ViewModels
                 var scope = _serviceProvider.CreateScope();
                 var viewModel = scope.ServiceProvider.GetService<SettingsViewModel>();
                 viewModel.HasUpdates = _hasUpdates;
-                _dialogService.ShowWindowAsync(viewModel, () =>
+                _ = _dialogService.ShowWindowAsync(viewModel, () =>
                 {
                     scope.Dispose();
                     GC.Collect(2);

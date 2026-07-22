@@ -94,7 +94,7 @@ namespace Translumo.OCR
             }
         }
 
-        private IOCREngine? TryGetEngine<TEngine>(Func<TEngine> ocrFactoryFunc, Languages detectionLanguage)
+        private IOCREngine TryGetEngine<TEngine>(Func<TEngine> ocrFactoryFunc, Languages detectionLanguage)
             where TEngine : IOCREngine
         {
             try

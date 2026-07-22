@@ -142,7 +142,7 @@ namespace Translumo.MVVM.ViewModels
             get => Model.TranslateFromLang;
             set
             {
-                ChangeSourceLanguage(value);
+                _ = ChangeSourceLanguage(value);
             }
         }
 
@@ -151,7 +151,7 @@ namespace Translumo.MVVM.ViewModels
             get => Model.TranslateToLang;
             set
             {
-                ChangeTargetLanguage(value);
+                _ = ChangeTargetLanguage(value);
             }
         }
 
@@ -160,7 +160,7 @@ namespace Translumo.MVVM.ViewModels
             get => TtsSettings.TtsSystem;
             set
             {
-                ChangeTtsSystem(value);
+                _ = ChangeTtsSystem(value);
             }
         }
 

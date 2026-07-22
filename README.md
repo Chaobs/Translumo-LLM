@@ -2,6 +2,10 @@
 [![Github All Releases](https://img.shields.io/github/downloads/ramjke/Translumo/total.svg)]()
 
 <p align="center">
+  <img src="docs/banner_new.png" alt="Translumo LLM Banner" width="830">
+</p>
+
+<p align="center">
   <img width="670" src="https://github.com/ramjke/Translumo/assets/29047281/8985049f-ea1c-428e-94be-042ece66cb54">
 </p>
   <h2 align="center" style="border: 0">Translumo LLM — Advanced Real-Time Screen Translator (LLM Edition)</h2>

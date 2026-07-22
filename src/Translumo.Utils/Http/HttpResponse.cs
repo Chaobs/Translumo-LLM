@@ -1,5 +1,7 @@
 ﻿using System;
 
+#pragma warning disable CS8625, CS8618 // HTTP DTO intentionally allows null body/exception in error results
+
 namespace Translumo.Utils.Http
 {
     public class HttpResponse

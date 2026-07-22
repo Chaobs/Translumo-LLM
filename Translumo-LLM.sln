@@ -22,6 +22,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Translumo.Processing", "src
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Translumo.TTS", "src\Translumo.TTS\Translumo.TTS.csproj", "{03241C57-B380-45E9-92D6-2308A93DC0DB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{92A2E6BF-2403-4D1C-9BA9-CF85F6D9E03C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Translumo.Tests", "src\Translumo.Tests\Translumo.Tests.csproj", "{A21C1FC9-C04E-4F9D-9C88-87AC23C12BDF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,11 +60,18 @@ Global
 		{03241C57-B380-45E9-92D6-2308A93DC0DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{03241C57-B380-45E9-92D6-2308A93DC0DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{03241C57-B380-45E9-92D6-2308A93DC0DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A21C1FC9-C04E-4F9D-9C88-87AC23C12BDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A21C1FC9-C04E-4F9D-9C88-87AC23C12BDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A21C1FC9-C04E-4F9D-9C88-87AC23C12BDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A21C1FC9-C04E-4F9D-9C88-87AC23C12BDF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6A02922C-035F-409D-A4B1-49801954F57E}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A21C1FC9-C04E-4F9D-9C88-87AC23C12BDF} = {92A2E6BF-2403-4D1C-9BA9-CF85F6D9E03C}
 	EndGlobalSection
 EndGlobal

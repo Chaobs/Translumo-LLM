@@ -110,7 +110,7 @@ namespace Translumo
 
             var chatViewModel = _serviceProvider.GetService<ChatWindowViewModel>();
             var dialogService = _serviceProvider.GetService<DialogService>();
-            dialogService.ShowWindowAsync(chatViewModel);
+            _ = dialogService.ShowWindowAsync(chatViewModel);
 
             _serviceProvider.RegisterUIInputController();
         }

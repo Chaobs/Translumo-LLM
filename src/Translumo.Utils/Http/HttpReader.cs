@@ -5,6 +5,8 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
+#pragma warning disable CS8625, SYSLIB0014 // null dataIn/body args and legacy WebRequest are intentional
+
 namespace Translumo.Utils.Http
 {
     public class HttpReader
