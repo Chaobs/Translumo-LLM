@@ -103,6 +103,19 @@ namespace Translumo
         {
             base.OnStartup(e);
 
+            // Keep the .NET single-file bundle extraction temp from accumulating on the
+            // system (C:) drive. Redirects future extractions next to the executable and
+            // reaps stale orphaned directories from prior runs/crashes. Best-effort only.
+            try
+            {
+                TempBundleCleaner.ConfigureLocalExtractionBase();
+                TempBundleCleaner.CleanStaleExtractions(TimeSpan.FromHours(1));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogWarning(ex, "Single-file extraction temp cleanup failed");
+            }
+
             CheckIfPathsIsASCII();
 
             var configurationStorage = _serviceProvider.GetService<ConfigurationStorage>();
