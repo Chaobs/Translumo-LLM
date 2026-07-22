@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Translumo.Utils;
 
 namespace Translumo.Controls
 {
@@ -28,6 +29,24 @@ namespace Translumo.Controls
         public TrayControl()
         {
             InitializeComponent();
+
+            // The TaskbarIcon ContextMenu lives in a detached visual tree, so its
+            // DynamicResource bindings do not refresh when the app resource dictionary
+            // is replaced on culture change. Force-update the headers explicitly.
+            LocalizationManager.CultureChanged += OnCultureChanged;
+            UpdateMenuHeaders();
+        }
+
+        private void OnCultureChanged()
+        {
+            UpdateMenuHeaders();
+        }
+
+        private void UpdateMenuHeaders()
+        {
+            MenuItemSettings.Header = LocalizationManager.GetValue("Str.Tray.ShowHideSettings");
+            MenuItemChat.Header = LocalizationManager.GetValue("Str.Tray.ShowHideTranslation");
+            MenuItemExit.Header = LocalizationManager.GetValue("Str.Tray.Exit");
         }
     }
 }

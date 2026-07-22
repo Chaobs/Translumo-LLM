@@ -28,16 +28,18 @@
             <tb:TaskbarIcon.ContextMenu>
                 <ContextMenu Style="{StaticResource ContextMenuDefaultStyle}">
                     <MenuItem
-                        x:Name="First"
+                        x:Name="MenuItemSettings"
                         Command="{Binding SettingsOpeningCommand}"
                         Header="{DynamicResource Str.Tray.ShowHideSettings}"
                         Style="{StaticResource MenuItemDefaultStyle}" />
                     <MenuItem
+                        x:Name="MenuItemChat"
                         Command="{Binding ChatOpeningCommand}"
                         Header="{DynamicResource Str.Tray.ShowHideTranslation}"
                         Style="{StaticResource MenuItemDefaultStyle}" />
                     <Separator Style="{StaticResource SeparatorDefaultStyle}" />
                     <MenuItem
+                        x:Name="MenuItemExit"
                         Command="{common:CloseAppCommand}"
                         CommandParameter="{StaticResource ConfirmationClose}"
                         Header="{DynamicResource Str.Tray.Exit}"

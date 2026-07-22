@@ -35,7 +35,7 @@
 
     <!--  TTS 引擎名稱  -->
     <system:String x:Key="Str.Tts.None">無</system:String>
-    <system:String x:Key="Str.Tts.WindowsTTS">Windows語音</system:String>
+    <system:String x:Key="Str.Tts.WindowsTTS">Windows TTS</system:String>
 
     <!--  執行階段訊息  -->
     <system:String x:Key="Str.Messages.NoOcrEngine">未選擇文字識別器</system:String>

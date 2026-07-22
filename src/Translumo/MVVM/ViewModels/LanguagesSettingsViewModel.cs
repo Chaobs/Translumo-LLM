@@ -609,8 +609,9 @@ namespace Translumo.MVVM.ViewModels
         }
 
         /// <summary>
-        /// Repopulates enum ComboBox collections, forcing WPF to re-create items
-        /// and re-run value converters so localized names reflect the current language.
+        /// Populates the enum ComboBox collections once at construction time.
+        /// Language-change refreshes are handled by <see cref="OnCultureChanged"/> via
+        /// CollectionView.Refresh() (which preserves the selected item).
         /// </summary>
         private void RefreshEnumCollections()
         {
@@ -629,12 +630,26 @@ namespace Translumo.MVVM.ViewModels
 
         private void OnCultureChanged()
         {
-            RefreshEnumCollections();
+            // Refresh the default CollectionView of each stable enum collection.
+            // This forces WPF to regenerate ComboBox items and re-run value converters
+            // with the new culture, WITHOUT replacing/clearing the collection — so the
+            // TwoWay SelectedItem binding never writes a null/default back to the source
+            // and the user's selection (Translator/TTS/LLM provider) is preserved across
+            // language switches.
+            RefreshView(AvailableTranslators);
+            RefreshView(AvailableTtsEngines);
+            RefreshView(AvailableLlmProviders);
 
-            // Also force refresh of selected-item display text
+            // Re-push selected values to ensure the displayed selection is retained.
             OnPropertyChanged(nameof(TtsSystem));
             OnPropertyChanged(nameof(Model.Translator));
             OnPropertyChanged(nameof(LlmSettings));
+        }
+
+        private static void RefreshView(System.Collections.IEnumerable collection)
+        {
+            var view = System.Windows.Data.CollectionViewSource.GetDefaultView(collection);
+            view?.Refresh();
         }
 
         public void Dispose()
