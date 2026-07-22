@@ -36,6 +36,15 @@ namespace Translumo.MVVM.ViewModels
         public IList<DisplayLanguage> AvailableLanguages { get; set; }
         public IList<DisplayLanguage> AvailableTranslationLanguages { get; set; }
 
+        /// <summary>
+        /// Enum-based ComboBox ItemsSource collections.
+        /// These are refreshed when <see cref="LocalizationManager.CultureChanged"/> fires,
+        /// forcing WPF to re-run value converters so localized display names update immediately.
+        /// </summary>
+        public ObservableCollection<Translators> AvailableTranslators { get; } = new();
+        public ObservableCollection<TTSEngines> AvailableTtsEngines { get; } = new();
+        public ObservableCollection<LlmProvider> AvailableLlmProviders { get; } = new();
+
         public TranslationConfiguration Model { get; set; }
 
         public TtsConfiguration TtsSettings { get; set; }
@@ -236,6 +245,10 @@ namespace Translumo.MVVM.ViewModels
             this._dialogService = dialogService;
             this._ocrConfiguration = ocrConfiguration;
             this._logger = logger;
+
+            // Initialize enum ComboBox collections and subscribe to culture changes
+            RefreshEnumCollections();
+            LocalizationManager.CultureChanged += OnCultureChanged;
         }
 
         private void LoadAvailableVoices(string languageCode)
@@ -595,8 +608,39 @@ namespace Translumo.MVVM.ViewModels
             LlmSettingsIsOpened = false;
         }
 
+        /// <summary>
+        /// Repopulates enum ComboBox collections, forcing WPF to re-create items
+        /// and re-run value converters so localized names reflect the current language.
+        /// </summary>
+        private void RefreshEnumCollections()
+        {
+            AvailableTranslators.Clear();
+            foreach (var v in Enum.GetValues(typeof(Translators)))
+                AvailableTranslators.Add((Translators)v);
+
+            AvailableTtsEngines.Clear();
+            foreach (var v in Enum.GetValues(typeof(TTSEngines)))
+                AvailableTtsEngines.Add((TTSEngines)v);
+
+            AvailableLlmProviders.Clear();
+            foreach (var v in Enum.GetValues(typeof(LlmProvider)))
+                AvailableLlmProviders.Add((LlmProvider)v);
+        }
+
+        private void OnCultureChanged()
+        {
+            RefreshEnumCollections();
+
+            // Also force refresh of selected-item display text
+            OnPropertyChanged(nameof(TtsSystem));
+            OnPropertyChanged(nameof(Model.Translator));
+            OnPropertyChanged(nameof(LlmSettings));
+        }
+
         public void Dispose()
         {
+            LocalizationManager.CultureChanged -= OnCultureChanged;
+
             if (_subscribedProfile != null)
             {
                 _subscribedProfile.PropertyChanged -= OnActiveProfilePropertyChanged;

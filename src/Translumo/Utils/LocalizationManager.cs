@@ -55,6 +55,14 @@ namespace Translumo.Utils
         }
 
 
+        /// <summary>
+        /// Fired after <see cref="ChangeAppCulture"/> completes.
+        /// Subscribers should refresh any converter-based UI bindings (e.g. enum ComboBox items)
+        /// that read localized strings via <see cref="GetValue"/>, because WPF does not
+        /// automatically re-evaluate value converters when only the resource dictionary changes.
+        /// </summary>
+        public static event Action CultureChanged;
+
         public static void ChangeAppCulture(CultureInfo cultureInfo)
         {
             if (Thread.CurrentThread.CurrentUICulture.Equals(cultureInfo))
@@ -83,6 +91,7 @@ namespace Translumo.Utils
             }
 
             NotifyChangedValues();
+            CultureChanged?.Invoke();
         }
 
         public static void ReleaseChangedValuesCallbacks(object caller)

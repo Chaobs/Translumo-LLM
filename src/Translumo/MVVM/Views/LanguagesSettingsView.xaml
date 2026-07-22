@@ -6,42 +6,12 @@
     xmlns:controls="clr-namespace:Translumo.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:translation="clr-namespace:Translumo.Translation;assembly=Translumo.Translation"
-    xmlns:llm="clr-namespace:Translumo.Translation.Llm;assembly=Translumo.Translation"
-    xmlns:tts="clr-namespace:Translumo.TTS;assembly=Translumo.TTS"
     xmlns:common="clr-namespace:Translumo.MVVM.Common"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
     <UserControl.Resources>
-        <ObjectDataProvider
-            x:Key="dataFromEnum"
-            MethodName="GetValues"
-            ObjectType="{x:Type System:Enum}">
-            <ObjectDataProvider.MethodParameters>
-                <x:Type TypeName="translation:Translators" />
-            </ObjectDataProvider.MethodParameters>
-        </ObjectDataProvider>
-
-        <ObjectDataProvider
-            x:Key="llmProviders"
-            MethodName="GetValues"
-            ObjectType="{x:Type System:Enum}">
-            <ObjectDataProvider.MethodParameters>
-                <x:Type TypeName="llm:LlmProvider" />
-            </ObjectDataProvider.MethodParameters>
-        </ObjectDataProvider>
-
-        <ObjectDataProvider
-            x:Key="ttsSystems"
-            MethodName="GetValues"
-            ObjectType="{x:Type System:Enum}">
-            <ObjectDataProvider.MethodParameters>
-                <x:Type TypeName="tts:TTSEngines" />
-            </ObjectDataProvider.MethodParameters>
-        </ObjectDataProvider>
-
         <common:TranslatorNameConverter x:Key="TranslatorNameConverter" />
         <common:TtsNameConverter x:Key="TtsNameConverter" />
         <common:LlmProviderNameConverter x:Key="LlmProviderNameConverter" />
@@ -91,7 +61,7 @@
                 <ComboBox
                     Width="130"
                     FontSize="14"
-                    ItemsSource="{Binding Source={StaticResource dataFromEnum}}"
+                    ItemsSource="{Binding AvailableTranslators}"
                     SelectedItem="{Binding Path=Model.Translator}"
                     Style="{DynamicResource MaterialDesignComboBox}">
                     <ComboBox.ItemTemplate>
@@ -110,7 +80,7 @@
                 <ComboBox
                     Width="130"
                     FontSize="14"
-                    ItemsSource="{Binding Source={StaticResource ttsSystems}}"
+                    ItemsSource="{Binding AvailableTtsEngines}"
                     SelectedItem="{Binding Path=TtsSystem}"
                     Style="{DynamicResource MaterialDesignComboBox}">
                     <ComboBox.ItemTemplate>
@@ -266,7 +236,7 @@
                                     Width="200"
                                     HorizontalAlignment="Left"
                                     FontSize="14"
-                                    ItemsSource="{Binding Source={StaticResource llmProviders}}"
+                                    ItemsSource="{Binding AvailableLlmProviders}"
                                     SelectedItem="{Binding Path=LlmSettings.Provider}"
                                     Style="{DynamicResource MaterialDesignComboBox}">
                                     <ComboBox.ItemTemplate>
