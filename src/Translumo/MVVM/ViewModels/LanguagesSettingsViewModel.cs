@@ -41,9 +41,9 @@ namespace Translumo.MVVM.ViewModels
         /// These are refreshed when <see cref="LocalizationManager.CultureChanged"/> fires,
         /// forcing WPF to re-run value converters so localized display names update immediately.
         /// </summary>
-        public ObservableCollection<Translators> AvailableTranslators { get; } = new();
-        public ObservableCollection<TTSEngines> AvailableTtsEngines { get; } = new();
-        public ObservableCollection<LlmProvider> AvailableLlmProviders { get; } = new();
+        public ObservableCollection<DisplayEnumItem> AvailableTranslators { get; } = new();
+        public ObservableCollection<DisplayEnumItem> AvailableTtsEngines { get; } = new();
+        public ObservableCollection<DisplayEnumItem> AvailableLlmProviders { get; } = new();
 
         public TranslationConfiguration Model { get; set; }
 
@@ -616,41 +616,46 @@ namespace Translumo.MVVM.ViewModels
         private void RefreshEnumCollections()
         {
             AvailableTranslators.Clear();
-            foreach (var v in Enum.GetValues(typeof(Translators)))
-                AvailableTranslators.Add((Translators)v);
+            foreach (Translators v in Enum.GetValues(typeof(Translators)))
+                AvailableTranslators.Add(new DisplayEnumItem(v, GetTranslatorDisplayName(v)));
 
             AvailableTtsEngines.Clear();
-            foreach (var v in Enum.GetValues(typeof(TTSEngines)))
-                AvailableTtsEngines.Add((TTSEngines)v);
+            foreach (TTSEngines v in Enum.GetValues(typeof(TTSEngines)))
+                AvailableTtsEngines.Add(new DisplayEnumItem(v, GetTtsDisplayName(v)));
 
             AvailableLlmProviders.Clear();
-            foreach (var v in Enum.GetValues(typeof(LlmProvider)))
-                AvailableLlmProviders.Add((LlmProvider)v);
+            foreach (LlmProvider v in Enum.GetValues(typeof(LlmProvider)))
+                AvailableLlmProviders.Add(new DisplayEnumItem(v, GetLlmProviderDisplayName(v)));
         }
 
         private void OnCultureChanged()
         {
-            // Refresh the default CollectionView of each stable enum collection.
-            // This forces WPF to regenerate ComboBox items and re-run value converters
-            // with the new culture, WITHOUT replacing/clearing the collection — so the
-            // TwoWay SelectedItem binding never writes a null/default back to the source
-            // and the user's selection (Translator/TTS/LLM provider) is preserved across
-            // language switches.
-            RefreshView(AvailableTranslators);
-            RefreshView(AvailableTtsEngines);
-            RefreshView(AvailableLlmProviders);
+            // Update localized display names in place. The ComboBox binds
+            // DisplayMemberPath="DisplayName", so mutating DisplayName raises
+            // PropertyChanged and the UI refreshes immediately. The collection is never
+            // cleared or replaced, therefore the TwoWay SelectedValue binding (which maps
+            // back to the enum) keeps the user's selection (Translator/TTS/LLM provider)
+            // intact across language switches.
+            foreach (var item in AvailableTranslators)
+                item.DisplayName = GetTranslatorDisplayName((Translators)item.Value);
 
-            // Re-push selected values to ensure the displayed selection is retained.
-            OnPropertyChanged(nameof(TtsSystem));
-            OnPropertyChanged(nameof(Model.Translator));
-            OnPropertyChanged(nameof(LlmSettings));
+            foreach (var item in AvailableTtsEngines)
+                item.DisplayName = GetTtsDisplayName((TTSEngines)item.Value);
+
+            foreach (var item in AvailableLlmProviders)
+                item.DisplayName = GetLlmProviderDisplayName((LlmProvider)item.Value);
         }
 
-        private static void RefreshView(System.Collections.IEnumerable collection)
-        {
-            var view = System.Windows.Data.CollectionViewSource.GetDefaultView(collection);
-            view?.Refresh();
-        }
+        private static string GetTtsDisplayName(TTSEngines engine)
+            => LocalizationManager.GetValue($"Str.Tts.{engine}") ?? engine.ToString();
+
+        private static string GetTranslatorDisplayName(Translators translator)
+            => LocalizationManager.GetValue($"Str.Translator.{translator}") ?? translator.ToString();
+
+        private static string GetLlmProviderDisplayName(LlmProvider provider)
+            => provider == LlmProvider.Custom
+                ? LocalizationManager.GetValue("Str.LlmSettings.Provider_Custom") ?? provider.ToString()
+                : provider.ToString();
 
         public void Dispose()
         {

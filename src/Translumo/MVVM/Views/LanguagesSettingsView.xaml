@@ -6,15 +6,11 @@
     xmlns:controls="clr-namespace:Translumo.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:common="clr-namespace:Translumo.MVVM.Common"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
     <UserControl.Resources>
-        <common:TranslatorNameConverter x:Key="TranslatorNameConverter" />
-        <common:TtsNameConverter x:Key="TtsNameConverter" />
-        <common:LlmProviderNameConverter x:Key="LlmProviderNameConverter" />
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </UserControl.Resources>
 
@@ -62,14 +58,10 @@
                     Width="130"
                     FontSize="14"
                     ItemsSource="{Binding AvailableTranslators}"
-                    SelectedItem="{Binding Path=Model.Translator}"
-                    Style="{DynamicResource MaterialDesignComboBox}">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Converter={StaticResource TranslatorNameConverter}}" />
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
+                    SelectedValue="{Binding Path=Model.Translator}"
+                    SelectedValuePath="Value"
+                    DisplayMemberPath="DisplayName"
+                    Style="{DynamicResource MaterialDesignComboBox}" />
                 <Label
                     Margin="10,0,0,0"
                     HorizontalAlignment="Stretch"
@@ -81,14 +73,10 @@
                     Width="130"
                     FontSize="14"
                     ItemsSource="{Binding AvailableTtsEngines}"
-                    SelectedItem="{Binding Path=TtsSystem}"
-                    Style="{DynamicResource MaterialDesignComboBox}">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Converter={StaticResource TtsNameConverter}}" />
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
+                    SelectedValue="{Binding Path=TtsSystem}"
+                    SelectedValuePath="Value"
+                    DisplayMemberPath="DisplayName"
+                    Style="{DynamicResource MaterialDesignComboBox}" />
                 <Label
                     Margin="10,0,0,0"
                     HorizontalAlignment="Stretch"
@@ -237,14 +225,10 @@
                                     HorizontalAlignment="Left"
                                     FontSize="14"
                                     ItemsSource="{Binding AvailableLlmProviders}"
-                                    SelectedItem="{Binding Path=LlmSettings.Provider}"
-                                    Style="{DynamicResource MaterialDesignComboBox}">
-                                    <ComboBox.ItemTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="{Binding Converter={StaticResource LlmProviderNameConverter}}" />
-                                        </DataTemplate>
-                                    </ComboBox.ItemTemplate>
-                                </ComboBox>
+                                    SelectedValue="{Binding Path=LlmSettings.Provider}"
+                                    SelectedValuePath="Value"
+                                    DisplayMemberPath="DisplayName"
+                                    Style="{DynamicResource MaterialDesignComboBox}" />
                             </StackPanel>
                             <StackPanel Margin="0,0,0,8">
                                 <Label
