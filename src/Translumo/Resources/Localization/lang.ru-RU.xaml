@@ -33,6 +33,16 @@
     <system:String x:Key="Str.LangSettings.Translator">Переводчик</system:String>
     <system:String x:Key="Str.LangSettings.TtsSystem">Синтез речи (TTS)</system:String>
 
+    <!--  Имена TTS-движков  -->
+    <system:String x:Key="Str.Tts.None">Нет</system:String>
+    <system:String x:Key="Str.Tts.WindowsTTS">Windows TTS</system:String>
+
+    <!--  Сообщения времени выполнения  -->
+    <system:String x:Key="Str.Messages.NoOcrEngine">OCR-движок не выбран!</system:String>
+    <system:String x:Key="Str.Messages.TranslationStarted">Перевод начат</system:String>
+    <system:String x:Key="Str.Messages.TranslationFinished">Перевод завершён</system:String>
+    <system:String x:Key="Str.Messages.CapturerInitFailed">Не удалось инициализировать захват экрана. Подробности в журнале</system:String>
+
     <!--  Translator names  -->
     <system:String x:Key="Str.Translator.Deepl">DeepL</system:String>
     <system:String x:Key="Str.Translator.Yandex">Yandex</system:String>

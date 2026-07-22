@@ -33,6 +33,16 @@
     <system:String x:Key="Str.LangSettings.Translator">翻訳エンジン</system:String>
     <system:String x:Key="Str.LangSettings.TtsSystem">音声読み上げエンジン</system:String>
 
+    <!--  TTS エンジン名  -->
+    <system:String x:Key="Str.Tts.None">なし</system:String>
+    <system:String x:Key="Str.Tts.WindowsTTS">Windows TTS</system:String>
+
+    <!--  実行時メッセージ  -->
+    <system:String x:Key="Str.Messages.NoOcrEngine">OCR エンジンが選択されていません</system:String>
+    <system:String x:Key="Str.Messages.TranslationStarted">翻訳を開始しました</system:String>
+    <system:String x:Key="Str.Messages.TranslationFinished">翻訳が終了しました</system:String>
+    <system:String x:Key="Str.Messages.CapturerInitFailed">キャプチャ機能の初期化に失敗しました。ログを確認してください</system:String>
+
     <!--  Translator names  -->
     <system:String x:Key="Str.Translator.Deepl">DeepL</system:String>
     <system:String x:Key="Str.Translator.Yandex">Yandex</system:String>

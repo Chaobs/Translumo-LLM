@@ -33,6 +33,16 @@
     <system:String x:Key="Str.LangSettings.Translator">翻譯引擎</system:String>
     <system:String x:Key="Str.LangSettings.TtsSystem">朗讀引擎</system:String>
 
+    <!--  TTS 引擎名稱  -->
+    <system:String x:Key="Str.Tts.None">無</system:String>
+    <system:String x:Key="Str.Tts.WindowsTTS">Windows 語音</system:String>
+
+    <!--  執行階段訊息  -->
+    <system:String x:Key="Str.Messages.NoOcrEngine">未選擇文字識別器</system:String>
+    <system:String x:Key="Str.Messages.TranslationStarted">翻譯已啟動</system:String>
+    <system:String x:Key="Str.Messages.TranslationFinished">翻譯已結束</system:String>
+    <system:String x:Key="Str.Messages.CapturerInitFailed">無法初始化螢幕擷取器，請查看日誌了解詳情</system:String>
+
     <!--  Translator names  -->
     <system:String x:Key="Str.Translator.Deepl">DeepL</system:String>
     <system:String x:Key="Str.Translator.Yandex">Yandex</system:String>

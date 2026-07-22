@@ -20,6 +20,7 @@ using Translumo.Translation.Exceptions;
 using Translumo.Translation.Llm;
 using Translumo.TTS;
 using Translumo.TTS.Engines;
+using Translumo.Utils;
 
 namespace Translumo.Processing
 {
@@ -38,6 +39,7 @@ namespace Translumo.Processing
         private readonly TextResultCacheService _textResultCacheService;
         private readonly ILogger _logger;
         private readonly LlmProfiles _llmProfiles;
+        private readonly ILocalizationProvider _localizationProvider;
         private static readonly object _obj = new object();
 
         private ITTSEngine _ttsEngine;
@@ -59,9 +61,10 @@ namespace Translumo.Processing
             TranslatorFactory translationFactory, TtsFactory ttsFactory, TtsConfiguration ttsConfiguration,
             TextDetectionProvider textProvider, TranslationConfiguration translationConfiguration, OcrGeneralConfiguration ocrConfiguration, 
             TextResultCacheService textResultCacheService, TextProcessingConfiguration textConfiguration, LlmProfiles llmProfiles,
-            ILogger<TranslationProcessingService> logger)
+            ILogger<TranslationProcessingService> logger, ILocalizationProvider localizationProvider)
         {
             _logger = logger;
+            _localizationProvider = localizationProvider;
             _llmProfiles = llmProfiles;
             _chatTextMediator = chatTextMediator;
             _capturerFactory = capturerFactory;
@@ -94,7 +97,7 @@ namespace Translumo.Processing
 
             if (!_engines.Any())
             {
-                _chatTextMediator.SendText("No OCR engine is selected!", false);
+                _chatTextMediator.SendText(_localizationProvider.GetValue("Str.Messages.NoOcrEngine") ?? "No OCR engine is selected!", false);
                 return;
             }
 
@@ -102,14 +105,14 @@ namespace Translumo.Processing
             _ctSource = new CancellationTokenSource();
             Task.Factory.StartNew(() => TranslateInternal(_ctSource.Token));
 
-            _chatTextMediator.SendText("Translation started", TextTypes.Info);
+            _chatTextMediator.SendText(_localizationProvider.GetValue("Str.Messages.TranslationStarted") ?? "Translation started", TextTypes.Info);
         }
 
         public void ProcessOnce(RectangleF captureArea)
         {
             if (!_engines.Any())
             {
-                _chatTextMediator.SendText("No OCR engine is selected!", false);
+                _chatTextMediator.SendText(_localizationProvider.GetValue("Str.Messages.NoOcrEngine") ?? "No OCR engine is selected!", false);
                 return;
             }
 
@@ -120,7 +123,7 @@ namespace Translumo.Processing
         {
             _ctSource.Cancel();
 
-            _chatTextMediator.SendText("Translation finished", TextTypes.Info);
+            _chatTextMediator.SendText(_localizationProvider.GetValue("Str.Messages.TranslationFinished") ?? "Translation finished", TextTypes.Info);
         }
 
         private void TranslateInternal(CancellationToken cancellationToken)
@@ -168,7 +171,7 @@ namespace Translumo.Processing
                         _capturer = _capturerFactory.CreateCapturer(false);
                         if (_capturer == null)
                         {
-                            _chatTextMediator.SendText("Failed to initialize capturer. Please check logs for details", false);
+                            _chatTextMediator.SendText(_localizationProvider.GetValue("Str.Messages.CapturerInitFailed") ?? "Failed to initialize capturer. Please check logs for details", false);
                             _ctSource.Cancel();
                         }
                     }
@@ -262,10 +265,18 @@ namespace Translumo.Processing
                     }
 
                     _logger.LogError(ex, $"Screen capture failed (code: {ex.ErrorCode})");
-                    
-                    _capturer.Dispose();
-                    _capturer = null;
-                    CapturerEnsureInitialized();
+
+                    // Fall back to the reliability-prioritized (GDI/BitBlt) capturer.
+                    // The default capturer uses DXGI Desktop Duplication, which returns
+                    // DXGI_ERROR_WAIT_TIMEOUT (0x887A0027) and never recovers under
+                    // Remote Desktop / headless sessions. BitBlt works in those cases.
+                    _capturer?.Dispose();
+                    _capturer = _capturerFactory.CreateCapturer(true);
+                    if (_capturer == null)
+                    {
+                        _chatTextMediator.SendText(_localizationProvider.GetValue("Str.Messages.CapturerInitFailed") ?? "Failed to initialize capturer. Please check logs for details", false);
+                        _ctSource.Cancel();
+                    }
                 }
                 catch (TranslationException ex)
                 {
@@ -295,7 +306,7 @@ namespace Translumo.Processing
                 _onceTimeCapturer = _capturerFactory.CreateCapturer(true);
                 if (_onceTimeCapturer == null)
                 {
-                    _chatTextMediator.SendText("Failed to initialize capturer. Please check logs for details", false);
+                    _chatTextMediator.SendText(_localizationProvider.GetValue("Str.Messages.CapturerInitFailed") ?? "Failed to initialize capturer. Please check logs for details", false);
 
                     return;
                 }

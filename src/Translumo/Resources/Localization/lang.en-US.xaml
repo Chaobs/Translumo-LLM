@@ -33,6 +33,16 @@
     <system:String x:Key="Str.LangSettings.Translator">Translator</system:String>
     <system:String x:Key="Str.LangSettings.TtsSystem">Text to speech system</system:String>
 
+    <!--  TTS engine names  -->
+    <system:String x:Key="Str.Tts.None">None</system:String>
+    <system:String x:Key="Str.Tts.WindowsTTS">Windows TTS</system:String>
+
+    <!--  Runtime messages  -->
+    <system:String x:Key="Str.Messages.NoOcrEngine">No OCR engine is selected!</system:String>
+    <system:String x:Key="Str.Messages.TranslationStarted">Translation started</system:String>
+    <system:String x:Key="Str.Messages.TranslationFinished">Translation finished</system:String>
+    <system:String x:Key="Str.Messages.CapturerInitFailed">Failed to initialize capturer. Please check logs for details</system:String>
+
     <!--  Translator names  -->
     <system:String x:Key="Str.Translator.Deepl">DeepL</system:String>
     <system:String x:Key="Str.Translator.Yandex">Yandex</system:String>

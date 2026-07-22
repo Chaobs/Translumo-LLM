@@ -138,6 +138,7 @@ namespace Translumo
             var chatMediatorInstance = new ChatUITextMediator();
             services.AddSingleton<IChatTextMediator, ChatUITextMediator>(provider => chatMediatorInstance);
             services.AddSingleton<ChatUITextMediator>(chatMediatorInstance);
+            services.AddSingleton<ILocalizationProvider, LocalizationProvider>();
             services.AddSingleton<ChatWindowViewModel>();
             services.AddSingleton<ChatWindowModel>();
             services.AddSingleton<HotKeysServiceManager>();
