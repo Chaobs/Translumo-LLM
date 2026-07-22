@@ -2,7 +2,7 @@
 name: Bug report
 about: Create a report to improve Translumo
 title: ''
-labels: bug
+labels: bug, enhancement
 assignees: ''
 
 ---
