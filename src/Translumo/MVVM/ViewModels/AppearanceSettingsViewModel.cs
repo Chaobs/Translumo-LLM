@@ -83,7 +83,7 @@ namespace Translumo.MVVM.ViewModels
 
         private void OnSendTestTextCommand()
         {
-            _chatMediator.SendText($"Translated test text was sent", true);
+            _chatMediator.SendText($"Translated test text was sent 翻译文本已发送", true);
         }
 
         private void OnColorPickedCommand(bool applyColor)

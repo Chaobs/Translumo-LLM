@@ -35,7 +35,7 @@
 
     <!--  Имена TTS-движков  -->
     <system:String x:Key="Str.Tts.None">Нет</system:String>
-    <system:String x:Key="Str.Tts.WindowsTTS">Windows TTS</system:String>
+    <system:String x:Key="Str.Tts.WindowsTTS">Голос Windows</system:String>
 
     <!--  Сообщения времени выполнения  -->
     <system:String x:Key="Str.Messages.NoOcrEngine">OCR-движок не выбран!</system:String>

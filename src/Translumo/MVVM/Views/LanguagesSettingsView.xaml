@@ -239,24 +239,24 @@
                             <StackPanel
                                 Margin="0,0,0,10"
                                 Orientation="Horizontal">
-                                <ComboBox
-                                    Width="200"
-                                    HorizontalAlignment="Left"
-                                    FontSize="13"
-                                    ItemsSource="{Binding LlmProfileNames}"
-                                    SelectedItem="{Binding SelectedLlmProfileName}"
-                                    Style="{DynamicResource MaterialDesignComboBox}" />
                                 <Button
-                                    Margin="8,0,0,0"
+                                    Margin="0,0,8,0"
                                     Command="{Binding AddLlmProfileCommand}"
                                     Content="{DynamicResource Str.LlmSettings.AddProfile}"
                                     Style="{StaticResource PrimaryButton}" />
                                 <Button
-                                    Margin="8,0,0,0"
                                     Command="{Binding DeleteLlmProfileCommand}"
                                     Content="{DynamicResource Str.LlmSettings.DeleteProfile}"
                                     Style="{StaticResource PrimaryButton}" />
                             </StackPanel>
+                            <ComboBox
+                                Width="200"
+                                HorizontalAlignment="Left"
+                                FontSize="13"
+                                Margin="0,0,0,8"
+                                ItemsSource="{Binding LlmProfileNames}"
+                                SelectedItem="{Binding SelectedLlmProfileName}"
+                                Style="{DynamicResource MaterialDesignComboBox}" />
                             <StackPanel Margin="0,0,0,8">
                                 <Label
                                     Margin="0,0,0,2"

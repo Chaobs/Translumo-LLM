@@ -35,7 +35,7 @@
 
     <!--  TTS エンジン名  -->
     <system:String x:Key="Str.Tts.None">なし</system:String>
-    <system:String x:Key="Str.Tts.WindowsTTS">Windows TTS</system:String>
+    <system:String x:Key="Str.Tts.WindowsTTS">Windows 音声</system:String>
 
     <!--  実行時メッセージ  -->
     <system:String x:Key="Str.Messages.NoOcrEngine">OCR エンジンが選択されていません</system:String>

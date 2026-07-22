@@ -35,7 +35,7 @@
 
     <!--  TTS engine names  -->
     <system:String x:Key="Str.Tts.None">None</system:String>
-    <system:String x:Key="Str.Tts.WindowsTTS">Windows TTS</system:String>
+    <system:String x:Key="Str.Tts.WindowsTTS">Windows Voice</system:String>
 
     <!--  Runtime messages  -->
     <system:String x:Key="Str.Messages.NoOcrEngine">No OCR engine is selected!</system:String>

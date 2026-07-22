@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Translumo", "src\Translumo\Translumo.csproj", "{01D957E6-7E62-4EBB-910E-04D7EA8877A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Translumo-LLM", "src\Translumo\Translumo.csproj", "{01D957E6-7E62-4EBB-910E-04D7EA8877A6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Translumo.Infrastructure", "src\Translumo.Infrastructure\Translumo.Infrastructure.csproj", "{BD488C1C-5B7A-4EC1-9826-4B8973A76348}"
 EndProject
