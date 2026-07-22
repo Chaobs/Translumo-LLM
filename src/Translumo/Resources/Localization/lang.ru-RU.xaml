@@ -54,8 +54,9 @@
     <system:String x:Key="Str.LlmSettings.Header">Переводчик LLM AI</system:String>
     <system:String x:Key="Str.LlmSettings.Note" xml:space="preserve">Настройте API вашего LLM-провайдера. Стандартный промпт оптимизирован для перевода видеоигр и фильмов/сериалов.&#13;Оставьте адрес и модель пустыми, чтобы использовать предустановленные значения провайдера.</system:String>
     <system:String x:Key="Str.LlmSettings.Provider">Провайдер</system:String>
+    <system:String x:Key="Str.LlmSettings.Provider_Custom">Пользовательская модель</system:String>
     <system:String x:Key="Str.LlmSettings.ApiKey">API Key</system:String>
-    <system:String x:Key="Str.LlmSettings.Endpoint">API Endpoint (необязательно)</system:String>
+    <system:String x:Key="Str.LlmSettings.Endpoint">API BASE URL</system:String>
     <system:String x:Key="Str.LlmSettings.Model">Модель (необязательно)</system:String>
     <system:String x:Key="Str.LlmSettings.SystemPrompt">Промпт перевода</system:String>
     <system:String x:Key="Str.LlmSettings.Temperature">Температура</system:String>

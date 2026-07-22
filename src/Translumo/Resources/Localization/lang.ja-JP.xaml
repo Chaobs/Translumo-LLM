@@ -54,8 +54,9 @@
     <system:String x:Key="Str.LlmSettings.Header">LLM AI 翻訳</system:String>
     <system:String x:Key="Str.LlmSettings.Note" xml:space="preserve">LLM プロバイダーの API を設定します。デフォルトのプロンプトは電子ゲームや映画・ドラマの翻訳向けに最適化されています。&#13;エンドポイントとモデル名を空にすると、プロバイダーの既定値を使用します。</system:String>
     <system:String x:Key="Str.LlmSettings.Provider">プロバイダー</system:String>
+    <system:String x:Key="Str.LlmSettings.Provider_Custom">カスタムモデル</system:String>
     <system:String x:Key="Str.LlmSettings.ApiKey">API キー</system:String>
-    <system:String x:Key="Str.LlmSettings.Endpoint">API エンドポイント（任意）</system:String>
+    <system:String x:Key="Str.LlmSettings.Endpoint">API BASE URL</system:String>
     <system:String x:Key="Str.LlmSettings.Model">モデル名（任意）</system:String>
     <system:String x:Key="Str.LlmSettings.SystemPrompt">翻訳プロンプト</system:String>
     <system:String x:Key="Str.LlmSettings.Temperature">温度</system:String>

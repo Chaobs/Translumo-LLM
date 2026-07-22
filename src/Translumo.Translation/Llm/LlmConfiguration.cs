@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 using Translumo.Utils;
 
 namespace Translumo.Translation.Llm
@@ -36,7 +37,19 @@ If the text is already in {TargetLanguage} or is nonsensical, return it unchange
         public LlmProvider Provider
         {
             get => _provider;
-            set => SetProperty(ref _provider, value);
+            set
+            {
+                if (_provider == value)
+                {
+                    return;
+                }
+
+                SetProperty(ref _provider, value);
+                if (!_deserializing)
+                {
+                    ApplyProviderDefaults();
+                }
+            }
         }
 
         public string ApiKey
@@ -100,7 +113,37 @@ If the text is already in {TargetLanguage} or is nonsensical, return it unchange
             SystemPrompt = DEFAULT_SYSTEM_PROMPT;
             Temperature = 0.3;
             MaxTokens = 4096;
+            ApplyProviderDefaults();
         }
+
+        /// <summary>
+        /// Seed the endpoint / model fields from the provider preset so the user only has to
+        /// supply the API key for well-known providers. Custom requires all three fields.
+        /// Skipped while deserializing so saved overrides are preserved intact.
+        /// </summary>
+        private void ApplyProviderDefaults()
+        {
+            var preset = LlmProviderPresets.Presets[_provider];
+            if (_provider == LlmProvider.Custom)
+            {
+                Endpoint = string.Empty;
+                ModelName = string.Empty;
+            }
+            else
+            {
+                Endpoint = preset.DefaultEndpoint;
+                ModelName = preset.DefaultModel;
+            }
+        }
+
+        [OnDeserializing]
+        private void OnDeserializing() => _deserializing = true;
+
+        [OnDeserialized]
+        private void OnDeserialized() => _deserializing = false;
+
+        [JsonIgnore]
+        private bool _deserializing;
 
         private string _name = "Default";
         private LlmProvider _provider = LlmProvider.DeepSeek;

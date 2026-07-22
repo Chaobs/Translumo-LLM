@@ -5,6 +5,7 @@ using System.Linq;
 using System.Xml.Serialization;
 using Microsoft.Extensions.Logging;
 using Translumo.Infrastructure.Encryption;
+using Translumo.Utils;
 using Translumo.Utils.Extensions;
 
 namespace Translumo.Configuration
@@ -12,6 +13,7 @@ namespace Translumo.Configuration
     public class  ConfigurationStorage
     {
         private const string ENCRYPTION_PASSWORD = "p@wd!";
+        private const string CONFIGURATION_FILE = "settings";
 
         private readonly IServiceProvider _serviceProvider;
         private readonly IEncryptionService _encryptionService;
@@ -43,6 +45,16 @@ namespace Translumo.Configuration
             try
             {
                 var confPath = GetConfigurationPath();
+                if (!File.Exists(confPath))
+                {
+                    // One-time migration: import from the legacy AppData location if present.
+                    var legacyPath = Path.Combine(AppPaths.GetLegacyConfigDirectory(), CONFIGURATION_FILE);
+                    if (File.Exists(legacyPath))
+                    {
+                        confPath = legacyPath;
+                    }
+                }
+
                 _logger.LogTrace($"Loading configuration from '{confPath}'");
                 using (FileStream fs = new FileStream(confPath, FileMode.Open))
                 {
@@ -103,17 +115,7 @@ namespace Translumo.Configuration
 
         private string GetConfigurationPath()
         {
-            const string CONFIGURATION_FILE = "settings";
-
-            string appDataDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-            string appName = AppDomain.CurrentDomain.FriendlyName.Split('.').First();
-            string appDirectory = Path.Combine(appDataDirectory, appName);
-            if (!Directory.Exists(appDirectory))
-            {
-                Directory.CreateDirectory(appDirectory);
-            }
-
-            return Path.Combine(appDirectory, CONFIGURATION_FILE);
+            return Path.Combine(AppPaths.GetConfigDirectory(), CONFIGURATION_FILE);
         }
     }
 }

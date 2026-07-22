@@ -54,8 +54,9 @@
     <system:String x:Key="Str.LlmSettings.Header">大模型 AI 翻译</system:String>
     <system:String x:Key="Str.LlmSettings.Note" xml:space="preserve">配置您的 LLM 服务商 API。默认提示词已针对电子游戏与影视剧翻译场景优化。&#13;留空终结点与模型名将使用服务商预设值。</system:String>
     <system:String x:Key="Str.LlmSettings.Provider">服务商</system:String>
+    <system:String x:Key="Str.LlmSettings.Provider_Custom">自定义模型</system:String>
     <system:String x:Key="Str.LlmSettings.ApiKey">API 密钥</system:String>
-    <system:String x:Key="Str.LlmSettings.Endpoint">API 终结点（可选）</system:String>
+    <system:String x:Key="Str.LlmSettings.Endpoint">API BASE URL</system:String>
     <system:String x:Key="Str.LlmSettings.Model">模型名称（可选）</system:String>
     <system:String x:Key="Str.LlmSettings.SystemPrompt">翻译提示词</system:String>
     <system:String x:Key="Str.LlmSettings.Temperature">温度</system:String>

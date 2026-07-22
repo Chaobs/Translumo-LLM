@@ -12,7 +12,7 @@ namespace Translumo.Translation.Llm
     /// <summary>
     /// Container holding all configured LLM translator profiles and the name of the
     /// currently active one. Persisted as plain JSON to
-    /// %AppData%/Translumo-LLM/llm_profiles.json so the user can configure several LLM
+    /// &lt;app&gt;/config/llm_profiles.json so the user can configure several LLM
     /// backends (DeepSeek, GPT, Claude, ...) and switch between them freely.
     /// </summary>
     public class LlmProfiles : BindableBase
@@ -102,7 +102,16 @@ namespace Translumo.Translation.Llm
                 var path = Path.Combine(GetDirectory(), FILE_NAME);
                 if (!File.Exists(path))
                 {
-                    return;
+                    // One-time migration: import from the legacy AppData location if present.
+                    var legacyPath = Path.Combine(GetLegacyDirectory(), FILE_NAME);
+                    if (File.Exists(legacyPath))
+                    {
+                        path = legacyPath;
+                    }
+                    else
+                    {
+                        return;
+                    }
                 }
 
                 var json = File.ReadAllText(path);
@@ -151,15 +160,12 @@ namespace Translumo.Translation.Llm
 
         private static string GetDirectory()
         {
-            var appData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-            var appName = AppDomain.CurrentDomain.FriendlyName.Split('.').First();
-            var dir = Path.Combine(appData, appName);
-            if (!Directory.Exists(dir))
-            {
-                Directory.CreateDirectory(dir);
-            }
+            return AppPaths.GetConfigDirectory();
+        }
 
-            return dir;
+        private static string GetLegacyDirectory()
+        {
+            return AppPaths.GetLegacyConfigDirectory();
         }
     }
 }

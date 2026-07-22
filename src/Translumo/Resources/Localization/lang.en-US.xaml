@@ -54,8 +54,9 @@
     <system:String x:Key="Str.LlmSettings.Header">LLM AI Translator</system:String>
     <system:String x:Key="Str.LlmSettings.Note" xml:space="preserve">Configure your LLM provider API. The default prompt is optimized for electronic games and films/TV series translation.&#13;Leave the endpoint and model empty to use the provider's preset values.</system:String>
     <system:String x:Key="Str.LlmSettings.Provider">Provider</system:String>
+    <system:String x:Key="Str.LlmSettings.Provider_Custom">Custom Model</system:String>
     <system:String x:Key="Str.LlmSettings.ApiKey">API Key</system:String>
-    <system:String x:Key="Str.LlmSettings.Endpoint">API Endpoint (optional)</system:String>
+    <system:String x:Key="Str.LlmSettings.Endpoint">API BASE URL</system:String>
     <system:String x:Key="Str.LlmSettings.Model">Model name (optional)</system:String>
     <system:String x:Key="Str.LlmSettings.SystemPrompt">Translation prompt</system:String>
     <system:String x:Key="Str.LlmSettings.Temperature">Temperature</system:String>

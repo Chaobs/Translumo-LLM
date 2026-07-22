@@ -43,19 +43,19 @@
 
         <common:TranslatorNameConverter x:Key="TranslatorNameConverter" />
         <common:TtsNameConverter x:Key="TtsNameConverter" />
+        <common:LlmProviderNameConverter x:Key="LlmProviderNameConverter" />
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </UserControl.Resources>
 
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="475" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-        <ScrollViewer
-            Grid.Column="0"
-            HorizontalScrollBarVisibility="Disabled"
-            VerticalScrollBarVisibility="Auto">
-            <StackPanel>
+    <ScrollViewer
+        HorizontalScrollBarVisibility="Disabled"
+        VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="475" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
             <StackPanel.Resources>
                 <Style TargetType="{x:Type StackPanel}">
                     <Setter Property="Margin" Value="0,0,0,20" />
@@ -213,7 +213,13 @@
                             FontSize="14"
                             ItemsSource="{Binding Source={StaticResource llmProviders}}"
                             SelectedItem="{Binding Path=LlmSettings.Provider}"
-                            Style="{DynamicResource MaterialDesignComboBox}" />
+                            Style="{DynamicResource MaterialDesignComboBox}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Converter={StaticResource LlmProviderNameConverter}}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
                     </StackPanel>
                     <StackPanel Margin="0,0,0,8">
                         <Label
@@ -321,7 +327,6 @@
                 </StackPanel>
             </GroupBox>
             </StackPanel>
-        </ScrollViewer>
         <DockPanel
             Grid.Row="0"
             Grid.Column="1"
@@ -340,4 +345,5 @@
                 UseLayoutRounding="False" />
         </DockPanel>
     </Grid>
+    </ScrollViewer>
 </UserControl>
