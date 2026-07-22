@@ -43,10 +43,10 @@ namespace Translumo.Translation.Llm
                     "https://api.minimax.io/v1/chat/completions", "MiniMax-M2.7", LlmApiStyle.OpenAi),
 
                 [LlmProvider.ChatGPT] = new LlmProviderPreset(
-                    "https://api.openai.com/v1/chat/completions", "gpt-4o-mini", LlmApiStyle.OpenAi),
+                    "https://api.openai.com/v1/chat/completions", "gpt-4.1-mini", LlmApiStyle.OpenAi),
 
                 [LlmProvider.Claude] = new LlmProviderPreset(
-                    "https://api.anthropic.com/v1/messages", "claude-3-5-sonnet-latest", LlmApiStyle.Anthropic),
+                    "https://api.anthropic.com/v1/messages", "claude-sonnet-4-6", LlmApiStyle.Anthropic),
 
                 [LlmProvider.Gemini] = new LlmProviderPreset(
                     "https://generativelanguage.googleapis.com/v1beta/models/{0}:generateContent", "gemini-2.5-flash", LlmApiStyle.Gemini),
