@@ -25,10 +25,10 @@ namespace Translumo.Utils
     public static class TempBundleCleaner
     {
         /// <summary>Environment variable honored by the .NET single-file host (read before <c>Main()</c>).</summary>
-        private const string ExtractBaseDirEnv = "DOTNET_BUNDLE_EXTRACT_BASE_DIR";
+        internal const string ExtractBaseDirEnv = "DOTNET_BUNDLE_EXTRACT_BASE_DIR";
 
         /// <summary>Sub-folder the host appends under the extraction base (matches the assembly name).</summary>
-        private const string AppBundleFolder = "Translumo-LLM";
+        internal const string AppBundleFolder = "Translumo-LLM";
 
         /// <summary>
         /// Removes single-file extraction directories that are (a) not the one this
