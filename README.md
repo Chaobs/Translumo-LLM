@@ -83,10 +83,6 @@ Full release history: [Chaobs/Translumo-LLM/releases](https://github.com/Chaobs/
 
 [![Watch Demo](docs/demo-cover/setting-tutorial-en_cover.jpg)](https://github.com/user-attachments/assets/7149c277-d5ec-489c-b37e-8ad769a09a43)
 
-**中文演示：**
-
-[![观看演示](docs/demo-cover/setting-tutorial-zh_cover.jpg)](https://github.com/user-attachments/assets/50adb44e-c9b0-4884-b47f-dbb5fbeb3078)
-
 1. Open the Settings (**Alt+G**) or double-click the icon in the system tray
 2. Select languages: source language for OCR and translation language
 3. Select text recognition engines (see Usage Tips for recommended modes)
@@ -124,10 +120,6 @@ LLM translation requires an API key from your chosen provider. The short flow:
 **English demo:**
 
 [![Watch Demo](docs/demo-cover/ai-config-en_cover.jpg)](https://github.com/user-attachments/assets/3dadc829-9001-491b-9e42-eb2ffd87688f)
-
-**中文演示：**
-
-[![观看演示](docs/demo-cover/ai-config-zh.mp4_cover.jpg)](https://github.com/user-attachments/assets/0788cc9b-0218-47eb-8f67-7e5499be86e9)
 
 1. Open the Settings (**Alt+G**) or double-click the icon in the system tray
 2. Click **Manage API**
