@@ -18,6 +18,7 @@ namespace Translumo.MVVM.ViewModels
 
         public ICommand ExitEditModeCommand => new ActionCommand(OnExitEditMode);
         public ICommand EnterEditModeCommand => new ActionCommand(OnEnterEditMode);
+        public ICommand RestoreDefaultsCommand => new ActionCommand(OnRestoreDefaults);
 
         private readonly HotKeysConfiguration _configuration;
         private readonly HotKeysServiceManager _serviceManager;
@@ -54,6 +55,10 @@ namespace Translumo.MVVM.ViewModels
                     hotKeysServiceManager.GamepadHotkeysEnabled ? _configuration.OnceTranslateGamepadKey : defaultGamepadHotKey,
                     nameof(_configuration.OnceTranslateKey), nameof(_configuration.OnceTranslateGamepadKey),
                     LocalizationManager.GetValue("Str.Hotkeys.OnceTranslate", false, OnLocalizedValueChanged, this)),
+                new HotKeyModel(_configuration.ImageTranslateKey,
+                    hotKeysServiceManager.GamepadHotkeysEnabled ? _configuration.ImageTranslateGamepadKey : defaultGamepadHotKey,
+                    nameof(_configuration.ImageTranslateKey), nameof(_configuration.ImageTranslateGamepadKey),
+                    LocalizationManager.GetValue("Str.Hotkeys.ImageTranslate", false, OnLocalizedValueChanged, this)),
                 new HotKeyModel(_configuration.WindowStyleChangeKey,
                     hotKeysServiceManager.GamepadHotkeysEnabled ? _configuration.WindowStyleChangeGamepadKey : defaultGamepadHotKey,
                     nameof(_configuration.WindowStyleChangeKey), nameof(_configuration.WindowStyleChangeGamepadKey),
@@ -71,6 +76,47 @@ namespace Translumo.MVVM.ViewModels
         private void OnEnterEditMode()
         {
             _serviceManager.UnregisterAll();
+        }
+
+        private void OnRestoreDefaults()
+        {
+            var defaults = HotKeysConfiguration.Default;
+
+            // Detach per-row change handlers so the bulk reset does not trigger
+            // the duplicate-key swap logic while we overwrite every binding.
+            Model.ForEach(m => m.PropertyChanged -= OnPropertyChanged);
+
+            _configuration.ChatVisibilityKey = defaults.ChatVisibilityKey;
+            _configuration.SettingVisibilityKey = defaults.SettingVisibilityKey;
+            _configuration.SelectAreaKey = defaults.SelectAreaKey;
+            _configuration.TranslationStateKey = defaults.TranslationStateKey;
+            _configuration.ShowSelectionAreaKey = defaults.ShowSelectionAreaKey;
+            _configuration.OnceTranslateKey = defaults.OnceTranslateKey;
+            _configuration.ImageTranslateKey = defaults.ImageTranslateKey;
+            _configuration.WindowStyleChangeKey = defaults.WindowStyleChangeKey;
+
+            _configuration.ChatVisibilityGamepadKey = defaults.ChatVisibilityGamepadKey;
+            _configuration.SettingVisibilityGamepadKey = defaults.SettingVisibilityGamepadKey;
+            _configuration.SelectAreaGamepadKey = defaults.SelectAreaGamepadKey;
+            _configuration.TranslationStateGamepadKey = defaults.TranslationStateGamepadKey;
+            _configuration.ShowSelectionAreaGamepadKey = defaults.ShowSelectionAreaGamepadKey;
+            _configuration.OnceTranslateGamepadKey = defaults.OnceTranslateGamepadKey;
+            _configuration.ImageTranslateGamepadKey = defaults.ImageTranslateGamepadKey;
+            _configuration.WindowStyleChangeGamepadKey = defaults.WindowStyleChangeGamepadKey;
+
+            // Re-sync the UI rows from the (now default) configuration.
+            foreach (var model in Model)
+            {
+                var hotKeyProp = _configuration.GetType().GetProperty(model.ConfigurationPropertyName);
+                var gamepadProp = _configuration.GetType().GetProperty(model.GamepadConfigurationPropertyName);
+                model.HotKey = hotKeyProp.GetValue(_configuration) as HotKeyInfo;
+                model.GamepadHotKey = gamepadProp.GetValue(_configuration) as GamepadHotKeyInfo;
+            }
+
+            Model.ForEach(m => m.PropertyChanged += OnPropertyChanged);
+
+            // Re-register the actual hotkey hooks with the default bindings.
+            _serviceManager.RegisterAll();
         }
 
         private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)

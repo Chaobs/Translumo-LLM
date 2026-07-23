@@ -16,6 +16,13 @@
     </UserControl.Resources>
 
     <DockPanel LastChildFill="True">
+        <Button
+            Margin="0,12,0,0"
+            HorizontalAlignment="Left"
+            Command="{Binding RestoreDefaultsCommand}"
+            Content="{DynamicResource Str.Hotkeys.RestoreDefaults}"
+            DockPanel.Dock="Bottom"
+            Style="{DynamicResource PrimaryButton}" />
         <ItemsControl
             Name="IcHotKeys"
             DockPanel.Dock="Top"

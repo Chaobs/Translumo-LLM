@@ -37,23 +37,61 @@ namespace Translumo.Translation.Llm
 
         protected override async Task<string> TranslateTextInternal(LlmContainer container, string sourceText)
         {
-            var cfg = _llmSettings;
-
-            if (cfg.RequiresApiKey && string.IsNullOrWhiteSpace(cfg.ApiKey))
+            if (_llmSettings.RequiresApiKey && string.IsNullOrWhiteSpace(_llmSettings.ApiKey))
             {
                 throw new TranslationException("LLM translator: API Key is not configured.");
             }
 
-            if (!cfg.Enabled)
+            if (!_llmSettings.Enabled)
             {
                 throw new TranslationException("LLM translator: endpoint and model name are required for a custom provider.");
             }
 
-            var systemPrompt = (cfg.SystemPrompt ?? string.Empty)
+            var systemPrompt = (_llmSettings.SystemPrompt ?? string.Empty)
                 .Replace("{SourceLanguage}", SourceLangDescriptor.Language.ToString(), StringComparison.Ordinal)
                 .Replace("{TargetLanguage}", TargetLangDescriptor.Language.ToString(), StringComparison.Ordinal);
 
-            var apiStyle = cfg.ApiStyle;
+            return await TranslateWithPromptAsync(container, sourceText, systemPrompt).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Image-translation variant used by the instant ("Google Lens") feature. The source language
+        /// of a captured region is unknown, so the model must detect it per line. A dedicated system
+        /// prompt instructs the LLM to auto-detect the source and translate into
+        /// <paramref name="targetLanguageName"/>; the same provider/API plumbing as the normal pipeline
+        /// is reused. Reuses the primary container for a single attempt (matching the lightweight,
+        /// per-line nature of image translation).
+        /// </summary>
+        public async Task<string> TranslateAutoDetectAsync(string sourceText, string targetLanguageName)
+        {
+            if (_llmSettings.RequiresApiKey && string.IsNullOrWhiteSpace(_llmSettings.ApiKey))
+            {
+                throw new TranslationException("LLM translator: API Key is not configured.");
+            }
+
+            if (!_llmSettings.Enabled)
+            {
+                throw new TranslationException("LLM translator: endpoint and model name are required for a custom provider.");
+            }
+
+            var systemPrompt = BuildAutoDetectPrompt(targetLanguageName);
+            // A fresh primary container is created per invocation. Containers are not IDisposable
+            // in this codebase (BaseTranslator keeps its containers alive for the app lifetime and
+            // never disposes them), so we let the GC reclaim it after the call returns.
+            var container = new LlmContainer(isPrimary: true);
+            return await TranslateWithPromptAsync(container, sourceText, systemPrompt).ConfigureAwait(false);
+        }
+
+        private static string BuildAutoDetectPrompt(string targetLanguageName) =>
+$@"You are a professional translator localizing text captured from a screen (game UI, menus, subtitles, signs, etc.).
+The source language is unknown and may differ for each line; detect it automatically.
+Translate the following text into {targetLanguageName}.
+Preserve the original meaning, tone and on-screen formatting exactly. Output ONLY the translated text — no commentary, no quotes, no ""Translation:"" prefix.
+If the text is already in {targetLanguageName}, or is nonsensical/garbled OCR output, return it unchanged.";
+
+        private async Task<string> TranslateWithPromptAsync(LlmContainer container, string sourceText, string systemPrompt)
+        {
+            var apiStyle = _llmSettings.ApiStyle;
             string url;
             string json;
 
@@ -62,24 +100,24 @@ namespace Translumo.Translation.Llm
             switch (apiStyle)
             {
                 case LlmApiStyle.OpenAi:
-                    if (cfg.RequiresApiKey)
+                    if (_llmSettings.RequiresApiKey)
                     {
-                        container.Reader.OptionalHeaders["Authorization"] = "Bearer " + cfg.ApiKey;
+                        container.Reader.OptionalHeaders["Authorization"] = "Bearer " + _llmSettings.ApiKey;
                     }
-                    url = cfg.ResolvedEndpoint;
-                    json = BuildOpenAiRequest(cfg, systemPrompt, sourceText);
+                    url = _llmSettings.ResolvedEndpoint;
+                    json = BuildOpenAiRequest(_llmSettings, systemPrompt, sourceText);
                     break;
 
                 case LlmApiStyle.Anthropic:
-                    container.Reader.OptionalHeaders["x-api-key"] = cfg.ApiKey;
+                    container.Reader.OptionalHeaders["x-api-key"] = _llmSettings.ApiKey;
                     container.Reader.OptionalHeaders["anthropic-version"] = "2023-06-01";
-                    url = cfg.ResolvedEndpoint;
-                    json = BuildAnthropicRequest(cfg, systemPrompt, sourceText);
+                    url = _llmSettings.ResolvedEndpoint;
+                    json = BuildAnthropicRequest(_llmSettings, systemPrompt, sourceText);
                     break;
 
                 case LlmApiStyle.Gemini:
-                    url = string.Format(cfg.ResolvedEndpoint, cfg.ResolvedModel) + "?key=" + Uri.EscapeDataString(cfg.ApiKey);
-                    json = BuildGeminiRequest(cfg, systemPrompt, sourceText);
+                    url = string.Format(_llmSettings.ResolvedEndpoint, _llmSettings.ResolvedModel) + "?key=" + Uri.EscapeDataString(_llmSettings.ApiKey);
+                    json = BuildGeminiRequest(_llmSettings, systemPrompt, sourceText);
                     break;
 
                 default:

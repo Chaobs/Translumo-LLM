@@ -81,6 +81,9 @@
     <system:String x:Key="Str.Hotkeys.OnOffTranslation">On/off translation</system:String>
     <system:String x:Key="Str.Hotkeys.ShowSelectArea">Show selected screen capture area</system:String>
     <system:String x:Key="Str.Hotkeys.OnceTranslate">Select area and translate text once</system:String>
+    <system:String x:Key="Str.Hotkeys.ImageTranslate">Image translation (select area, overlay like Google Lens)</system:String>
+    <system:String x:Key="Str.Hotkeys.RestoreDefaults">Restore to default</system:String>
+    <system:String x:Key="Str.Hotkeys.ImageTranslateHelp">Press '{0}' to instant-translate a selected region (Google Lens style)</system:String>
     <system:String x:Key="Str.Hotkeys.WindowChangeStyle">Lock/unlock translation window</system:String>
     <system:String x:Key="Str.Hotkeys.SettingsShowHelp">Press '{0}' to open the Settings</system:String>
     <system:String x:Key="Str.Hotkeys.SelectAreaHelp">Press '{0}' to select detection area</system:String>

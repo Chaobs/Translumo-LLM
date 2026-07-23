@@ -81,6 +81,9 @@
     <system:String x:Key="Str.Hotkeys.OnOffTranslation">開啟/關閉 翻譯</system:String>
     <system:String x:Key="Str.Hotkeys.ShowSelectArea">顯示已選擇的翻譯區域</system:String>
     <system:String x:Key="Str.Hotkeys.OnceTranslate">選擇翻譯區域（一次性）</system:String>
+    <system:String x:Key="Str.Hotkeys.ImageTranslate">圖像翻譯（選擇區域，像谷歌一樣疊加顯示）</system:String>
+    <system:String x:Key="Str.Hotkeys.RestoreDefaults">恢復預設</system:String>
+    <system:String x:Key="Str.Hotkeys.ImageTranslateHelp">請按 '{0}' 對所選區域進行即時翻譯（Google Lens 風格）</system:String>
     <system:String x:Key="Str.Hotkeys.WindowChangeStyle">鎖定/解除鎖定 翻譯視窗位置</system:String>
     <system:String x:Key="Str.Hotkeys.SettingsShowHelp">請按 '{0}' 開啟設定頁面</system:String>
     <system:String x:Key="Str.Hotkeys.SelectAreaHelp">請按 '{0}' 選擇翻譯區域</system:String>

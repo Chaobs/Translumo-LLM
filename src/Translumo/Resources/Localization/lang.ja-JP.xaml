@@ -81,6 +81,9 @@
     <system:String x:Key="Str.Hotkeys.OnOffTranslation">翻訳のオン/オフ</system:String>
     <system:String x:Key="Str.Hotkeys.ShowSelectArea">選択した翻訳領域を表示</system:String>
     <system:String x:Key="Str.Hotkeys.OnceTranslate">領域を選択して一度だけ翻訳</system:String>
+    <system:String x:Key="Str.Hotkeys.ImageTranslate">画像翻訳（領域を選択し、Google Lens のように重ねて表示）</system:String>
+    <system:String x:Key="Str.Hotkeys.RestoreDefaults">デフォルトに戻す</system:String>
+    <system:String x:Key="Str.Hotkeys.ImageTranslateHelp">「{0}」を押すと、選択した領域を即座に翻訳します（Google Lens 風）</system:String>
     <system:String x:Key="Str.Hotkeys.WindowChangeStyle">翻訳ウィンドウの位置ロック/解除</system:String>
     <system:String x:Key="Str.Hotkeys.SettingsShowHelp">「{0}」を押して設定を開く</system:String>
     <system:String x:Key="Str.Hotkeys.SelectAreaHelp">「{0}」を押して翻訳領域を選択</system:String>
