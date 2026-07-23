@@ -32,6 +32,7 @@
     <system:String x:Key="Str.LangSettings.TranslationLang">翻訳先の言語</system:String>
     <system:String x:Key="Str.LangSettings.Translator">翻訳エンジン</system:String>
     <system:String x:Key="Str.LangSettings.TtsSystem">音声読み上げエンジン</system:String>
+    <system:String x:Key="Str.LangSettings.Voice">音声</system:String>
 
     <!--  TTS エンジン名  -->
     <system:String x:Key="Str.Tts.None">なし</system:String>

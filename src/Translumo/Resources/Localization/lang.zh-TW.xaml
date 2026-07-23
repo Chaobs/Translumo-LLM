@@ -32,6 +32,7 @@
     <system:String x:Key="Str.LangSettings.TranslationLang">目標語言（您想要看到的語言）</system:String>
     <system:String x:Key="Str.LangSettings.Translator">翻譯引擎</system:String>
     <system:String x:Key="Str.LangSettings.TtsSystem">朗讀引擎</system:String>
+    <system:String x:Key="Str.LangSettings.Voice">語音</system:String>
 
     <!--  TTS 引擎名稱  -->
     <system:String x:Key="Str.Tts.None">無</system:String>

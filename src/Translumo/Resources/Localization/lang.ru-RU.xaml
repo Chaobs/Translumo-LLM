@@ -32,6 +32,7 @@
     <system:String x:Key="Str.LangSettings.TranslationLang">Язык перевода</system:String>
     <system:String x:Key="Str.LangSettings.Translator">Переводчик</system:String>
     <system:String x:Key="Str.LangSettings.TtsSystem">Синтез речи (TTS)</system:String>
+    <system:String x:Key="Str.LangSettings.Voice">Голос</system:String>
 
     <!--  Имена TTS-движков  -->
     <system:String x:Key="Str.Tts.None">Нет</system:String>

@@ -433,8 +433,14 @@ namespace Translumo.Processing
             if (e.PropertyName == nameof(_ttsConfiguration.TtsLanguage)
                 || e.PropertyName == nameof(_ttsConfiguration.TtsSystem))
             {
-                _ttsEngine.Dispose();
+                _ttsEngine?.Dispose();
+                _ttsEngine = null;
                 _ttsEngine = _ttsFactory.CreateTtsEngine(_ttsConfiguration);
+            }
+            else if (e.PropertyName == nameof(_ttsConfiguration.SelectedVoiceName)
+                && _ttsEngine != null && _ttsConfiguration.SelectedVoiceName != null)
+            {
+                _ttsEngine.SetVoice(_ttsConfiguration.SelectedVoiceName);
             }
         }
 

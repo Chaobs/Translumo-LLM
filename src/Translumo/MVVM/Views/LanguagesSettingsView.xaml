@@ -94,7 +94,7 @@
                 <Label
                     Margin="10,0,0,0"
                     HorizontalAlignment="Stretch"
-                    Content="Voices"
+                    Content="{DynamicResource Str.LangSettings.Voice}"
                     Style="{StaticResource ControlCaptionLabel}" />
             </StackPanel>
 

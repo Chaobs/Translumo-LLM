@@ -255,7 +255,7 @@ namespace Translumo.MVVM.ViewModels
         {
             try
             {
-                var voices = GetAvailableVoicesForLanguage(languageCode);
+                var voices = WindowsTTSHelper.GetAvailableVoicesForLanguage(languageCode);
                 AvailableVoices = new ObservableCollection<VoiceInfo>(voices);
                 
                 if (!string.IsNullOrEmpty(TtsSettings.SelectedVoiceName))
@@ -277,40 +277,6 @@ namespace Translumo.MVVM.ViewModels
                 _logger.LogError(ex, "Load available voices error");
                 AvailableVoices = new ObservableCollection<VoiceInfo>();
             }
-        }
-
-        private List<VoiceInfo> GetAvailableVoicesForLanguage(string languageTag)
-        {
-            using var synth = new SpeechSynthesizer();
-            var result = new List<VoiceInfo>();
-            
-            try
-            {
-                var voices = synth.GetInstalledVoices(new CultureInfo(languageTag));
-                if (voices.Count > 0)
-                {
-                    result.AddRange(voices.Select(v => v.VoiceInfo));
-                    return result;
-                }
-            }
-            catch
-            {
-            }
-
-            try
-            {
-                var shortTag = languageTag.Split('-')[0];
-                var voices = synth.GetInstalledVoices(new CultureInfo(shortTag));
-                if (voices.Count > 0)
-                {
-                    result.AddRange(voices.Select(v => v.VoiceInfo));
-                }
-            }
-            catch
-            {
-            }
-
-            return result;
         }
 
         private void OnProxySettingsClicked()

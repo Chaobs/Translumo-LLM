@@ -32,6 +32,7 @@
     <system:String x:Key="Str.LangSettings.TranslationLang">Translation language</system:String>
     <system:String x:Key="Str.LangSettings.Translator">Translator</system:String>
     <system:String x:Key="Str.LangSettings.TtsSystem">Text to speech system</system:String>
+    <system:String x:Key="Str.LangSettings.Voice">Voice</system:String>
 
     <!--  TTS engine names  -->
     <system:String x:Key="Str.Tts.None">None</system:String>
