@@ -58,26 +58,6 @@ namespace Translumo
             AppDomain.CurrentDomain.UnhandledException += CurrentDomainOnUnhandledException;
         }
 
-        private void CheckIfPathsIsASCII()
-        {
-            string pythonPath = Global.PythonPath;
-
-            // Extract non-English characters (non-ASCII)
-            string nonAscii = new string(pythonPath.Where(c => c > 127).ToArray());
-
-            if (!string.IsNullOrEmpty(nonAscii))
-            {
-                // Show native Win32 dialog
-                NativeDialog.ShowError(
-                    $"Translumo folder is in a path with non-English letters: \"{nonAscii}\"\n" +
-                    "Please move Translumo folder to a simple path like C:\\Translumo",
-                    "Move Translumo Folder");
-
-                // Stop the app
-                Environment.Exit(1);
-            }
-        }
-
         private void CurrentDomainOnUnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             _logger.LogCritical(e.ExceptionObject as Exception, "Unhandled app exception");
@@ -115,8 +95,6 @@ namespace Translumo
             {
                 _logger.LogWarning(ex, "Single-file extraction temp cleanup failed");
             }
-
-            CheckIfPathsIsASCII();
 
             var configurationStorage = _serviceProvider.GetService<ConfigurationStorage>();
             configurationStorage.LoadConfiguration();

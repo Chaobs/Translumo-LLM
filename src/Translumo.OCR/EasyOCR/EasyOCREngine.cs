@@ -23,7 +23,7 @@ namespace Translumo.OCR.EasyOCR
         private readonly object _obj = new object();
         private readonly LanguageDescriptor _languageDescriptor;
         private readonly PythonEngineWrapper _pythonEngine;
-        private readonly string _modelPath = Path.Combine(Global.ModelsPath, "easyocr");
+        private readonly string _modelPath = Path.Combine(Global.ModelsPathShort, "easyocr");
         private readonly ILogger _logger;
 
         #region Python objects

@@ -12,8 +12,15 @@ public class PythonEngineWrapper : IDisposable
 
     public PythonEngineWrapper()
     {
-        Runtime.PythonDLL = Path.Combine(Global.PythonPath, "python38.dll");
-        PythonEngine.PythonHome = Global.PythonPath;
+        // Force UTF-8 mode for the embedded CPython so a home/executable path that contains
+        // characters outside the system ANSI codepage (e.g. Japanese/Russian inside a Chinese
+        // path) is not mangled. This is what lets Translumo run from paths such as
+        // D:\游戏\暗黑破坏神 without crashing the OCR engine.
+        Environment.SetEnvironmentVariable("PYTHONUTF8", "1");
+        Environment.SetEnvironmentVariable("PYTHONLEGACYWINDOWSFSENCODING", "0");
+
+        Runtime.PythonDLL = Path.Combine(Global.PythonPathShort, "python38.dll");
+        PythonEngine.PythonHome = Global.PythonPathShort;
     }
 
     public PyObject Import(string libName) => Py.Import(libName);
@@ -48,7 +55,7 @@ public class PythonEngineWrapper : IDisposable
         if (!PythonEngine.IsInitialized)
         {
             // TODO: move to common place, also used in EasyOCR
-            Runtime.PythonDLL = Path.Combine(Global.PythonPath, "python38.dll");
+            Runtime.PythonDLL = Path.Combine(Global.PythonPathShort, "python38.dll");
             PythonEngine.Initialize();
             PythonEngine.BeginAllowThreads();
         }

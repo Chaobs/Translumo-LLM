@@ -27,7 +27,7 @@ namespace Translumo.Infrastructure.Python
 
         protected PythonCommand(ProcessStartInfo pythonStartInfo)
         {
-            if (!File.Exists(Path.Combine(Global.PythonPath, "python.exe")))
+            if (!File.Exists(Path.Combine(Global.PythonPathShort, "python.exe")))
             {
                 throw new FileNotFoundException("Embedded Python is not found");
             }
@@ -91,7 +91,7 @@ namespace Translumo.Infrastructure.Python
 
         private static ProcessStartInfo GetPythonStartInfo(string argument)
         {
-            return new ProcessStartInfo()
+            var startInfo = new ProcessStartInfo()
             {
                 FileName = "cmd.exe",
                 Arguments = @$"/C {argument}",
@@ -99,8 +99,15 @@ namespace Translumo.Infrastructure.Python
                 RedirectStandardError = true,
                 RedirectStandardOutput = true,
                 CreateNoWindow = true,
-                WorkingDirectory = Global.PythonPath
+                WorkingDirectory = Global.PythonPathShort
             };
+
+            // Match the embedded interpreter: force UTF-8 mode so a non-ASCII Python path is
+            // handled correctly when this child python.exe starts up.
+            startInfo.EnvironmentVariables["PYTHONUTF8"] = "1";
+            startInfo.EnvironmentVariables["PYTHONLEGACYWINDOWSFSENCODING"] = "0";
+
+            return startInfo;
         }
 
         public void Dispose()

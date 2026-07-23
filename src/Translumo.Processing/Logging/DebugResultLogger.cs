@@ -34,7 +34,7 @@ namespace Translumo.Processing.Logging
             }
 
             str.AppendLine();
-            await _stream.WriteAsync(Encoding.Default.GetBytes(str.ToString()));
+            await _stream.WriteAsync(Encoding.UTF8.GetBytes(str.ToString()));
             if (img != null)
             {
                 await File.WriteAllBytesAsync(string.Format(imgPathFormat, _counter), img);
