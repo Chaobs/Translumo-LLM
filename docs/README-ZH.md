@@ -11,8 +11,9 @@
 
 > **LLM 增强版** —— 由 [Chaobs](https://github.com/Chaobs) 基于
 > [Translumo](https://github.com/ramjke/Translumo) 修改的分支。在原版 OCR 引擎之上新增了
-> **LLM AI 翻译**（DeepSeek、通义千问 Qwen、Kimi、智谱 GLM、MiniMax、ChatGPT、Claude、Gemini、Grok
-> 以及自定义 OpenAI 兼容接口），并补充了简体/繁体中文与日语本地化。完整变更见 [NOTICE](../NOTICE)。
+> **LLM AI 翻译**（DeepSeek、通义千问 Qwen、Kimi、智谱 GLM、MiniMax、ChatGPT、Claude、Gemini、Grok、
+> 通过 Ollama 运行的本地模型，以及自定义 OpenAI 兼容接口），并补充了简体/繁体中文与日语本地化。
+> 完整变更见 [NOTICE](../NOTICE)。
 > 项目主页：[github.com/Chaobs/Translumo-LLM](https://github.com/Chaobs/Translumo-LLM) ·
 > 问题反馈：[Chaobs/Translumo-LLM/issues](https://github.com/Chaobs/Translumo-LLM/issues)
 
@@ -21,6 +22,10 @@
 Translumo-LLM 建立在 **[Translumo](https://github.com/ramjke/Translumo)** 之上 —— 这是由
 [ramjke](https://github.com/ramjke) 开发的原始实时屏幕翻译器。如需了解其背景、历史与原版功能集，
 请访问上游项目。
+
+> **说明：** 由于 Translumo-LLM 已新增大量与原项目不兼容的特性（LLM 翻译、Ollama 本地模型、新的
+> 界面本地化、主题切换、即时图片翻译等），本项目已**从上游 fork 中脱离（detach fork）**，今后作为
+> **独立项目**运营。后续开发在此继续进行，不再与 ramjke/Translumo 同步。
 
 ## 下载 Translumo-LLM
 
@@ -37,8 +42,8 @@ Translumo-LLM 建立在 **[Translumo](https://github.com/ramjke/Translumo)** 之
 
 - **LLM AI 翻译**
   借助大语言模型获得更高质量、更具上下文感知、更自然的翻译。支持的供应商包括：DeepSeek、通义千问
-  Qwen、Kimi、智谱 GLM、MiniMax、ChatGPT、Claude、Gemini、Grok，以及任意 OpenAI 兼容的自定义接口。
-  可在 **设置 → 管理 API** 中配置。
+  Qwen、Kimi、智谱 GLM、MiniMax、ChatGPT、Claude、Gemini、Grok、**Ollama（本地运行开源模型，无需
+  API 密钥）**，以及任意 OpenAI 兼容的自定义接口。可在 **设置 → 管理 API** 中配置。
 
 - **高精度文字识别**
   Translumo 可同时结合多个 OCR 引擎，并使用机器学习模型对每个识别结果打分，自动选取最佳结果。
@@ -128,7 +133,10 @@ LLM 翻译需要你所选供应商的 API 密钥。简要流程如下：
 ## 常见问题
 
 **Q：如何配置 LLM 翻译？**
-A：打开 **设置 → 管理 API**，选择供应商（DeepSeek、通义千问、Kimi、智谱 GLM、MiniMax、ChatGPT、Claude、Gemini、Grok，或自定义 OpenAI 兼容接口），选择模型并输入 API 密钥。参见上方的 AI 配置教程。
+A：打开 **设置 → 管理 API**，选择供应商（DeepSeek、通义千问、Kimi、智谱 GLM、MiniMax、ChatGPT、Claude、Gemini、Grok、Ollama，或自定义 OpenAI 兼容接口），选择模型并输入 API 密钥。对于 **Ollama** 无需 API 密钥，只需将其指向你本地的 Ollama 服务（默认 `http://localhost:11434`）。参见上方的 AI 配置教程。
+
+**Q：什么是“Google Lens 风格”图片即时翻译功能？**
+A：按 **Alt+D** 在屏幕上选择任意区域。Translumo-LLM 会一次性捕获该区域，通过 OCR 识别文字（源语言自动检测），并以你设置的目标语言显示翻译浮层。它非常适合处理不会持续变化的内容——游戏菜单、物品描述、对话框、路牌等。与连续翻译模式（Alt+Q + ~）不同，该模式按需翻译单个捕获帧。翻译优先使用你所配置的 LLM 供应商，若 LLM 失败则回退到 Google 翻译。如需更改目标语言，请在 **设置 → 语言** 中设置。
 
 **Q：LLM 翻译报错或无结果**
 A：请确认 API 密钥正确且有剩余额度、所选模型对你的账户可用，且网络能够访问对应供应商。若翻译服务因频繁请求而封禁，可在 **语言 → 代理** 选项卡中配置代理。
@@ -147,17 +155,66 @@ A：请确保应用程序所在路径仅包含拉丁字母。
 
 ## 构建
 
-*需要 Visual Studio 2022 与 .NET 8 SDK。*
+**环境要求**
+- Windows 10（内部版本 19041）或更高 / Windows 11
+- [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
+- 推荐安装带有 **“.NET 桌面开发”** 工作负载的 Visual Studio 2022，或任何可运行 `dotnet` 命令的编辑器
+
+**步骤**
 
 1. 克隆仓库（**master** 分支始终对应最新发布版本）：
+   ```bash
+   git clone https://github.com/Chaobs/Translumo-LLM.git
+   cd Translumo-LLM
+   ```
 
-    ```bash
-    git clone https://github.com/Chaobs/Translumo-LLM.git
-    ```
+2. 还原依赖并以 Release 模式构建解决方案：
+   ```bash
+   dotnet build Translumo-LLM.sln -c Release
+   ```
+   > 首次构建会运行 **binaries_extract.bat**，自动下载并解压 OCR 模型与内嵌 Python 运行时（约 400 MB）
+   > 到输出目录。该过程仅执行一次，且需要联网。
 
-> 注意：构建过程中，**binaries_extract.bat** 会自动下载并解压模型与 Python 二进制文件（约 400 MB）
-> 到目标输出目录。发布版本以单文件可执行文件形式发布（`dotnet publish` 配合 `PublishSingleFile=true`）；
-> 启动时 .NET 宿主会将程序包解压到可执行文件同级的本地 `temp\` 目录。
+3. 直接从构建输出运行（用于开发 / 测试）：
+   ```bash
+   dotnet run --project src/Translumo -c Release
+   ```
+
+4. 生成可分发的单文件构建：
+   ```bash
+   dotnet publish src/Translumo/Translumo.csproj -c Release -r win-x64 -p:SolutionDir="$(pwd)/"
+   ```
+   发布文件位于 `src/Translumo/bin/Release/net8.0-windows/win-x64/publish/`。首次启动时，.NET 宿主会将
+   单文件程序包解压到可执行文件同级的本地 `temp\` 目录，随后正常运行。
+
+## 更新日志（Changelog）
+
+本节汇总自 Translumo 原项目以来，Translumo-LLM 新增的关键特性与修复的主要 Bug。
+
+**新增特性**
+- **LLM AI 翻译** —— 通过大语言模型获得更具上下文感知、更高质量的翻译，支持的供应商包括：DeepSeek、通义千问 Qwen、Kimi、智谱 GLM、MiniMax、ChatGPT、Claude、Gemini、Grok，以及任意自定义 OpenAI 兼容接口。
+- **Ollama 本地模型支持** —— 通过 Ollama 在你自己的机器上完全本地运行开源 AI 模型，翻译无需 API 密钥，也无需联网。
+- **Google Lens 风格图片即时翻译** —— 按 **Alt+D** 按需捕获并翻译屏幕上任意静态区域（详见 FAQ）。
+- **界面本地化** —— 界面现已提供简体中文、繁体中文、日语、俄语与英语。
+- **可切换的浅色/深色主题** —— 选择适合自己的外观。
+- **TTS 语音切换** —— 在更多系统语音（含 OneCore 语音）中选择语音合成所用的声音。
+- **安全的 API 密钥存储** —— 密钥在首次启动时通过操作系统级 DPAPI 加密。
+- **LLM 翻译自动检测源语言** —— 无需手动设置 OCR 源语言。
+
+**修复的主要 Bug**
+- 修复了程序安装在包含非 ASCII 字符的路径（如中文/日文/俄文路径）下崩溃的问题——现在可在任意目录（包括非英文路径）下运行。
+- 降低了因反复解压单文件 / 临时缓存导致的 **C 盘空间过度占用**。
+- 修复了图片翻译中目标语言不跟随 **设置** 选择的问题。
+- 修复了图片翻译浮层弹出过慢的问题（现可立即弹出，结果在后台填充）。
+- 多项稳定性与兼容性改进。
+
+## 待办清单（Todo-List）
+
+未来的开发计划（尚未实现）：
+1. **优化翻译稳定性与速度** —— 使 LLM 与经典翻译在负载下更可靠、更快速。
+2. **修复潜在 Bug** —— 处理用户反馈与测试中发现的问题。
+3. **提升运行效率、降低资源占用** —— 减少 CPU/GPU/内存开销，提升效率。
+4. **开发更现代化的 UI** —— 以更简洁、直观的设计刷新界面。
 
 ## 致谢
 

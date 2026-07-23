@@ -11,8 +11,9 @@
 
 > **LLM Edition** — a fork of [Translumo](https://github.com/ramjke/Translumo) by
 > [Chaobs](https://github.com/Chaobs). It adds **LLM AI translation** (DeepSeek, Qwen, Kimi, GLM, MiniMax,
-> ChatGPT, Claude, Gemini, Grok and custom OpenAI-compatible endpoints) on top of the original OCR engines,
-> plus Simplified/Traditional Chinese and Japanese localization. See [NOTICE](NOTICE) for the full changelog.
+> ChatGPT, Claude, Gemini, Grok, Ollama for local models, and custom OpenAI-compatible endpoints) on top of
+> the original OCR engines, plus Simplified/Traditional Chinese and Japanese localization. See
+> [NOTICE](NOTICE) for the full changelog.
 > Project page: [github.com/Chaobs/Translumo-LLM](https://github.com/Chaobs/Translumo-LLM) ·
 > Report issues: [Chaobs/Translumo-LLM/issues](https://github.com/Chaobs/Translumo-LLM/issues)
 
@@ -21,6 +22,11 @@
 Translumo-LLM is built upon **[Translumo](https://github.com/ramjke/Translumo)** — the original
 real-time screen translator by [ramjke](https://github.com/ramjke). Visit the upstream project for its
 background, history, and the original feature set that this LLM edition extends.
+
+> **Note:** Because Translumo-LLM has added a large number of features that are incompatible with the
+> original project (LLM translation, Ollama local models, new UI localization, theme switching, instant
+> image translation, etc.), it has been **detached from the upstream fork** and now operates as an
+> **independent project**. Future development continues here and is no longer synced with ramjke/Translumo.
 
 ## Download Translumo-LLM
 
@@ -37,8 +43,9 @@ Full release history: [Chaobs/Translumo-LLM/releases](https://github.com/Chaobs/
 
 - **LLM AI translation**
   Use large language models for higher-quality, context-aware, and more natural translations. Supported
-  providers: DeepSeek, Qwen, Kimi, GLM (Zhipu), MiniMax, ChatGPT, Claude, Gemini, Grok, and any
-  OpenAI-compatible custom endpoint. Configure them from **Settings → Manage API**.
+  providers: DeepSeek, Qwen, Kimi, GLM (Zhipu), MiniMax, ChatGPT, Claude, Gemini, Grok, **Ollama (run
+  open-source models locally with no API key)**, and any OpenAI-compatible custom endpoint. Configure them
+  from **Settings → Manage API**.
 
 - **High text recognition precision**
   Translumo combines multiple OCR engines and uses a machine-learning model to score each result, then
@@ -127,7 +134,10 @@ LLM translation requires an API key from your chosen provider. The short flow:
 ## FAQ
 
 **Q: How do I configure LLM translation?**
-A: Open **Settings → Manage API**, choose a provider (DeepSeek, Qwen, Kimi, GLM, MiniMax, ChatGPT, Claude, Gemini, Grok, or a custom OpenAI-compatible endpoint), select a model, and enter your API key. See the AI Config Tutorial above.
+A: Open **Settings → Manage API**, choose a provider (DeepSeek, Qwen, Kimi, GLM, MiniMax, ChatGPT, Claude, Gemini, Grok, Ollama, or a custom OpenAI-compatible endpoint), select a model, and enter your API key. For **Ollama**, no API key is required — just point it at your local Ollama server (default `http://localhost:11434`). See the AI Config Tutorial above.
+
+**Q: What is the "Google Lens Style" instant image translation?**
+A: Press **Alt+D** and select any region on your screen. Translumo-LLM captures that region once, runs OCR to detect the text (the source language is auto-detected), and shows a translation overlay in your configured target language. It is ideal for static content that does not change continuously — game menus, item descriptions, dialogue boxes, signs, etc. Unlike the continuous translation mode (Alt+Q + `~`), this mode translates a single captured frame on demand. The translation uses your LLM provider when available and falls back to Google Translate if the LLM fails. To change the target language, set it under **Settings → Languages**.
 
 **Q: LLM translation returns errors or no result**
 A: Verify your API key is correct and has remaining quota, the selected model is available for your account, and your network can reach the provider. If a translator blocks frequent requests, configure a proxy under **Languages → Proxy tab**.
@@ -146,18 +156,64 @@ A: Ensure the application path contains only Latin letters.
 
 ## Build
 
-*Visual Studio 2022 and the .NET 8 SDK are required.*
+**Prerequisites**
+- Windows 10 (build 19041) or later / Windows 11
+- [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
+- Visual Studio 2022 with the **".NET desktop development"** workload (recommended), or any editor that can run `dotnet` commands
 
-1. Clone the repository (the **master** branch always corresponds to the latest release):
+**Steps**
 
-    ```bash
-    git clone https://github.com/Chaobs/Translumo-LLM.git
-    ```
+1. Clone the repository (the `master` branch always corresponds to the latest release):
+   ```bash
+   git clone https://github.com/Chaobs/Translumo-LLM.git
+   cd Translumo-LLM
+   ```
 
-> Note: During the build, **binaries_extract.bat** automatically downloads and extracts models and Python
-> binaries (~400 MB) to the target output directory. The release build is published as a single-file
-> executable (`dotnet publish` with `PublishSingleFile=true`); on launch the .NET host extracts the bundle
-> to a local `temp\` folder next to the executable.
+2. Restore dependencies and build the solution in Release mode:
+   ```bash
+   dotnet build Translumo-LLM.sln -c Release
+   ```
+   > The first build runs **binaries_extract.bat**, which downloads and extracts the OCR models and the embedded Python runtime (~400 MB) into the output directory. This only happens once and requires an internet connection.
+
+3. Run it directly from the build output (for development / testing):
+   ```bash
+   dotnet run --project src/Translumo -c Release
+   ```
+
+4. Produce a distributable single-file build:
+   ```bash
+   dotnet publish src/Translumo/Translumo.csproj -c Release -r win-x64 -p:SolutionDir="$(pwd)/"
+   ```
+   The published files land in `src/Translumo/bin/Release/net8.0-windows/win-x64/publish/`. On first launch the .NET host extracts the single-file bundle to a local `temp\` folder next to the executable, then runs normally.
+
+## Changelog
+
+This section summarizes the key features Translumo-LLM has added and the main bugs it has fixed since the original Translumo project.
+
+**New features**
+- **LLM AI translation** — context-aware, higher-quality translations via LLM providers: DeepSeek, Qwen, Kimi, GLM (Zhipu), MiniMax, ChatGPT, Claude, Gemini, Grok, and any custom OpenAI-compatible endpoint.
+- **Ollama local models** — run open-source AI models entirely on your own machine through Ollama; no API key or internet connection required for translation.
+- **Google Lens Style instant image translation** — press **Alt+D** to capture and translate any static region on screen on demand (see FAQ).
+- **UI localization** — the interface is now available in Simplified Chinese, Traditional Chinese, Japanese, Russian, and English.
+- **Switchable light/dark theme** — choose the appearance that suits you.
+- **TTS voice switcher** — select among more system voices (including OneCore voices) for the speech feature.
+- **Secure API key storage** — keys are encrypted with OS-level DPAPI on first launch.
+- **Auto source-language detection** for LLM translation (no need to set the OCR source language manually).
+
+**Bug fixes**
+- Fixed crashes when the application was installed under a path containing non-ASCII characters (e.g. Chinese/Japanese/Russian paths) — the app now works from any directory, including non-English ones.
+- Reduced excessive `C:` drive space usage caused by repeated single-file extraction / temp caching.
+- Fixed the target language not following the **Settings** selection in image translation.
+- Fixed a slow overlay popup in image translation (now appears instantly with results filled in the background).
+- Various stability and compatibility improvements.
+
+## Todo-List
+
+Planned future work (not yet implemented):
+1. **Improve translation stability and speed** — make LLM and classic translation more reliable and faster under load.
+2. **Fix potential bugs** — address issues reported by users and found during testing.
+3. **Boost performance and reduce resource usage** — lower the CPU/GPU/RAM footprint and improve efficiency.
+4. **Develop a more modern UI** — refresh the interface with a cleaner, more intuitive design.
 
 ## Credits
 
