@@ -24,9 +24,9 @@ Translumo-LLM 建立在 **[Translumo](https://github.com/ramjke/Translumo)** 之
 
 ## 下载 Translumo-LLM
 
-**最新版本（v1.1.4）直链：**
+**最新版本（v1.2.2）直链：**
 
-[Translumo-LLM-v1.1.4.zip](https://github.com/Chaobs/Translumo-LLM/releases/download/v1.1.4/Translumo-LLM-v1.1.4.zip)
+[Translumo-LLM-v1.2.2.zip](https://github.com/Chaobs/Translumo-LLM/releases/download/v1.2.2/Translumo-LLM-v1.2.2.zip)
 
 下载后解压压缩包并运行 `Translumo-LLM.exe` 即可。所有必需的依赖（Python 运行时、OCR 模型、WebView2）
 均已打包在内，无需单独安装。
