@@ -122,6 +122,10 @@ namespace Translumo
             configurationStorage.LoadConfiguration();
             ConfigurationStorage.EnsureEncryptionKey();
 
+            // Apply the persisted UI theme before any window is shown so there is no light flash.
+            ThemeService.Load();
+            ThemeService.Apply(ThemeService.Current);
+
             var chatViewModel = _serviceProvider.GetService<ChatWindowViewModel>();
             var dialogService = _serviceProvider.GetService<DialogService>();
             _ = dialogService.ShowWindowAsync(chatViewModel);

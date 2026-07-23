@@ -92,6 +92,7 @@
     <system:String x:Key="Str.AppearanceSettings.FontColor">文字颜色</system:String>
     <system:String x:Key="Str.AppearanceSettings.FontSize">文字大小</system:String>
     <system:String x:Key="Str.AppearanceSettings.Bold">加粗</system:String>
+    <system:String x:Key="Str.AppearanceSettings.DarkTheme">深色主题</system:String>
     <system:String x:Key="Str.AppearanceSettings.ExcludeFromCaptue">截图/录屏中不可见</system:String>
     <system:String x:Key="Str.AppearanceSettings.LineSpacing">行间距</system:String>
     <system:String x:Key="Str.AppearanceSettings.WindowOpacity">翻译窗口背景透明度</system:String>

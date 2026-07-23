@@ -92,6 +92,7 @@
     <system:String x:Key="Str.AppearanceSettings.FontColor">文字色</system:String>
     <system:String x:Key="Str.AppearanceSettings.FontSize">文字サイズ</system:String>
     <system:String x:Key="Str.AppearanceSettings.Bold">太字</system:String>
+    <system:String x:Key="Str.AppearanceSettings.DarkTheme">ダークテーマ</system:String>
     <system:String x:Key="Str.AppearanceSettings.ExcludeFromCaptue">スクリーンショット/録画に表示されない</system:String>
     <system:String x:Key="Str.AppearanceSettings.LineSpacing">行間</system:String>
     <system:String x:Key="Str.AppearanceSettings.WindowOpacity">ウィンドウの不透明度</system:String>

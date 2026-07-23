@@ -45,6 +45,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="70" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <StackPanel
                 Grid.Row="0"
@@ -142,6 +143,15 @@
                     Command="{Binding SendTestTextCommand}"
                     Content="{DynamicResource Str.Button.ShowText}"
                     Style="{DynamicResource PrimaryButton}" />
+            </StackPanel>
+
+            <StackPanel
+                Grid.Row="6"
+                Grid.Column="0"
+                Margin="10,10,0,0"
+                Orientation="Horizontal">
+                <ToggleButton IsChecked="{Binding IsDarkTheme, Mode=TwoWay}" Style="{StaticResource PrimaryToggleButton}" />
+                <Label Content="{DynamicResource Str.AppearanceSettings.DarkTheme}" Style="{StaticResource ControlCaptionLabel}" />
             </StackPanel>
 
             <StackPanel

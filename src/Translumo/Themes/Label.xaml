@@ -59,7 +59,7 @@
         x:Key="LightLabel"
         BasedOn="{StaticResource MaterialDesignLabel}"
         TargetType="{x:Type Label}">
-        <Setter Property="Foreground" Value="{StaticResource PrimaryHueLightBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
     </Style>
 
 </ResourceDictionary>

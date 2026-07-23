@@ -42,6 +42,13 @@
                     <SolidColorBrush x:Key="ErrorBrush" Color="#f03a16" />
                     <SolidColorBrush x:Key="HoverBackgroundBrush" Color="#ebf5f7" />
                     <SolidColorBrush x:Key="WarningBrush" Color="#ffdad6" />
+                    <!--  Dark chrome surface for the side navigation and dialog headers (theme-aware)  -->
+                    <SolidColorBrush x:Key="ChromeBackgroundBrush" Color="#95c4cc" />
+                    <!--  MaterialDesign built-in text/background brushes overridden at the app level
+                          (and re-colored at runtime by ThemeService) so DynamicResource references
+                          resolve to our mutable instances rather than the Frozen built-in ones.  -->
+                    <SolidColorBrush x:Key="MaterialDesignBody" Color="#FF000000" />
+                    <SolidColorBrush x:Key="MaterialDesignBackground" Color="#FFFFFFFF" />
                 </ResourceDictionary>
 
                 <ResourceDictionary Source="/Themes/Label.xaml" />

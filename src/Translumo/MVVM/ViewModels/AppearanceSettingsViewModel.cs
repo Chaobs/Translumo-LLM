@@ -43,6 +43,22 @@ namespace Translumo.MVVM.ViewModels
             set => SetProperty(ref _selectedColor, value);
         }
 
+        /// <summary>Whether the dark UI theme is active. Toggling applies and persists the theme.</summary>
+        public bool IsDarkTheme
+        {
+            get => ThemeService.Current == ThemeMode.Dark;
+            set
+            {
+                var mode = value ? ThemeMode.Dark : ThemeMode.Light;
+                if (ThemeService.Current != mode)
+                {
+                    ThemeService.Apply(mode);
+                    ThemeService.Save();
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         public ICommand ChangeBackColorClickedCommand => new RelayCommand<Control>(OnChangeBackColorClicked);
         public ICommand ChangeFontColorClickedCommand => new RelayCommand<Control>(OnChangeFontColorClicked);
         public ICommand SendTestTextCommand => new RelayCommand(OnSendTestTextCommand);
