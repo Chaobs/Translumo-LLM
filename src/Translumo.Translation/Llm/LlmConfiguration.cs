@@ -93,6 +93,10 @@ If the text is already in {TargetLanguage}, or is nonsensical/garbled OCR output
             set => SetProperty(ref _maxTokens, value);
         }
 
+        /// <summary>Whether this provider requires an API key. Local providers (e.g. Ollama) do not.</summary>
+        [JsonIgnore]
+        public bool RequiresApiKey => Provider != LlmProvider.Ollama;
+
         [JsonIgnore]
         public bool Enabled => Provider != LlmProvider.Custom ||
                                (!string.IsNullOrWhiteSpace(Endpoint) && !string.IsNullOrWhiteSpace(ModelName));

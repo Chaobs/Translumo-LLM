@@ -39,7 +39,7 @@ namespace Translumo.Translation.Llm
         {
             var cfg = _llmSettings;
 
-            if (string.IsNullOrWhiteSpace(cfg.ApiKey))
+            if (cfg.RequiresApiKey && string.IsNullOrWhiteSpace(cfg.ApiKey))
             {
                 throw new TranslationException("LLM translator: API Key is not configured.");
             }
@@ -62,7 +62,10 @@ namespace Translumo.Translation.Llm
             switch (apiStyle)
             {
                 case LlmApiStyle.OpenAi:
-                    container.Reader.OptionalHeaders["Authorization"] = "Bearer " + cfg.ApiKey;
+                    if (cfg.RequiresApiKey)
+                    {
+                        container.Reader.OptionalHeaders["Authorization"] = "Bearer " + cfg.ApiKey;
+                    }
                     url = cfg.ResolvedEndpoint;
                     json = BuildOpenAiRequest(cfg, systemPrompt, sourceText);
                     break;

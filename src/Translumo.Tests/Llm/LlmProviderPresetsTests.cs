@@ -23,7 +23,15 @@ namespace Translumo.Tests.Llm
                 Assert.False(string.IsNullOrWhiteSpace(preset.DefaultEndpoint), $"{provider} endpoint is empty");
                 Assert.True(Uri.TryCreate(preset.DefaultEndpoint, UriKind.Absolute, out var uri),
                     $"{provider} endpoint is not a valid absolute URI: {preset.DefaultEndpoint}");
-                Assert.True(uri.Scheme == Uri.UriSchemeHttps, $"{provider} endpoint is not https");
+                // Ollama runs locally over plain http; every cloud provider must use https.
+                if (provider == LlmProvider.Ollama)
+                {
+                    Assert.True(uri.Scheme == Uri.UriSchemeHttp, $"{provider} endpoint should be http (local)");
+                }
+                else
+                {
+                    Assert.True(uri.Scheme == Uri.UriSchemeHttps, $"{provider} endpoint is not https");
+                }
                 Assert.False(string.IsNullOrWhiteSpace(preset.DefaultModel), $"{provider} model is empty");
             }
         }
@@ -36,6 +44,7 @@ namespace Translumo.Tests.Llm
         [InlineData(LlmProvider.GLM, LlmApiStyle.OpenAi)]
         [InlineData(LlmProvider.MiniMax, LlmApiStyle.OpenAi)]
         [InlineData(LlmProvider.Grok, LlmApiStyle.OpenAi)]
+        [InlineData(LlmProvider.Ollama, LlmApiStyle.OpenAi)]
         [InlineData(LlmProvider.Claude, LlmApiStyle.Anthropic)]
         [InlineData(LlmProvider.Gemini, LlmApiStyle.Gemini)]
         public void Api_style_matches_expectation(LlmProvider provider, LlmApiStyle expected)

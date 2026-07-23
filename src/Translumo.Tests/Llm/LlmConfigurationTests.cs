@@ -84,5 +84,19 @@ namespace Translumo.Tests.Llm
             Assert.Equal("custom-model", restored.ModelName);
             Assert.Equal(0.7, restored.Temperature);
         }
+
+        [Fact]
+        public void Ollama_provider_does_not_require_api_key()
+        {
+            var cfg = new LlmConfiguration { Provider = LlmProvider.Ollama };
+            Assert.False(cfg.RequiresApiKey);
+        }
+
+        [Fact]
+        public void Cloud_providers_require_api_key()
+        {
+            var cfg = new LlmConfiguration { Provider = LlmProvider.DeepSeek };
+            Assert.True(cfg.RequiresApiKey);
+        }
     }
 }

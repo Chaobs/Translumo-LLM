@@ -54,6 +54,10 @@ namespace Translumo.Translation.Llm
                 [LlmProvider.Grok] = new LlmProviderPreset(
                     "https://api.x.ai/v1/chat/completions", "grok-3-mini", LlmApiStyle.OpenAi),
 
+                // Ollama runs locally and exposes an OpenAI-compatible endpoint. No API key needed.
+                [LlmProvider.Ollama] = new LlmProviderPreset(
+                    "http://localhost:11434/v1/chat/completions", "llama3", LlmApiStyle.OpenAi),
+
                 [LlmProvider.Custom] = new LlmProviderPreset(
                     string.Empty, string.Empty, LlmApiStyle.OpenAi)
             };

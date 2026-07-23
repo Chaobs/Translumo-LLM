@@ -14,7 +14,8 @@
         Claude = 6,
         Gemini = 7,
         Grok = 8,
-        Custom = 9
+        Custom = 9,
+        Ollama = 10
     }
 
     /// <summary>

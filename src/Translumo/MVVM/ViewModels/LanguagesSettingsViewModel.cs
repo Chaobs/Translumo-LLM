@@ -45,6 +45,15 @@ namespace Translumo.MVVM.ViewModels
         public ObservableCollection<DisplayEnumItem> AvailableTtsEngines { get; } = new();
         public ObservableCollection<DisplayEnumItem> AvailableLlmProviders { get; } = new();
 
+        /// <summary>Display order for the LLM provider dropdown. Custom is always last so the user
+        /// is steered toward a built-in provider first; Ollama sits just above it as a local default.</summary>
+        private static readonly LlmProvider[] ProviderDisplayOrder = new[]
+        {
+            LlmProvider.DeepSeek, LlmProvider.Qwen, LlmProvider.Kimi, LlmProvider.GLM,
+            LlmProvider.MiniMax, LlmProvider.ChatGPT, LlmProvider.Claude, LlmProvider.Gemini,
+            LlmProvider.Grok, LlmProvider.Ollama, LlmProvider.Custom
+        };
+
         public TranslationConfiguration Model { get; set; }
 
         public TtsConfiguration TtsSettings { get; set; }
@@ -590,7 +599,7 @@ namespace Translumo.MVVM.ViewModels
                 AvailableTtsEngines.Add(new DisplayEnumItem(v, GetTtsDisplayName(v)));
 
             AvailableLlmProviders.Clear();
-            foreach (LlmProvider v in Enum.GetValues(typeof(LlmProvider)))
+            foreach (var v in ProviderDisplayOrder)
                 AvailableLlmProviders.Add(new DisplayEnumItem(v, GetLlmProviderDisplayName(v)));
         }
 

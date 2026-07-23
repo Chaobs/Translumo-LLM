@@ -104,6 +104,20 @@ namespace Translumo.Translation.Llm
                     "grok-4.1-fast-reasoning",
                 },
 
+                [LlmProvider.Ollama] = new[]
+                {
+                    "llama3",
+                    "llama3.1",
+                    "llama3.2",
+                    "qwen2.5",
+                    "qwen2.5-coder",
+                    "mistral",
+                    "mistral-nemo",
+                    "gemma2",
+                    "phi3",
+                    "deepseek-r1",
+                },
+
                 // Custom providers have no fixed model list — the user types their own.
                 [LlmProvider.Custom] = new string[0],
             };

@@ -31,6 +31,7 @@ namespace Translumo.Tests.Llm
         [InlineData(LlmProvider.DeepSeek, "deepseek-v4-flash")]
         [InlineData(LlmProvider.Kimi, "kimi-k3")]
         [InlineData(LlmProvider.Grok, "grok-3-mini")]
+        [InlineData(LlmProvider.Ollama, "llama3")]
         public void First_model_matches_provider_default(LlmProvider provider, string expectedDefault)
         {
             var models = LlmModelCatalog.Models[provider];
