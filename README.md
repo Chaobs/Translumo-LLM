@@ -89,12 +89,6 @@ Full release history: [Chaobs/Translumo-LLM/releases](https://github.com/Chaobs/
 4. Define the capture area: press **Alt+Q** and select an area on the screen
 5. Run translation (press **~**)
 
-1. 打开“设置”（Alt+G）或双击系统托盘中的图标
-2. 选择语言：识别的源语言和翻译目标语言
-3. 选择文字识别器（推荐模式请参见“使用提示”）
-4. 定义捕获区域：按 Alt+Q 并在屏幕上选择一个区域
-5. 开始翻译（按 ~）
-
 ### Recommended OCR Engines
 
 - It is recommended to use **WindowsOCR** only.
@@ -126,12 +120,6 @@ LLM translation requires an API key from your chosen provider. The short flow:
 3. Select your AI provider and models, then enter your API key
 4. Define the capture area: press **Alt+Q** and select an area on the screen
 5. Run translation (press **~**)
-
-1. 打开“设置”（Alt+G）或双击系统托盘中的图标
-2. 点击“管理 API”
-3. 选择您的 AI 服务提供商和模型，然后输入您的 API 密钥
-4. 定义捕获区域：按 Alt+Q 并选择屏幕上的一个区域
-5. 开始翻译（按 ~）
 
 > API keys are stored locally and protected with OS-level encryption (DPAPI) on first launch. They are
 > never sent anywhere except to the provider you configure.

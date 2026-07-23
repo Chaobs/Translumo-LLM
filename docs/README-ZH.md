@@ -88,12 +88,6 @@ Translumo-LLM 建立在 **[Translumo](https://github.com/ramjke/Translumo)** 之
 4. 定义捕获区域：按 Alt+Q 并在屏幕上选择一个区域
 5. 开始翻译（按 ~）
 
-1. Open the Settings (**Alt+G**) or double-click the icon in the system tray
-2. Select languages: source language for OCR and translation language
-3. Select text recognition engines (see Usage Tips for recommended modes)
-4. Define the capture area: press **Alt+Q** and select an area on the screen
-5. Run translation (press **~**)
-
 ### 推荐的文字识别器
 
 - 建议仅使用 **WindowsOCR**。
@@ -127,12 +121,6 @@ LLM 翻译需要你所选供应商的 API 密钥。简要流程如下：
 3. 选择您的 AI 服务提供商和模型，然后输入您的 API 密钥
 4. 定义捕获区域：按 Alt+Q 并选择屏幕上的一个区域
 5. 开始翻译（按 ~）
-
-1. Open the Settings (**Alt+G**) or double-click the icon in the system tray
-2. Click **Manage API**
-3. Select your AI provider and models, then enter your API key
-4. Define the capture area: press **Alt+Q** and select an area on the screen
-5. Run translation (press **~**)
 
 > API 密钥仅保存在本地，并在首次启动时通过操作系统级加密（DPAPI）保护。除你所配置的供应商外，
 > 密钥不会被发送到任何地方。
